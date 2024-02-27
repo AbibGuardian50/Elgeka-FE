@@ -30,9 +30,9 @@ export default {
 
         <div>
 
-            <div class="grid grid-cols-2 gap-8 pb-4">
+            <div class="grid pt-12 grid-cols-2 gap-8 pb-4">
                 <div v-for="kegiatan in received_kegiatankomunitas" :key="kegiatan.id" class="flex items-start flex-col">
-                    <img class="pl-8 max-w-[500px] max-h-[300px]" :src="'https://elgeka-web-api-production.up.railway.app/' + kegiatan.image_url" alt="" srcset="">
+                    <img class="pl-8 w-[619px] h-[340px] overflow-hidden" :src="'https://elgeka-web-api-production.up.railway.app/' + kegiatan.image_url" alt="" srcset="">
                     <div class="pl-8">
                         <p class="font-poppins font-semibold text-4xl text-red">{{ kegiatan.title }}</p>
                         <p class="font-poppins font-normal leading-6 text-base py-4">{{ kegiatan.content }}.</p>

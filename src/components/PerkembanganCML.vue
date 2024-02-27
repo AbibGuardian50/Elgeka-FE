@@ -123,7 +123,7 @@ export default {
 
             <div class="grid grid-cols-2 gap-8 pb-4" v-show="pilih_kategori === null">
                 <div v-for="berita in received_beritaumum" :key="berita.id" class="flex items-center flex-col">
-                    <img class="max-w-[500px] max-h-[300px]" :src="'https://elgeka-web-api-production.up.railway.app/' + berita.image_url" alt="" srcset="">
+                    <img class="w-[619px] h-[320px]" :src="'https://elgeka-web-api-production.up.railway.app/' + berita.image_url" alt="" srcset="">
                     <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
                     <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
                     <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>
@@ -132,7 +132,7 @@ export default {
 
             <div class="grid grid-cols-2 gap-8 pb-4" v-show="pilih_kategori === 'perkembanganKomunitas'">
                 <div v-for="berita in received_beritaKomunitas" :key="berita.id" class="flex items-center flex-col">
-                    <img class="max-w-[500px] max-h-[300px]" :src="'https://elgeka-web-api-production.up.railway.app/' + berita.image_url" alt="" srcset="">
+                    <img class="w-[619px] h-[320px]" :src="'https://elgeka-web-api-production.up.railway.app/' + berita.image_url" alt="" srcset="">
                     <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
                     <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
                     <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>
@@ -141,7 +141,7 @@ export default {
 
             <div class="grid grid-cols-2 gap-8 pb-4" v-show="pilih_kategori === 'perkembanganCML'">
                 <div v-for="berita in received_beritaCML" :key="berita.id" class="flex items-center flex-col">
-                    <img class="max-w-[500px] max-h-[300px]" :src="'https://elgeka-web-api-production.up.railway.app/' + berita.image_url" alt="" srcset="">
+                    <img class="w-[619px] h-[320px]" :src="'https://elgeka-web-api-production.up.railway.app/' + berita.image_url" alt="" srcset="">
                     <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
                     <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
                     <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>

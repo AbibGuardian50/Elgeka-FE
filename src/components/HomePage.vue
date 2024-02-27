@@ -86,8 +86,9 @@ export default {
       <p class="font-poppins font-medium text-2xl pb-4">Berita</p>
       <div class="flex justify-between items-center">
         <p class="font-poppins font-semibold text-5xl text-red  ">Disini Berita</p>
-       <router-link to="/perkembangancml"><button type="button" class="bg-red text-white py-2 px-8 mr-8 rounded-full font-poppins text-2xl">Lihat
-          Semua</button></router-link> 
+        <router-link to="/perkembangancml"><button type="button"
+            class="bg-red text-white py-2 px-8 mr-8 rounded-full font-poppins text-2xl">Lihat
+            Semua</button></router-link>
       </div>
 
     </div>

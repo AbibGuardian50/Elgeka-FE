@@ -11,10 +11,15 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <router-link to="/" class="text-white rounded-md px-3 py-2 text-sm font-medium"
-                                aria-current="page">Komunitas</router-link>
-                            <router-link to="/perkembangancml"
-                                class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Berita</router-link>
+                            <select class="bg-red text-white rounded-md px-3 py-2 text-sm font-medium" name="" id="">
+                                <option value="" selected><router-link to="/" class=""
+                                        aria-current="page">Komunitas</router-link></option>
+                            </select>
+
+                            <select class="bg-red text-white rounded-md px-3 py-2 text-sm font-medium" name="" id="">
+                               <option value="" selected><router-link to="/perkembangancml">Berita</router-link></option> 
+                            </select>
+
                             <a href=""
                                 class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Info
                                 RS</a>
@@ -52,4 +57,5 @@
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
     </div
   </div>>-->
-</nav></template>
+    </nav>
+</template>
