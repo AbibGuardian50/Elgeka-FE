@@ -31,15 +31,6 @@ const router = createRouter({
     },
 
     {
-      path: '/perkembangankomunitas',
-      name: 'perkembangankomunitas',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/PerkembanganKomunitas.vue')
-    },
-
-    {
       path: '/KegiatanKomunitas',
       name: 'KegiatanKomunitas',
       // route level code-splitting
