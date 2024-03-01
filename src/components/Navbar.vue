@@ -27,7 +27,7 @@ export default {
                                 class="bg-red text-white rounded-md px-3 py-2 text-sm font-medium font-inter" name="" id="">
                                 <option value="/"><router-view to="/" class="" aria-current="page">Komunitas</router-view>
                                 </option>
-                                <option value="/kegiatankomunitas"><router-view to="/kegiatan">Kegiatan</router-view>
+                                <option value="/komunitaskegiatan"><router-view to="/kegiatan">Kegiatan</router-view>
                                 </option>
 
                             </select>

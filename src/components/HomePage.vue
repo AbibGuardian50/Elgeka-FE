@@ -81,7 +81,7 @@ export default {
 
     </div>
 
-    <router-link to="/kegiatankomunitas"><button type="button"
+    <router-link to="/komunitaskegiatan"><button type="button"
         class="bg-white text-red py-2 px-8 rounded-md font-poppins text-2xl">Lihat
         Semua</button></router-link>
 
