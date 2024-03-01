@@ -46,12 +46,14 @@ export default {
   <Navbar />
 
 
-  <div class="flex flex-col items-center py-40">
-    <p class="font-poppins font-semibold text-5xl text-black">PROFILE</p>
-    <p class="text-center font-poppins font-semibold text-5xl text-black">Komunitas ELGEKA Jawa Barat</p>
-    <p class="text-center text-base md:px-60 pb-4 pt-2">Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa
+  <div class="flex flex-col items-center py-40" id="profile">
+    <p class="font-poppins font-semibold text-5xl text-white">PROFILE</p>
+    <p class="text-center font-poppins font-semibold text-5xl text-white">Komunitas ELGEKA Jawa Barat</p>
+    <p class="text-center text-base md:px-60 pb-4 pt-2 text-white">Lorem ipsum dolor sit amet consectetur. Commodo
+      adipiscing massa
       et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.</p>
-    <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Selengkapnya</button>
+    <router-link to="/quotes"> <button type="button"
+        class="bg-red font-poppins font-bold text-[20px] text-white py-4 px-16 rounded-md">Selengkapnya</button></router-link>
   </div>
 
   <!-- Kegiatan Komunitas -->
@@ -79,7 +81,13 @@ export default {
 
     </div>
 
+    <router-link to="/kegiatankomunitas"><button type="button"
+        class="bg-white text-red py-2 px-8 rounded-md font-poppins text-2xl">Lihat
+        Semua</button></router-link>
+
   </div>
+
+  <!-- Berita -->
 
   <div class="pt-4 pb-16 bg-lightgrey">
     <div class="pl-16">
@@ -87,7 +95,7 @@ export default {
       <div class="flex justify-between items-center">
         <p class="font-poppins font-semibold text-5xl text-red  ">Disini Berita</p>
         <router-link to="/perkembangancml"><button type="button"
-            class="bg-red text-white py-2 px-8 mr-8 rounded-full font-poppins text-2xl">Lihat
+            class="bg-red text-white py-2 px-8 mr-8 rounded-md font-poppins text-2xl">Lihat
             Semua</button></router-link>
       </div>
 
@@ -123,6 +131,12 @@ export default {
 </template>
 
 <style>
+#profile {
+  background: url('../assets/kerjasama.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* .swiper-pagination-bullet-active {
     background-color: #fff;
 } */

@@ -1,9 +1,9 @@
 <script setup>
-import KegiatanKomunitas from '../components/KegiatanKomunitas.vue'
+import Kegiatankomunitas from '../components/Kegiatankomunitas.vue'
 </script>
 
 <template>
-    <main>
-        <KegiatanKomunitas />
-    </main>
+  <main>
+    <Kegiatankomunitas />
+  </main>
 </template>

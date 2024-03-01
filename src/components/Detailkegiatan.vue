@@ -1,24 +1,8 @@
 <script>
-import axios from 'axios';
 import Navbar from './Navbar.vue'
-
 export default {
     components: {
-        Navbar
-    },
-    data() {
-        return {
-            received_kegiatankomunitas: [],
-        };
-    },
-    async created() {
-        try {
-            const response_kegiatankomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas');
-            this.received_kegiatankomunitas = response_kegiatankomunitas.data.result.data
-
-        } catch (error) {
-            console.error(error);
-        }
+        Navbar,
     }
 }
 </script>
@@ -26,20 +10,26 @@ export default {
 <template>
     <Navbar />
 
-    <div>
+    <div
+        class="flex gap-8 p-8 min-[1440px]:max-w-screen-2xl m-auto  min-[240px]:max-lg:flex-wrap min-[240px]:max-lg:justify-center">
+        <img src="../assets/Rectangle4209.png" alt="">
+        <div class="flex flex-col justify-center ">
+            <div class="flex flex-col">
+                <p class="font-poppins text-base">kegiatan terbaru</p>
+                <p class="font-poppins font-bold text-5xl pt-4">Gathering 2 Januari 2024</p>
+                <p class="font-poppins font-bold text-5xl pb-8">Komunitas ELGEKA Jawa Barat</p>
+            </div>
 
-        <div>
-
-            <div class="grid pt-12 grid-cols-2 gap-8 pb-4">
-                <div v-for="kegiatan in received_kegiatankomunitas" :key="kegiatan.id" class="flex items-start flex-col">
-                    <img class="pl-8 w-[619px] h-[340px] overflow-hidden" :src="'https://elgeka-web-api-production.up.railway.app/' + kegiatan.image_url" alt="" srcset="">
-                    <div class="pl-8">
-                        <p class="font-poppins font-semibold text-4xl text-red">{{ kegiatan.title }}</p>
-                        <p class="font-poppins font-normal leading-6 text-base py-4">{{ kegiatan.content }}.</p>
-                        <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Read More</button>
-                    </div>
-
-                </div>
+            <div class="flex gap-8">
+                <p class="font-poppins font-normal text-[12px]">Lorem ipsum dolor sit amet consectetur. Commodo adipiscing
+                    massa
+                    et sem. Neque elementum non facilisi eget.
+                    Eget
+                    quis et tortor cras sed.
+                    Nec vulputate neque non mi.Lorem ipsum dolor sit amet consectetur.
+                    Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec
+                    vulputate
+                    neque non mi.</p>
             </div>
 
 

@@ -22,12 +22,48 @@ const router = createRouter({
     },
 
     {
-      path: '/detailkegiatan',
-      name: 'detailkegiatan',
+      path: '/cerita',
+      name: 'cerita',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/Detailkegiatan.vue')
+      component: () => import('../views/Cerita.vue')
+    },
+
+    {
+      path: '/createcerita',
+      name: 'createcerita',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Createcerita.vue')
+    },
+
+    {
+      path: '/Kegiatankomunitas',
+      name: 'Kegiatankomunitas',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Kegiatankomunitas.vue')
+    },
+
+    {
+      path: '/komentar',
+      name: 'komentar',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Komentar.vue')
+    },
+
+    {
+      path: '/login',
+      name: 'login',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Login.vue')
     },
 
     {
@@ -40,12 +76,12 @@ const router = createRouter({
     },
 
     {
-      path: '/KegiatanKomunitas',
-      name: 'KegiatanKomunitas',
+      path: '/Detailkegiatan',
+      name: 'Detailkegiatan',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/KegiatanKomunitas.vue')
+      component: () => import('../views/Detailkegiatan.vue')
     },
 
     {
@@ -64,6 +100,24 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
       component: () => import('../views/playground.vue')
+    },
+
+    {
+      path: '/quotes',
+      name: 'quotes',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Quotes.vue')
+    },
+
+    {
+      path: '/Register',
+      name: 'Register',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Register.vue')
     },
     
   ]

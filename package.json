@@ -11,8 +11,12 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tiptap/pm": "^2.2.4",
+    "@tiptap/starter-kit": "^2.2.4",
+    "@tiptap/vue-3": "^2.2.4",
     "axios": "^1.6.7",
     "flowbite": "^2.3.0",
+    "quill": "^2.0.0-rc.2",
     "swiper": "^11.0.6",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"

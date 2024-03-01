@@ -22,6 +22,7 @@ export default {
             this.received_beritaumum = response_beritaumum.data.result.data
             this.received_beritaCML = response_beritaCML.data.result.data
             this.received_beritaKomunitas = response_beritaKomunitas.data.result.data
+            console.log(this.received_beritaCML)
         } catch (error) {
             console.error(error);
         }
