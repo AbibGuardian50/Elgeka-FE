@@ -38,7 +38,7 @@ export default {
                         <p class="font-poppins font-semibold text-4xl text-red">{{ kegiatan.title }}</p>
                         <p class="font-poppins font-normal leading-6 text-base py-4">{{ kegiatan.content }}.</p>
                         <router-link to="/detailkegiatan"><button type="button"
-                                class="bg-red text-white py-2 px-16 rounded-full">Read More</button></router-link>
+                                class="bg-red text-white py-2 px-16 rounded-full">Selengkapnya</button></router-link>
                     </div>
 
                 </div>
