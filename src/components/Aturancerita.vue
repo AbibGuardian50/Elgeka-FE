@@ -1,11 +1,11 @@
 <script>
 import axios from 'axios';
-import Navbar from './Navbar.vue'
+// import Navbar from './Navbar.vue'
 
 export default {
-    components: {
-        Navbar
-    },
+    // components: {
+    //     Navbar
+    // },
     data() {
         return {
             pilih_kategori: null,
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <template>
-    <Navbar />
+    <!-- <Navbar /> -->
 
     <div class="flex flex-col justify-center items-center">
         <div class="border-2 border-[#8B1A0FCC] m-8 rounded-lg p-4 bg-grey">

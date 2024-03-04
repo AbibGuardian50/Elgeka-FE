@@ -1,97 +1,114 @@
+<script>
+import Navbar from './Navbar.vue'
+import Createcerita from './Createcerita.vue'
+export default {
+    components: {
+        Navbar
+    },
+    name: "large-modal",
+    data() {
+        return {
+            Ceritaanda: [
+                { title: 'Cerita', content: 'Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.' },
+                { title: 'Cerita', content: 'Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.' },
+                { title: 'Cerita', content: 'Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.' },
+                { title: 'Cerita', content: 'Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.' },
+            ],
+            showModal: false
+        }
+    },
+    methods: {
+        toggleModal: function () {
+            this.showModal = !this.showModal;
+        }
+    }
+}
+</script>
 <template>
+    <Navbar />
+
     <div>
-        <div class="container">
-            <div v-if="chooseOption === 'perkembanganKomunitas'">
-                <div v-for="berita in received_beritaKomunitas" :key="berita.id" class="flex items-center flex-col">
-                    <img src="../assets/Rectangle179.png" alt="" srcset="">
-                    <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
-                    <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
-                    <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>
-                </div>
-            </div>
+        <div class="pt-4 mx-4 flex justify-between">
+            <button
+                class="text-white flex bg-red items-center gap-2 p-2 mb-4 font-medium hover:cursor-pointer rounded-md">Cerita
+                Anda</button>
+            <button v-on:click="toggleModal()"
+                class="font-inter text-white flex bg-red items-center gap-2 p-2 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
+                Cerita</button>
+        </div>
 
-            <div v-if="chooseOption === 'perkembanganCML'">
-                <div v-for="berita in received_beritaCML" :key="berita.id" class="flex items-center flex-col">
-                    <img src="../assets/Rectangle179.png" alt="" srcset="">
-                    <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
-                    <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
-                    <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>
-                </div>
-            </div>
-
-            <div v-if="chooseOption === 'umum'">
-                <div v-for="berita in received_beritaumum" :key="berita.id" class="flex items-center flex-col">
-                    <!-- <div v-for="">
-                        aaaaa
-                    </div> -->
-                    <img :src="'https://elgeka-web-api-production.up.railway.app/' + berita.image_url" alt="">
-                    <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
-                    <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
-                    <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>
-                </div>
+        <div class="grid grid-cols-2 gap-8 pb-4 px-16">
+            <div class="flex flex-col items-center" v-for="cerita in Ceritaanda">
+                <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
+                <p class="font-poppins font-normal text-[16px] text-center py-4">{{ cerita.content }}</p>
+                <button class="rounded-md bg-red py-4 text-white text-xl font-bold w-full">Lihat Semua</button>
             </div>
         </div>
 
-        <select class="form-select" v-model="chooseOption">
-            <option value="umum">Pilih Kategori</option>
-            <option  value="perkembanganKomunitas" selected>Komunitas</option>
-            <option value="perkembanganCML">CML</option>
-        </select>
 
-        <select name="Piilih trial" id="" v-model="pilihtral">
-            <option value="" selected>anjay</option>
-            <option value="">berisik</option>
-            <option value="">apa aja deh</option>
-        </select>
+    </div>
+
+    <div>
+        <div v-if="showModal"
+            class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+            <div class="relative w-auto my-6 mx-auto max-w-6xl">
+                <!--content-->
+                <div
+                    class="border border-red rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                    <!--header-->
+                    <div class="flex items-start justify-between p-5 border-b border-blueGray-200 rounded-t">
+                        <h3 class="text-3xl font-semibold">
+                            Aturan Blog/Cerita
+                        </h3>
+                        <button
+                            class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                            v-on:click="toggleModal()">
+                            <span
+                                class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                ×
+                            </span>
+                        </button>
+                    </div>
+                    <!--body-->
+                    <div class="relative p-6 flex-auto">
+                        <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+                            Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non
+                            facilisi eget.
+                            Eget quis et tortor cras sed. Nec vulputate neque non mi. Lorem ipsum dolor sit amet
+                            consectetur. Commodo
+                            adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec
+                            vulputate
+                            neque non mi. Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque
+                            elementum non
+                            facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi. Lorem ipsum dolor sit
+                            amet
+                            consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et
+                            tortor cras
+                            sed. Nec vulputate neque non mi.
+                        </p>
+                        <p>1.Lorem ipsum dolor sit amet consectetur</p>
+                        <p>2.Lorem ipsum dolor sit amet consectetur</p>
+                        <p>3.Lorem ipsum dolor sit amet consectetur</p>
+                        <p>4.Lorem ipsum dolor sit amet consectetur</p>
+                        <p>5.Lorem ipsum dolor sit amet consectetur</p>
+                    </div>
+                    <!--footer-->
+                    <div class="flex items-center justify-center p-6 border-t border-blueGray-200 rounded-b">
+                        <router-link to="/createcerita"><button
+                                class="text-white bg-red border hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button">
+                                Setuju
+                            </button></router-link>
+                        <!-- <button
+                            class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="button" v-on:click="toggleModal()">
+                            Tidak Setuju
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
     </div>
 </template>
-  
-<script>
-import axios from 'axios';
 
-export default {
-    data() {
-        path: 'https://elgeka-web-api-production.up.railway.app'
-        return {
-            chooseOption: null,
-            received_beritaumum: [],
-        }
-        
-    },
-    async created() {
-        try {
-            const response_beritaumum = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita');
-            const response_beritaCML = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganCML');
-            const response_beritaKomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas');
-            this.received_beritaumum = response_beritaumum.data.result.data
-            this.received_beritaCML = response_beritaCML.data.result.data
-            this.received_beritaKomunitas = response_beritaKomunitas.data.result.data
-            this.received_imgberitaumum = response_beritaumum.data.result.data[0].image_url.split(('/')[1]);
-            console.log(this.received_imgberitaumum)
-        } catch (error) {
-            console.error(error);
-        }
-    }
-};
-</script>
-  
-<style scoped>
-a {
-    color: #42b983;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.form-select {
-    margin-top: 20px;
-    height: 40px;
-    width: 175px;
-    border-radius: 5px;
-    border: solid 2px #42b983;
-    font-size: 20px;
-}
-
-.container {
-    height: 50px;
-}
-</style>
