@@ -54,8 +54,11 @@ export default {
                             </router-link>
                             <a href="#"
                                 class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-inter font-medium">Galeri</a>
-                            <a href="#"
-                                class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-inter font-medium">Donasi</a>
+                            <router-link to="/donasi">
+                                <p
+                                    class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-inter font-medium">
+                                    Donasi</p>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -84,5 +87,4 @@ export default {
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
     </div
   </div>>-->
-    </nav>
-</template>
+</nav></template>

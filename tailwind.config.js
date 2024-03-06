@@ -29,8 +29,6 @@ export default {
       'lightgrey': '#F6F6F6',
       'bluegrey': '#64748b',
       'grey': '#D9D9D9',
-
-
     },
     fontFamily: {
       'inter' : ['inter', 'sans-serif'],

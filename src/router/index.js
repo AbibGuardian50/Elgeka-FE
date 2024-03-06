@@ -40,6 +40,15 @@ const router = createRouter({
     },
 
     {
+      path: '/donasi',
+      name: 'donasi',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Donasi.vue')
+    },
+
+    {
       path: '/komunitaskegiatan',
       name: 'komunitaskegiatan',
       // route level code-splitting
@@ -103,8 +112,17 @@ const router = createRouter({
     },
 
     {
-      path: '/quotes',
-      name: 'quotes',
+      path: '/detailprofil',
+      name: 'detailprofil',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Detailprofil.vue')
+    },
+
+    {
+      path: '/Quotes',
+      name: 'Quotes',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .

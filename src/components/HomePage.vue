@@ -52,7 +52,7 @@ export default {
     <p class="text-center text-base md:px-60 pb-4 pt-2 text-white">Lorem ipsum dolor sit amet consectetur. Commodo
       adipiscing massa
       et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.</p>
-    <router-link to="/quotes"> <button type="button"
+    <router-link to="/detailprofil"> <button type="button"
         class="bg-red font-poppins font-bold text-[20px] text-white py-4 px-16 rounded-md">Selengkapnya</button></router-link>
   </div>
 
