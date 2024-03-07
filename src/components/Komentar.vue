@@ -31,7 +31,7 @@ export default {
                 sed. Nec vulputate neque non mi.</p>
             <div class="px-16 pt-4 flex gap-2 justify-between">
                 <input class="bg-grey w-4/5 px-4 placeholder:text-[#000000B2]" type="text" name="komentar" id="" placeholder="Berikan Komentar.......">
-                <button class="bg-red font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">kirim</button>
+                <button class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">kirim</button>
             </div>
         </div>
 

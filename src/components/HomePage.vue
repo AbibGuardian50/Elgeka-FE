@@ -53,11 +53,11 @@ export default {
       adipiscing massa
       et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.</p>
     <router-link to="/detailprofil"> <button type="button"
-        class="bg-red font-poppins font-bold text-[20px] text-white py-4 px-16 rounded-md">Selengkapnya</button></router-link>
+        class="bg-orange font-poppins font-bold text-[20px] text-white py-4 px-16 rounded-md">Selengkapnya</button></router-link>
   </div>
 
   <!-- Kegiatan Komunitas -->
-  <div class="bg-red flex flex-col items-center pt-10 pb-10">
+  <div class="bg-orange flex flex-col items-center pt-10 pb-10">
     <div>
       <p class="text-center font-poppins font-semibold text-xl text-white">Kegiatan Komunitas</p>
       <p class="text-center font-poppins font-semibold text-5xl text-white">Kegiatan dari</p>
@@ -95,28 +95,28 @@ export default {
       <div class="flex justify-between items-center">
         <p class="font-poppins font-semibold text-5xl text-red  ">Disini Berita</p>
         <router-link to="/perkembangancml"><button type="button"
-            class="bg-red text-white py-2 px-8 mr-8 rounded-md font-poppins text-2xl">Lihat
+            class="bg-orange text-white py-2 px-8 mr-8 rounded-md font-poppins text-2xl">Lihat
             Semua</button></router-link>
       </div>
 
     </div>
 
     <div class="flex justify-around gap-4 pt-8 px-8 max-sm:flex-wrap">
-      <div class="group active:bg-red flex items-center flex-col pt-12 pb-28 px-8 bg-white rounded-[30px]">
-        <!-- <span class="group-active:bg-white rounded-full bg-red w-24 h-24 block"></span> -->
+      <div class="group active:bg-orange flex items-center flex-col pt-12 pb-28 px-8 bg-white rounded-[30px]">
+        <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
         <img src="../assets/Rectangle179.png" alt="">
         <p class="group-active:text-white text-3xl font-poppins font-semibold leading-9 pt-4">Berita Komunitas highlight
         </p>
       </div>
 
-      <div class="group active:bg-red flex items-center flex-col pt-12 pb-28 px-8 bg-white rounded-[30px]">
-        <!-- <span class="group-active:bg-white rounded-full bg-red w-24 h-24 block"></span> -->
+      <div class="group active:bg-orange flex items-center flex-col pt-12 pb-28 px-8 bg-white rounded-[30px]">
+        <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
         <img src="../assets/Rectangle179.png" alt="">
         <p class="group-active:text-white text-3xl font-poppins font-semibold leading-9 pt-4">Berita terkini highlight</p>
       </div>
 
-      <div class="group active:bg-red flex items-center flex-col pt-12 pb-28 px-8 bg-white rounded-[30px]">
-        <!-- <span class="group-active:bg-white rounded-full bg-red w-24 h-24 block"></span> -->
+      <div class="group active:bg-orange flex items-center flex-col pt-12 pb-28 px-8 bg-white rounded-[30px]">
+        <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
         <img src="../assets/Rectangle179.png" alt="">
         <p class="group-active:text-white text-3xl font-poppins font-semibold leading-9 pt-4">Berita CML highlight</p>
       </div>

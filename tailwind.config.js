@@ -21,15 +21,16 @@ export default {
         2: '2'
       },
     },
-    colors: {
-      'red':  '#8B1A0F',
-      'white': '#ffffff',
-      'black': '#263238',
-      'lightwhite': 'rgba(255, 255, 255, 0.7)',
-      'lightgrey': '#F6F6F6',
-      'bluegrey': '#64748b',
-      'grey': '#D9D9D9',
-    },
+      colors: {
+        'red':  '#8B1A0F',
+        'white': '#ffffff',
+        'black': '#263238',
+        'lightwhite': 'rgba(255, 255, 255, 0.7)',
+        'lightgrey': '#F6F6F6',
+        'bluegrey': '#64748b',
+        'grey': '#D9D9D9',
+        'orange': '#FF914C',
+      },
     fontFamily: {
       'inter' : ['inter', 'sans-serif'],
       'poppins': ["Poppins", 'sans-serif']

@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <nav class="bg-red">
+    <nav class="bg-orange fixed">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div>
@@ -24,7 +24,7 @@ export default {
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <select v-on:change="changeRoute($event)"
-                                class="bg-red text-white rounded-md px-3 py-2 text-sm font-medium font-inter" name="" id="">
+                                class="bg-orange text-white rounded-md px-3 py-2 text-sm font-medium font-inter" name="" id="">
                                 <option value="/"><router-view to="/" class="" aria-current="page">Komunitas</router-view>
                                 </option>
                                 <option value="/komunitaskegiatan"><router-view to="/kegiatan">Kegiatan</router-view>
@@ -33,7 +33,7 @@ export default {
                             </select>
 
                             <!-- <select v-on:change="changeRoute($event)"
-                                class="bg-red text-white rounded-md px-3 py-2 text-sm font-medium" name="" id="">
+                                class="bg-orange text-white rounded-md px-3 py-2 text-sm font-medium" name="" id="">
                                 <option selected>Berita</option>
                             </select> -->
 
@@ -65,7 +65,7 @@ export default {
                 <div
                     class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 gap-y-1.5">
                     <router-link to="/login"><button type="button"
-                            class="font-inter font-extrabold leading-5 text-white bg-red mr-4 border border-white py-1 px-4 rounded-md">Login</button></router-link>
+                            class="font-inter font-extrabold leading-5 text-white bg-orange mr-4 border border-white py-1 px-4 rounded-md">Login</button></router-link>
                     <router-link to="/register"><button type="button"
                             class="font-inter font-extrabold leading-5 bg-white py-1 px-4 rounded-md">Daftar</button></router-link>
 

@@ -36,7 +36,7 @@ export default {
     <div>
         <div class="flex flex-col gap-2 items-end pt-8 ml-auto mr-10 ">
             <select autocomplete="off" name="Pilih Kategori"
-                class="form-select focus:bg-white focus:text-red text-white flex bg-red items-center gap-2 p-2 mb-4 font-medium marker:content-none hover:cursor-pointer rounded-lg"
+                class="form-select focus:bg-white focus:text-red text-white flex bg-orange items-center gap-2 p-2 mb-4 font-medium marker:content-none hover:cursor-pointer rounded-lg"
                 v-model="pilih_kategori">
                 <option class="bg-white text-red" :value="null" selected>Pilih Kategori</option>
                 <option class="bg-white text-red" value="perkembanganKomunitas">Komunitas</option>
@@ -44,7 +44,7 @@ export default {
             </select>
             <!-- <details class="group ">
                 <summary
-                    class="flex bg-red items-center gap-2 p-2 font-medium marker:content-none hover:cursor-pointer rounded-lg  w-[105.61px]">
+                    class="flex bg-orange items-center gap-2 p-2 font-medium marker:content-none hover:cursor-pointer rounded-lg  w-[105.61px]">
                     <span class="flex gap-2">
                         <span class="text-white">
                             Kategori
@@ -106,7 +106,7 @@ export default {
 
                             <form action="http://127.0.0.1:8000/auth/logout" method="POST">
                                 <input type="hidden" name="_token" value="ymEkCLBFpgkdaSbidUArRsdHbER5DkT6ByS3eJYb">
-                                <button type="submit" class="text-red-500 text-sm px-2 py-1 hover:bg-red-200 rounded-md">
+                                <button type="submit" class="text-red-500 text-sm px-2 py-1 hover:bg-orange-200 rounded-md">
                                     Log Out
                                 </button>
                             </form> -->
@@ -129,7 +129,7 @@ export default {
                     <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
                     <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
                     <router-link to="/detailberita"><button type="button"
-                            class="bg-red text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
+                            class="bg-orange text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
                 </div>
             </div>
 
@@ -140,7 +140,7 @@ export default {
                     <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
                     <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
                     <router-link to="/detailberita"><button type="button"
-                            class="bg-red text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
+                            class="bg-orange text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
                 </div>
                 
             </div>
@@ -152,7 +152,7 @@ export default {
                     <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
                     <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
                     <router-link to="/detailberita"><button type="button"
-                            class="bg-red text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
+                            class="bg-orange text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
                 </div>
             </div>
 
@@ -164,7 +164,7 @@ export default {
         <p class="font-poppins font-normal leading-6 text-base text-center py-4">Lorem ipsum dolor sit amet
             consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget.
             Eget quis et tortor cras sed. Nec vulputate neque non mi.</p>
-        <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>
+        <button type="button" class="bg-orange text-white py-2 px-16 rounded-full">Detailed View</button>
     </div>
 
     <div class="flex items-center flex-col">
@@ -173,7 +173,7 @@ export default {
         <p class="font-poppins font-normal leading-6 text-base text-center py-4">Lorem ipsum dolor sit amet
             consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget.
             Eget quis et tortor cras sed. Nec vulputate neque non mi.</p>
-        <button type="button" class="bg-red text-white py-2 px-16 rounded-full">Detailed View</button>
+        <button type="button" class="bg-orange text-white py-2 px-16 rounded-full">Detailed View</button>
     </div>
 </div> -->
 

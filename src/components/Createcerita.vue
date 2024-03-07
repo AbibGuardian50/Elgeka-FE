@@ -17,7 +17,7 @@
 
             <div class="flex justify-end pr-8">
                 <router-link to="/komentar"><button
-                        class="bg-red font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button></router-link>
+                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button></router-link>
             </div>
 
         </div>

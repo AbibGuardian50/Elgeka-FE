@@ -102,7 +102,7 @@ export default {
                 <!-- Login Button -->
                 <div class="flex items-center flex-col">
                     <button type="submit"
-                        class="bg-red text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
+                        class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
                     <!-- <div class="flex items-center gap-1 my-6 text-blue-500">
                         <img src="../assets/Vector.png" alt="">
                         <a href="#" class="hover:underline font-[verdana] font-normal text-[14px] text-[#B1B3B5]">Or, sign
