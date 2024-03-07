@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <nav class="bg-orange fixed">
+    <nav class="bg-orange w-full fixed z-10">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div>
