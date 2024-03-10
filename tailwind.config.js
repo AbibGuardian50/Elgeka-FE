@@ -29,7 +29,9 @@ export default {
         'lightgrey': '#F6F6F6',
         'bluegrey': '#64748b',
         'grey': '#D9D9D9',
+        'greymercury': '#E7E7E7',
         'orange': '#FF914C',
+        'lightorange': '#FF914CB2',
       },
     fontFamily: {
       'inter' : ['inter', 'sans-serif'],

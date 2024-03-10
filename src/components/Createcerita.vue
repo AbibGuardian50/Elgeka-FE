@@ -1,29 +1,3 @@
-<template>
-    <Navbar />
-
-    <div>
-        <div class="flex flex-col justify-end">
-            <div id="editor" class=" border-2 border-[#8B1A0FCC] m-8 rounded-lg p-4 bg-grey">
-                <p class="text-red font-bold">Judul Cerita</p>
-                <input class="w-full" type="text" name="judul cerita" id="">
-                <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="essential" /> -->
-            </div>
-
-            <div class="border-2 border-[#8B1A0FCC] m-8 rounded-lg p-4 bg-grey">
-                <p class="text-red font-bold">Tuliskan Cerita anda</p>
-                <div class="bg-white" ref="editor"></div>
-                <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="full" /> -->
-            </div>
-
-            <div class="flex justify-end pr-8">
-                <router-link to="/komentar"><button
-                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button></router-link>
-            </div>
-
-        </div>
-    </div>
-</template>
-
 <script>
 import Navbar from './Navbar.vue'
 import Quill from "quill";
@@ -94,3 +68,30 @@ export default {
 }
 
 </script>
+
+<template>
+    <Navbar />
+
+    <div>
+        <div class="flex flex-col justify-end">
+            <div id="editor" class=" border-2 border-[#8B1A0FCC] mt-24 mx-8 mb-8 rounded-lg p-4 bg-grey">
+                <p class="text-red font-bold">Judul Cerita</p>
+                <input class="w-full" type="text" name="judul cerita" id="">
+                <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="essential" /> -->
+            </div>
+
+            <div class="border-2 border-[#8B1A0FCC] m-8 rounded-lg p-4 bg-grey">
+                <p class="text-red font-bold">Tuliskan Cerita anda</p>
+                <div class="bg-white" ref="editor"></div>
+                <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="full" /> -->
+            </div>
+
+            <div class="flex justify-end pr-8">
+                <router-link to="/komentar"><button
+                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button></router-link>
+            </div>
+
+        </div>
+    </div>
+</template>
+

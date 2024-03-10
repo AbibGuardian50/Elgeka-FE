@@ -30,10 +30,10 @@ export default {
     <div>
         <div class="pt-4 mx-4 flex justify-between">
             <button
-                class="text-white flex bg-orange items-center gap-2 p-2 mb-4 font-medium hover:cursor-pointer rounded-md">Cerita
+                class="text-white flex bg-orange items-center gap-2 p-2 mt-16 mb-4 font-medium hover:cursor-pointer rounded-md">Cerita
                 Anda</button>
             <button v-on:click="toggleModal()"
-                class="font-inter text-white flex bg-orange items-center gap-2 p-2 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
+                class="font-inter text-white flex bg-orange items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
                 Cerita</button>
         </div>
 

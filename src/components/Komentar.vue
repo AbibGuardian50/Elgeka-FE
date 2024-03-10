@@ -21,7 +21,7 @@ export default {
 
     <div>
         <div class="flex flex-col pb-12">
-            <p class="text-center font-poppins font-bold text-[40px] pt-2 pb-4">Cerita</p>
+            <p class="text-center font-poppins font-bold text-[40px] pt-2 pb-4 mt-16">Cerita</p>
             <p class="px-16 text-[#000000B2] font-base">Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget.
                 Eget quis et tortor cras sed. Nec vulputate neque non mi. Lorem ipsum dolor sit amet consectetur. Commodo
                 adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate

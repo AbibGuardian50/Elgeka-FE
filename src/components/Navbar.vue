@@ -52,8 +52,6 @@ export default {
                                     class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-inter font-medium">
                                     Cerita</p>
                             </router-link>
-                            <a href="#"
-                                class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-inter font-medium">Galeri</a>
                             <router-link to="/donasi">
                                 <p
                                     class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-inter font-medium">

@@ -112,6 +112,15 @@ const router = createRouter({
     },
 
     {
+      path: '/userprofil',
+      name: 'userprofil',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Userprofil.vue')
+    },
+
+    {
       path: '/detailprofil',
       name: 'detailprofil',
       // route level code-splitting
