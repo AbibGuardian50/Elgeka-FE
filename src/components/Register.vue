@@ -16,7 +16,7 @@ export default {
         </div>
         <!-- Right: Login Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px]" src="../assets/rectangle.png" alt="Logo">
+            <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Lets Create your account</h1>
             <form action="#" method="POST">
                 <!-- nama lengkap Input -->
@@ -24,7 +24,7 @@ export default {
                     <label for="namalengkap"
                         class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">nama lengkap</label>
                     <input type="text" id="namalengkap" name="namalengkap"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter your email address">
                 </div>
                 <!-- Email Input -->
@@ -32,14 +32,14 @@ export default {
                     <label for="username" class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">
                         Email</label>
                     <input type="text" id="username" name="username"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="email">
                 </div>
                 <!-- No telepon Input -->
                 <div class="mb-4">
                     <label for="number" class="block text-[#344054] mb-2">Nomor Telepon</label>
                     <input type="number" id="password" name="password"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="No telepon">
                 </div>
                 <!-- Tanggal Lahir Input -->

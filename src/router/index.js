@@ -76,6 +76,15 @@ const router = createRouter({
     },
 
     {
+      path: '/lupapassword',
+      name: 'lupapassword',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Lupapassword.vue')
+    },
+
+    {
       path: '/perkembangancml',
       name: 'perkembangancml',
       // route level code-splitting

@@ -70,8 +70,8 @@ export default {
                 <div
                     class="border border-red rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                     <!--header-->
-                    <div class="flex items-start justify-between p-5 border-b border-blueGray-200 rounded-t">
-                        <h3 class="text-3xl font-semibold">
+                    <div class="flex items-start justify-between p-5 border-b-2 border-black rounded-t">
+                        <h3 class="text-[40px] text-orange font-semibold font-poppins">
                             {{ aturanblog.data.title }}
                         </h3>
                         <button
@@ -89,19 +89,19 @@ export default {
                         <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
                             
                         </p> -->
-                        <p class="whitespace-break-spaces">{{ aturanblog.data.content }}</p>
+                        <p class="font-poppins text-xl font-medium leading-8 text-darkblue whitespace-break-spaces">{{ aturanblog.data.content }}</p>
 
 
                     </div>
                     <!--footer-->
-                    <div class="flex items-center justify-center p-6 border-t border-blueGray-200 rounded-b">
+                    <div class="flex items-center justify-center p-6 border-t-2 border-black rounded-b">
                         <router-link to="/createcerita"><button
-                                class="text-white bg-orange border hover:text-white active:bg-orange-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                class="text-white bg-orange border hover:text-white active:bg-orange-600 font-bold uppercase text-sm px-12 py-3 rounded outline-none focus:outline-none mr-1 mb-1   "
                                 type="button">
                                 Setuju
                             </button></router-link>
                         <button
-                            class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            class="text-orange bg-white border active:bg-orange-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
                             type="button" v-on:click="toggleModal()">
                             Tidak Setuju
                         </button>
