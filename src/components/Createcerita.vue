@@ -73,7 +73,7 @@ export default {
     <Navbar />
 
     <div>
-        <div class="flex flex-col justify-end">
+        <div class="flex flex-col justify-end pt-16">
             <div id="editor" class=" border-2 border-[#8B1A0FCC] mt-24 mx-8 mb-8 rounded-lg p-4 bg-grey">
                 <p class="text-red font-bold">Judul Cerita</p>
                 <input class="w-full" type="text" name="judul cerita" id="">
