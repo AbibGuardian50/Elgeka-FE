@@ -1,8 +1,29 @@
 <script>
 import Navbar from './Navbar.vue'
+import axios from 'axios'
 export default {
     components: {
         Navbar
+    },
+    data() {
+        return {
+            detailberita: '',
+            url: 'https://elgeka-web-api-production.up.railway.app/'
+        }
+    },
+    setup() {
+
+    },
+    async created() {
+        try {
+            const id = this.$route.params.id
+            const response_beritaumum = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/berita/${id}`);
+            this.detailberita = response_beritaumum.data.result.data
+            // const params_id = this.$route.params.id
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 </script>
@@ -10,27 +31,16 @@ export default {
 <template>
     <Navbar />
 
-    <div class="flex flex-col p-8 min-[1600px]:max-w-[1440px]">
-        <img class="max-h-[404px]" src="../assets/Rectangle4208.png" alt="">
-        <div class="bg-orange">
+    <div v-if="detailberita" class="flex flex-col m-auto p-8 min-[1600px]:max-w-[1440px]">
+        <img class="mt-32 rounded-t-md max-h-[404px]" :src="url + detailberita.image_url" alt="gambar">
+        <div class="rounded-b-md bg-orange">
             <div class="pt-8 pl-20 pr-4 pb-12">
                 <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">BERITA</p>
-                <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">Perkembangan ELGEKA Jawa Barat
+                <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">{{ detailberita.title}}
                 </p>
-                <p class="text-base text-white font-poppins font-normal leading-6 pr-48">Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi
-                    eget.
-                    Eget quis et tortor cras sed.
-                    Nec vulputate neque non mi. Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem.
-                    Neque
-                    elementum non facilisi eget.
-                    Eget quis et tortor cras sed. Nec vulputate neque non mi. Lorem ipsum dolor sit amet consectetur.
-                    Commodo
-                    adipiscing massa et sem.
-                    Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi. Lorem ipsum
-                    dolor sit amet consectetur.
-                    Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec
-                    vulputate neque non mi.</p>
+                <p class="text-base text-[#FFFFFFB2] font-poppins font-normal leading-6 pr-48">{{ detailberita.content}}</p>
             </div>
 
+        </div>
     </div>
-</div></template>
+</template>

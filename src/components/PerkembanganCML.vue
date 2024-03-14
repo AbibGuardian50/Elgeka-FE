@@ -8,7 +8,7 @@ export default {
     },
     data() {
         return {
-            url : 'https://elgeka-web-api-production.up.railway.app/',
+            url: 'https://elgeka-web-api-production.up.railway.app/',
             pilih_kategori: null,
             received_beritaCML: [],
             received_beritaKomunitas: [],
@@ -37,11 +37,11 @@ export default {
     <div>
         <div class="flex flex-col gap-2 items-end pt-20 ml-auto mr-10 ">
             <select autocomplete="off" name="Pilih Kategori"
-                class="form-select focus:bg-white focus:text-red text-white flex bg-orange items-center gap-2 p-2 mb-4 font-medium marker:content-none hover:cursor-pointer rounded-lg"
+                class="form-select focus:bg-white focus:text-orange text-white flex bg-orange items-center gap-2 p-2 mb-4 mt-20 font-bold font-inter marker:content-none hover:cursor-pointer rounded-lg"
                 v-model="pilih_kategori">
-                <option class="bg-white text-red" :value="null" selected>Pilih Kategori</option>
-                <option class="bg-white text-red" value="perkembanganKomunitas">Komunitas</option>
-                <option class="bg-white text-red" value="perkembanganCML">CML</option>
+                <option class="bg-white" :value="null" selected>Pilih Kategori</option>
+                <option class="bg-white" value="perkembanganKomunitas">Komunitas</option>
+                <option class="bg-white" value="perkembanganCML">CML</option>
             </select>
             <!-- <details class="group ">
                 <summary
@@ -123,37 +123,34 @@ export default {
 
         <div>
 
-            <div class="grid grid-cols-2 gap-8 pb-4" v-show="pilih_kategori === null">
-                <div v-for="berita in received_beritaumum" :key="berita.id" class="flex items-center flex-col">
-                    <img class="w-[619px] h-[320px]"
-                        :src="url + berita.image_url" alt="" srcset="">
-                    <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
-                    <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
-                    <router-link to="/detailberita"><button type="button"
-                            class="bg-orange text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
+            <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]" v-show="pilih_kategori === null">
+                <div v-for="berita in received_beritaumum" :key="berita.id" class="flex items-center flex-col rounded-md p-4">
+                    <img class="w-[642px] h-[340px]" :src="url + berita.image_url" alt="" srcset="">
+                    <p class="truncate max-w-[619px] font-poppins font-semibold text-4xl text-center text-orange">{{ berita.title }}</p>
+                    <p class="truncate font-poppins max-w-[619px] font-normal leading-6 text-base text-center py-4">{{ berita.content }}.</p>
+                    <a :href="'detailberita/' + berita.id"><button type="button"
+                            class="bg-orange font-semibold font-inter text-base text-white py-2 px-8 rounded-md">Tampilan Detail</button></a>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-8 pb-4" v-show="pilih_kategori === 'perkembanganKomunitas'">
-                <div v-for="berita in received_beritaKomunitas" :key="berita.id" class="flex items-center flex-col">
-                    <img class="w-[619px] h-[320px]"
-                        :src="url + berita.image_url" alt="" srcset="">
-                    <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
-                    <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
-                    <router-link to="/detailberita"><button type="button"
-                            class="bg-orange text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
+            <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]" v-show="pilih_kategori === 'perkembanganKomunitas'">
+                <div v-for="berita in received_beritaKomunitas" :key="berita.id" class="flex items-center flex-col rounded-md p-4">
+                    <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
+                    <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-orange">{{ berita.title }}</p>
+                    <p class="max-w-[619px] truncate font-poppins font-normal leading-6 text-base text-center py-4">{{ berita.content }}.</p>
+                    <a :href="'detailberita/' + berita.id"><button type="button"
+                            class="bg-orange font-semibold font-inter text-base text-white py-2 px-8 rounded-md">Tampilan Detail</button></a>
                 </div>
-                
+
             </div>
 
-            <div class="grid grid-cols-2 gap-8 pb-4" v-show="pilih_kategori === 'perkembanganCML'">
-                <div v-for="berita in received_beritaCML" :key="berita.id" class="flex items-center flex-col">
-                    <img class="w-[619px] h-[320px]"
-                        :src="url + berita.image_url" alt="" srcset="">
-                    <p class="font-poppins font-semibold text-4xl text-center text-red">{{ berita.title }}</p>
-                    <p class="font-poppins font-normal leading-6 text-base text-center py-4 mx-8">{{ berita.content }}.</p>
-                    <router-link to="/detailberita"><button type="button"
-                            class="bg-orange text-white py-2 px-16 rounded-full">Tampilan Detail</button></router-link>
+            <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]" v-show="pilih_kategori === 'perkembanganCML'">
+                <div v-for="berita in received_beritaCML" :key="berita.id" class="flex items-center flex-col rounded-md p-4">
+                    <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
+                    <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-orange">{{ berita.title }}</p>
+                    <p class="max-w-[619px] truncate font-poppins font-normal leading-6 text-base text-center py-4">{{ berita.content }}.</p>
+                    <a :href="'detailberita/' + berita.id"><button type="button"
+                            class="bg-orange font-semibold font-inter text-base text-white py-2 px-8 rounded-md">Tampilan Detail</button></a>
                 </div>
             </div>
 

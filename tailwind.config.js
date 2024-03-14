@@ -34,6 +34,7 @@ export default {
         'greymercury': '#E7E7E7',
         'orange': '#FF914C',
         'lightorange': '#FF914CB2',
+        'silver' : '#E5E5E5',
       },
     fontFamily: {
       'inter' : ['inter', 'sans-serif'],

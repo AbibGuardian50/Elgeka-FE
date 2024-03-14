@@ -27,7 +27,7 @@ export default {
 <template>
     <div class="overflow-y-hidden">
         <Navbar />
-        <div v-if="donasielgeka.currentPage === 1" class="flex flex-col justify-center items-center p-40 m-auto w-7/12">
+        <div v-if="donasielgeka.currentPage === 1" class="flex flex-col justify-center items-center p-40 m-auto min-w-7/12">
             <p class="font-poppins font-bold text-[40px] text-orange text-center">{{ donasielgeka.data.title }}</p>
             <img class="border-8 border-orange my-4" :src="gambar_url + donasielgeka.data.image_url" alt="Gambar QR"
                 srcset="">

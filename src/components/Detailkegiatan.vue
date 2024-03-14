@@ -1,8 +1,30 @@
 <script>
 import Navbar from './Navbar.vue'
+import axios from 'axios'
 export default {
     components: {
         Navbar,
+    },
+    data() {
+        return {
+            kegiatankomunitas: '',
+            url : 'https://elgeka-web-api-production.up.railway.app/'
+        }
+    },
+    setup() {
+
+    },
+    async created() {
+        try {
+            const id = this.$route.params.id
+            // const title = this.$route.params.title
+            const response_kegiatankomunitas = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas/${id}`);
+            this.kegiatankomunitas = response_kegiatankomunitas.data.result.data
+            // const params_id = this.$route.params.id
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 </script>
@@ -10,26 +32,18 @@ export default {
 <template>
     <Navbar />
 
-    <div
-        class="flex gap-8 p-8 min-[1440px]:max-w-screen-2xl m-auto  min-[240px]:max-lg:flex-wrap min-[240px]:max-lg:justify-center">
-        <img src="../assets/Rectangle4209.png" alt="">
-        <div class="flex flex-col justify-center ">
+    <div v-if="kegiatankomunitas"
+        class="flex gap-8 p-8 min-[1440px]:max-w-screen-2xl m-auto pt-52  min-[240px]:max-lg:flex-wrap min-[240px]:max-lg:justify-center">
+        <img :src="url + kegiatankomunitas.image_url" alt="" class="rounded-md">
+        <div  class="flex flex-col justify-center ">
             <div class="flex flex-col">
-                <p class="font-poppins text-base">kegiatan terbaru</p>
-                <p class="font-poppins font-bold text-5xl pt-4">Gathering 2 Januari 2024</p>
-                <p class="font-poppins font-bold text-5xl pb-8">Komunitas ELGEKA Jawa Barat</p>
+                <p class="font-poppins text-base">Kegiatan Terbaru</p>
+                <p class="font-poppins font-bold text-5xl pt-4">{{kegiatankomunitas.title}}</p>
+                <p class="font-poppins font-bold text-5xl pb-8">{{ kegiatankomunitas.date }}</p>
             </div>
 
-            <div class="flex gap-8">
-                <p class="font-poppins font-normal text-[12px]">Lorem ipsum dolor sit amet consectetur. Commodo adipiscing
-                    massa
-                    et sem. Neque elementum non facilisi eget.
-                    Eget
-                    quis et tortor cras sed.
-                    Nec vulputate neque non mi.Lorem ipsum dolor sit amet consectetur.
-                    Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec
-                    vulputate
-                    neque non mi.</p>
+            <div  class="flex gap-8">
+                <p class="font-poppins font-normal text-[12px]">{{ kegiatankomunitas.content }}</p>
             </div>
 
 

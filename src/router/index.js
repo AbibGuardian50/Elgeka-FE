@@ -9,7 +9,10 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/HomePage.vue')
+      component: () => import('../views/HomePage.vue'),
+      meta: {
+        title: 'Halaman Utama Elgeka Jawa Barat'
+      }
     },
 
     {
@@ -18,7 +21,10 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/Aturancerita.vue')
+      component: () => import('../views/Aturancerita.vue'),
+      meta: {
+        title: 'Aturan Cerita Elgeka Jawa Barat'
+      }
     },
 
     {
@@ -27,7 +33,10 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/Cerita.vue')
+      component: () => import('../views/Cerita.vue'),
+      meta: {
+        title: 'Cerita'
+      }
     },
 
     {
@@ -36,7 +45,10 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/Createcerita.vue')
+      component: () => import('../views/Createcerita.vue'),
+      meta: {
+        title: 'Buat Cerita Blog'
+      }
     },
 
     {
@@ -45,7 +57,10 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/Donasi.vue')
+      component: () => import('../views/Donasi.vue'),
+      meta: {
+        title: 'Donasi Elgeka Jawa Barat'
+      }
     },
 
     {
@@ -94,7 +109,7 @@ const router = createRouter({
     },
 
     {
-      path: '/Detailkegiatan',
+      path: '/Detailkegiatan/:id',
       name: 'Detailkegiatan',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -103,7 +118,7 @@ const router = createRouter({
     },
 
     {
-      path: '/detailberita',
+      path: '/detailberita/:id',
       name: 'detailberita',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -156,7 +171,11 @@ const router = createRouter({
       component: () => import('../views/Register.vue')
     },
     
-  ]
+  ],
+  
+})
+router.beforeEach((to,from ) => {
+    document.title = to.meta?.title ?? 'ELGEKA JAWA BARAT 2024'
 })
 
 export default router
