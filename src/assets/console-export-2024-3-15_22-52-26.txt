@@ -1,0 +1,7 @@
+Object { code: 400, status: "error", message: "Error Data Request", result: (2) […] }
+Kelolaakun.vue:86:19
+[vite] connecting... client.ts:19:8
+Error in parsing value for ‘-webkit-text-size-adjust’.  Declaration dropped. kelolaakun:71:29
+[vite] connected. client.ts:173:14
+Proxy { <target>: (1) […], <handler>: {…} }
+Kelolaakun.vue:22:17

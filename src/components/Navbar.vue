@@ -57,14 +57,14 @@ export default {
                 </div>
                 <div
                     class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 gap-y-1.5">
-                    <!-- <router-link to="/login"><button type="button"
+                    <router-link to="/login"><button type="button"
                             class="font-inter font-extrabold leading-5 text-white text-xl bg-orange mr-4 border border-white py-2 px-5 rounded-md">Login</button></router-link>
                     <router-link to="/register"><button type="button"
-                            class="font-inter font-extrabold leading-5 bg-white text-orange border border-orange text-xl py-2 px-5 rounded-md">Daftar</button></router-link> -->
-                        <div class="flex flex-row-reverse items-center border-2 border-white gap-2 py-1 px-4">
+                            class="font-inter font-extrabold leading-5 bg-white text-orange border border-orange text-xl py-2 px-5 rounded-md">Daftar</button></router-link>
+                        <!-- <div class="flex flex-row-reverse items-center border-2 border-white gap-2 py-1 px-4">
                             <img class="w-[39px] h-[39px]" src="../assets/pp.png" alt="">
                             <p class="font-inter font-black text-white">User 2321412</p>
-                        </div>
+                        </div> -->
                             
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
