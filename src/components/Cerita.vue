@@ -42,7 +42,7 @@ export default {
     <Navbar />
 
     <div>
-        <div class="pt-24 mx-12 flex justify-between">
+        <div class="pt-24 flex justify-between max-w-[1400px] m-auto">
             <button
                 class="font-inter text-white text-xl flex bg-orange items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Cerita
                 Anda</button>
@@ -51,7 +51,7 @@ export default {
                 Cerita</button>
         </div>
 
-        <div class="grid grid-cols-2 gap-8 pb-4 px-16">
+        <div class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto">
             <div class="flex flex-col items-center" v-for="cerita in Ceritaanda">
                 <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
                 <p class="font-poppins font-normal text-[16px] text-center py-4">{{ cerita.content }}</p>
@@ -89,7 +89,7 @@ export default {
                         <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
                             
                         </p> -->
-                        <p class="font-poppins text-xl font-medium leading-8 text-darkblue whitespace-break-spaces">{{ aturanblog.data.content }}</p>
+                        <div v-html="aturanblog.data.content" class="font-poppins text-xl font-medium leading-8 text-darkblue whitespace-break-spaces"></div>
 
 
                     </div>
@@ -113,3 +113,9 @@ export default {
     </div>
 </template>
 
+<style>
+ol {
+    list-style: decimal;
+    margin-left: 1rem;
+}
+</style>

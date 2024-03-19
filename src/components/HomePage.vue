@@ -2,6 +2,7 @@
 import Penyemangat from './Penyemangat.vue'
 import Navbar from './Navbar.vue'
 import Quotes from './Quotes.vue'
+import Vuex from 'vuex';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 

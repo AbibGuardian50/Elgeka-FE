@@ -34,19 +34,29 @@ export default {
 
     <div v-if="kegiatankomunitas"
         class="flex gap-8 p-8 min-[1440px]:max-w-screen-2xl m-auto pt-52  min-[240px]:max-lg:flex-wrap min-[240px]:max-lg:justify-center">
-        <img :src="url + kegiatankomunitas.image_url" alt="" class="rounded-md">
+        <img :src="url + kegiatankomunitas.image_url" alt="" class="rounded-md min-w-[600] min-h-[400px]">
         <div  class="flex flex-col justify-center ">
             <div class="flex flex-col">
-                <p class="font-poppins text-base">Kegiatan Terbaru</p>
+                <!-- <p class="font-poppins text-base">Kegiatan Terbaru</p> -->
                 <p class="font-poppins font-bold text-5xl pt-4">{{kegiatankomunitas.title}}</p>
-                <p class="font-poppins font-bold text-5xl pb-8">{{ kegiatankomunitas.date }}</p>
+                <p class="font-poppins font-medium text-xl pb-8">{{ kegiatankomunitas.tempat }}, {{ kegiatankomunitas.date }}</p>
             </div>
 
-            <div  class="flex gap-8">
-                <p class="font-poppins font-normal text-[12px]">{{ kegiatankomunitas.content }}</p>
+            <div v-html="kegiatankomunitas.content"  class="font-poppins font-normal text-[12px] flex flex-col">
             </div>
 
 
         </div>
     </div>
 </template>
+
+<style>
+ol {
+    list-style-type: decimal;
+    margin-left: 1rem;
+}
+ul {
+    list-style-type: disc;
+    margin-left: 1rem;
+}
+</style>

@@ -38,8 +38,8 @@ export default {
                         :src="'https://elgeka-web-api-production.up.railway.app/' + kegiatan.image_url" alt="" srcset="">
                     <div>
                         <p class="font-poppins font-semibold text-4xl text-orange">{{ kegiatan.title }}</p>
-                        <p class="truncate font-poppins font-normal leading-6 text-base text-[#000000B2] py-4 max-w-[620px]">{{ kegiatan.content }}.
-                        </p>
+                        <div v-html="kegiatan.content" class="truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-[#000000B2] pt-4 max-w-[620px]">
+                        </div>
                         <a :href="'detailkegiatan/' + kegiatan.id"><button type="button"
                                 class="bg-orange text-white py-2 px-16 rounded-md">Selengkapnya</button></a>
                     </div>
@@ -51,3 +51,9 @@ export default {
         </div>
     </div>
 </template>
+
+<style>
+ol {
+    list-style-type: decimal;
+}
+</style>

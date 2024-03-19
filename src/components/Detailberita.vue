@@ -38,7 +38,7 @@ export default {
                 <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">BERITA</p>
                 <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">{{ detailberita.title}}
                 </p>
-                <p class="text-base text-[#FFFFFFB2] font-poppins font-normal leading-6 pr-48">{{ detailberita.content}}</p>
+                <p v-html="detailberita.content" class="text-base text-[#FFFFFFB2] font-poppins font-normal leading-6 pr-48"></p>
             </div>
 
         </div>
