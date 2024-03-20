@@ -34,10 +34,19 @@ export default {
             <a :href="donasielgeka.data.donate_link"
                 class="font-poppins font-bold text-[40px] text-center hover:underline mb-2" target="_blank">{{
                     donasielgeka.data.donate_link }}</a>
-            <p class="font-poppins font-normal w-[673px] text-center text-[16px] text-[#000000B2]">{{
-                donasielgeka.data.content }}</p>
+            <p v-html="donasielgeka.data.content" class="font-poppins font-normal w-[673px] text-[16px] text-[#000000B2]"></p>
 
 
         </div>
     </div>
 </template>
+
+<style>
+ol {
+    list-style-type: decimal;
+}
+
+ul {
+    list-style-type: disc;
+}
+</style>
