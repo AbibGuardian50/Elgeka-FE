@@ -89,8 +89,8 @@ export default {
 
                                 </div>
                                 <div class="px-6 pt-2 pb-2">
-                                    <p class="text-gray-700 text-base text-left mb-4">
-                                        “{{ quotes.quote }}”
+                                    <p v-html="quotes.quote" class="text-gray-700 text-base text-left mb-4">
+                                        
                                     </p>
                                 </div>
                             </div>
