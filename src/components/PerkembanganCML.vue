@@ -127,7 +127,7 @@ export default {
                 <div v-for="berita in received_beritaumum" :key="berita.id" class="flex items-center flex-col rounded-md p-4">
                     <img class="w-[642px] h-[340px]" :src="url + berita.image_url" alt="" srcset="">
                     <p class="truncate max-w-[619px] font-poppins font-semibold text-4xl text-center text-orange">{{ berita.title }}</p>
-                    <div v-html="berita.content" class="max-w-[619px] truncate line-clamp-2 font-poppins font-normal leading-6 text-base text-center pt-4"></div>
+                    <div v-html="berita.content" class="max-w-[619px] truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4"></div>
                     <a :href="'detailberita/' + berita.id"><button type="button"
                             class="bg-orange font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Tampilan Detail</button></a>
                 </div>
@@ -137,7 +137,7 @@ export default {
                 <div v-for="berita in received_beritaKomunitas" :key="berita.id" class="flex items-center flex-col rounded-md p-4">
                     <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
                     <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-orange">{{ berita.title }}</p>
-                    <div v-html="berita.content" class="max-w-[619px] truncate line-clamp-2 font-poppins font-normal leading-6 text-base text-center pt-4"></div>
+                    <div v-html="berita.content" class="max-w-[619px] truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4"></div>
                     <a :href="'detailberita/' + berita.id"><button type="button"
                             class="bg-orange font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Tampilan Detail</button></a>
                 </div>
@@ -148,7 +148,7 @@ export default {
                 <div v-for="berita in received_beritaCML" :key="berita.id" class="flex items-center flex-col rounded-md p-4">
                     <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
                     <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-orange">{{ berita.title }}</p>
-                    <div v-html="berita.content" class="max-w-[619px] truncate line-clamp-2 font-poppins font-normal leading-6 text-base text-center pt-4"></div>
+                    <div v-html="berita.content" class="max-w-[619px] truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4"></div>
                     <a :href="'detailberita/' + berita.id"><button type="button"
                             class="bg-orange font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Tampilan Detail</button></a>
                 </div>

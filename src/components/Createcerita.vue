@@ -4,6 +4,8 @@ import Quill from "quill";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.bubble.css";
 import "quill/dist/quill.snow.css";
+import axios from 'axios'
+import VueCookies from 'vue-cookies';
 // import { defineComponent } from 'vue'
 // import { QuillEditor } from '@vueup/vue-quill'
 // import BlotFormatter from 'quill-blot-formatter'
@@ -19,6 +21,9 @@ export default {
     data() {
         return {
             editor: null,
+            prompt: '',
+            blog: '',
+            errorMessage: '',
         };
     },
     mounted() {
@@ -52,6 +57,19 @@ export default {
                 this.editor.getText() ? this.editor.root.innerHTML : ""
             );
         },
+        async generateblog() {
+            try {
+                const tokenlogin = VueCookies.get('tokenlogin')
+                const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog/generate'
+                const response = await axios.post(url, { prompt: this.prompt }, { headers: { 'Authorization': `Bearer ${tokenlogin}` } });
+                this.token = tokenlogin
+                this.blog = response.data.result;
+                console.log(this.blog);
+                console.log(this.token)
+            } catch (error) {
+                console.error('Error generating blog:', error);
+            }
+        },
     },
     components: {
         Navbar,
@@ -71,9 +89,23 @@ export default {
 
 <template>
     <Navbar />
+    
+    <div class="flex flex-col gap-4">
+                <div class="mt-40 mx-8">
+                    <!-- <p class="font-gotham font-normal text-2xl text-black mb-2">Quotes</p> -->
+                    <input type="text" class="bg-grey pl-4 py-1 w-full rounded-full" v-model="prompt"
+                        placeholder="Enter your prompt here">
+                    <button class="px-8 py-2 bg-orange text-white font-poppins rounded-md my-2"
+                        @click="generateblog">Generate blog</button>
+                    <div class="bg-orange text-white font-bold font-poppins px-2" v-if="blog">{{ blog.generated_blog
+                    }}</div>
+                    <div v-else>(Hasil Generate blog akan tampil disini)</div>
+                </div>
+
+            </div>
 
     <div>
-        <div class="flex flex-col justify-end pt-16">
+        <div class="flex flex-col justify-end ">
             <div id="editor" class=" border-2 border-[#8B1A0FCC] mt-24 mx-8 mb-8 rounded-lg p-4 bg-grey">
                 <p class="text-red font-bold">Judul Cerita</p>
                 <input class="w-full" type="text" name="judul cerita" id="">

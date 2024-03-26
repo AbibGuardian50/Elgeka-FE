@@ -31,7 +31,7 @@ export default {
     <div id="container" class="flex" v-if="profilkomunitas.currentPage === 1" :style="{ 'background-image': `url(${url + profilkomunitas.data.image_url})` }">
         <div class="flex flex-col justify-center items-center m-auto">
             <div 
-                class="bg-orange flex absolute px-32 w-[1022px] isolate rounded-xl bg-orange/75 shadow-lg ring-1 ring-black/5">
+                class="bg-orange flex absolute px-32 w-[1022px] mt-20 isolate rounded-xl bg-orange/75 shadow-lg ring-1 ring-black/5">
                 <div>
                     <p class="font-bold font-poppins text-[40px] text-white text-center pt-4">PROFILE</p>
                     <p class="font-bold font-poppins text-[40px] text-white text-center pb-4">{{ profilkomunitas.data.title
