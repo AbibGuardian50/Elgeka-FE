@@ -79,7 +79,7 @@ export default {
                         <swiper-slide v-for="quotes in memberkomunitas" class="rounded-lg max-h-72">
                             <div class="max-w-md rounded overflow-hidden drop-shadow-lg shadow-lg">
                                 <div class="flex px-6 py-4">
-                                    <img class="w-[240px] h-[240px] bg-[url('https://elgeka-web-api-production.up.railway.app/uploads/1710259003462-Screenshot%202024-03-12%20225622.png')] bg-cover bg-center" :src="url + quotes.image_url">
+                                    <img class="w-[240px] h-[240px] bg-[url('https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg')] bg-cover bg-center" :src="url + quotes.image_url">
                                     <div class="pl-6 flex items-center justify-center flex-col">
                                         <p class="font-poppins font-semibold text-2xl mb-4">{{ quotes.full_name }}</p>
                                         <p class="text-xl text-bluegrey text-base">

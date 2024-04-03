@@ -2,6 +2,8 @@
 import Penyemangat from './Penyemangat.vue'
 import Navbar from './Navbar.vue'
 import Quotes from './Quotes.vue'
+import VueCookies from 'vue-cookies';
+import axios from 'axios'
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -21,12 +23,27 @@ import { Navigation, Pagination } from 'swiper/modules';
 import "swiper/css";
 
 export default {
+  async created() {
+    try {
+      const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/profilKomunitas');
+      this.profilkomunitas = response.data.result;
+      // this.parsed_aturanblog = this.aturanblog.split("\n");
+      console.log(this.profilkomunitas)
+    } catch (error) {
+      console.error(error);
+    }
+  },
   components: {
     Swiper,
     SwiperSlide,
     Penyemangat,
     Navbar,
     Quotes
+  },
+  data() {
+    return {
+      profilkomunitas: [],
+    }
   },
   setup() {
     return {
@@ -48,12 +65,12 @@ export default {
   <Navbar />
 
 
-  <div class="flex flex-col items-center justify-center" id="profile">
+  <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center" id="profile">
     <p class="font-poppins font-semibold text-5xl text-white">PROFILE</p>
     <p class="text-center font-poppins font-semibold text-5xl text-white">Komunitas ELGEKA Jawa Barat</p>
-    <p class="text-center  text-base w-[630px] pb-4 pt-2 text-white">Lorem ipsum dolor sit amet consectetur. Commodo
-      adipiscing massa
-      et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.</p>
+    <div v-html="profilkomunitas.data.content"
+      class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 w-[630px] text-center line-clamp-4">
+    </div>
     <router-link to="/profilkomunitas"> <button type="button"
         class="bg-orange font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">Selengkapnya</button></router-link>
   </div>
@@ -105,21 +122,24 @@ export default {
         <div class="group active:bg-orange flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
           <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
           <img src="../assets/Rectangle179.png" alt="">
-          <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita Komunitas highlight
+          <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita
+            Komunitas highlight
           </p>
         </div>
 
         <div class="group active:bg-orange flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
           <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
           <img src="../assets/Rectangle179.png" alt="">
-          <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita terkini highlight
+          <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita terkini
+            highlight
           </p>
         </div>
 
         <div class="group active:bg-orange flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
           <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
           <img src="../assets/Rectangle179.png" alt="">
-          <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita CML highlight</p>
+          <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita CML
+            highlight</p>
         </div>
 
       </div>
@@ -148,11 +168,12 @@ export default {
 
 <style>
 #profile {
-  background: url('../assets/kerjasama.png');
+  background: rgba(0, 0, 0, 0.4) url('../assets/kerjasama.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
+  filter: brightness(91%)
 }
 
 /* .swiper-pagination-bullet-active {
@@ -170,5 +191,4 @@ export default {
 .swiper-button-prev,
 .swiper-button-next {
   color: #fff;
-}
-</style>
+}</style>

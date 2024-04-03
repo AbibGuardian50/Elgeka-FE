@@ -1,9 +1,20 @@
 <script>
 import Navbar from './Navbar.vue'
+import axios from 'axios'
 export default {
     components: {
         Navbar
     },
+    methods: {
+        async register() {
+            try {
+                const url = 'https://elgeka-mobile-production.up.railway.app/api/user/register'
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
 }
 </script>
 
@@ -18,7 +29,7 @@ export default {
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
             <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Lets Create your account</h1>
-            <form action="#" method="POST">
+            <form>
                 <!-- nama lengkap Input -->
                 <div class="mb-4">
                     <label for="namalengkap"
@@ -47,7 +58,7 @@ export default {
                     <label for="Tanggal Lahir" class="block text-[#344054] mb-2">Tanggal Lahir</label>
                     <input type="date" id="date" name="date"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="enter date">
+                        autocomplete="off" placeholder="yyyy-mm-dd" min="1997-01-01" max="2030-12-31">
                 </div>
                 <!-- Kota Domisili Input -->
                 <div class="mb-4">
@@ -79,11 +90,19 @@ export default {
                         <option value="A">A</option>
                         <option value="AB">AB</option>
                         <option value="B">B</option>
+                        <option value="O">O</option>
                     </Select>
                 </div>
                 <!-- Password Input -->
                 <div class="mb-4">
                     <label for="Password" class="block text-[#344054] mb-2">Password</label>
+                    <input type="password" id="kota-domisili" name="Password"
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        autocomplete="off" placeholder="enter password">
+                </div>
+                <!-- Password confirmation Input -->
+                <div class="mb-4">
+                    <label for="Password" class="block text-[#344054] mb-2">Confirmation Password</label>
                     <input type="password" id="kota-domisili" name="Password"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter password">
