@@ -28,42 +28,101 @@ export default {
 <template>
     <Navbar />
 
-    <div id="container" class="flex" v-if="profilkomunitas.currentPage === 1" :style="{ 'background-image': `url(${url + profilkomunitas.data.image_url})` }">
-        <div class="flex flex-col justify-center items-center m-auto">
-            <div 
-                class="bg-orange flex absolute px-32 w-[1022px] mt-20 isolate rounded-xl bg-orange/75 shadow-lg ring-1 ring-black/5">
+    <div v-if="profilkomunitas.currentPage === 1">
+        <div id="container" class="flex" :style="{ 'background-image': `url(${url + profilkomunitas.data.image_url})` }">
+            <div class="flex flex-col justify-center items-center m-auto">
                 <div>
-                    <p class="font-bold font-poppins text-[40px] text-white text-center pt-4">PROFILE</p>
-                    <p class="font-bold font-poppins text-[40px] text-white text-center pb-4">{{ profilkomunitas.data.title
-                    }}</p>
-                    <div v-html="profilkomunitas.data.content"
-                        class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 pb-4 ">
+                    <div>
+                        <p class="font-bold font-poppins text-[64px] text-white text-center pt-4">TENTANG</p>
+                        <p class="font-bold font-poppins text-[64px] text-white text-center">KOMUNITAS ELGEKA</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-[2023px] min-[2400px]:mx-auto">
+            <div class="flex mx-20 my-8 justify-between  ">
+                <div class="w-9/12">
+                    <p class="font-poppins font-bold text-[40px] text-fullblack">{{ profilkomunitas.data.title }}
+                    </p>
+                    <div class="font-poppins font-normal text-3xl" v-html="profilkomunitas.data.content"></div>
+                    <div class="mt-4 flex gap-4 ">
+                        <a :href="profilkomunitas.data.twitter_link" target="_blank"><img class="w-[44px] h-[44px]"
+                                src="../assets/Logo-X.png" alt="Twitter"></a>
+                        <a :href="profilkomunitas.data.fb_link" target="_blank"><img class="w-[44px] h-[44px]"
+                                src="../assets/Logo-Facebook.png" alt="Facebook"></a>
+                        <a :href="profilkomunitas.data.ig_link" target="_blank"><img class="w-[44px] h-[44px]"
+                                src="../assets/Logo-Instagram.png" alt="Instagram"></a>
 
                     </div>
                 </div>
 
-                <div class="mt-4 right-4 absolute flex flex-col gap-4">
-                    <a :href="profilkomunitas.data.ig_link" target="_blank"><img class="w-[35px] h-[35px]"
-                            src="../assets/Logo-Instagram.png" alt="Instagram"></a>
-                    <a :href="profilkomunitas.data.fb_link" target="_blank"><img class="w-[35px] h-[35px]"
-                            src="../assets/Logo-Facebook.png" alt="Facebook"></a>
-                    <a :href="profilkomunitas.data.twitter_link" target="_blank"><img class="w-[35px] h-[35px]"
-                            src="../assets/Logo-X.png" alt="Twitter"></a>
-                </div>
+                <img class="w-3/12 max-w-[438px] max-h-[463px] max-xl:h-full" src="../assets/together.png" alt="foto" srcset="">
 
             </div>
+
+            <div class="flex flex-col gap-12">
+                <div class="border-2 border-grey flex flex-col items-center px-4 pt-1 max-[900px]:w-auto w-[972px] m-auto relative">
+                    <p class="absolute bg-orange bottom-[75%] right-[46%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">VISI</p>
+                    <p class="p-4 font-poppins font-normal text-[20px] text-darkgrey">{{ profilkomunitas.data.visi }}</p>
+                </div>
+
+                <div class="border-2 border-grey flex flex-col items-center px-4 pt-1 max-[900px]:w-auto w-[972px] m-auto relative">
+                    <p class="absolute bg-orange bottom-[75%] right-[46%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">MISI</p>
+                    <p class="p-4 font-poppins font-normal text-[20px] text-darkgrey">{{ profilkomunitas.data.misi }}</p>
+                </div>
+            </div>
+
+
+
         </div>
 
     </div>
 </template>
 
 <style>
+.caontainer {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Mengatur border */
+    padding: 10px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 1rem;
+    width: 972px;
+    /* Menambahkan padding agar teks tidak terlalu dekat dengan border */
+    position: relative;
+    /* Mengatur posisi relatif untuk positioning elemen p */
+}
+
+.bordered-paraw23agraph {
+    position: absolute;
+    /* Mengatur posisi absolut */
+    bottom: 80%;
+    /* Menempatkan paling atas */
+    right: 45%;
+
+    /* Mengatur jarak dari border */
+    background-color: rgb(171, 18, 18);
+    /* Mengatur latar rgb(177, 28, 28)ang p */
+    padding: 0 10px;
+    /* Menambahkan padding untuk memberi ruang antara teks dan border */
+
+}
+
+
+
 #container {
     background-repeat: no-repeat;
     background-size: cover;
     width: auto;
     height: 100vh;
-    
+
 }
 
 ol {

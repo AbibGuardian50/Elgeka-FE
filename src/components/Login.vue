@@ -2,6 +2,7 @@
 import Navbar from './Navbar.vue'
 import axios from 'axios'
 import VueCookies from 'vue-cookies';
+import Cookies from 'js-cookie';
 export default {
     components: {
         Navbar
@@ -19,49 +20,21 @@ export default {
     methods: {
         async login() {
             try {
-                // const token = this.$cookies.get('Authorization',Authorization);
-                // const session = await getServerAuthSession()
-                // const token = session?.user.Authorization
                 const url = 'https://elgeka-mobile-production.up.railway.app/api/user/login'
                 const response = await axios.post(url, {
                     email: this.email,
                     password: this.password
                 })
-                        if (response.status === 200) {
-                            console.log(response)
-                            // console.log(response.headers.setAuthorization)
-                            // console.log(response.headers["Authorization"])
-                            VueCookies.set('isLoggedIn',response.data.Message)
-                            
-                            
-                            // VueCookies.set()
-                        }
+                if (response.status === 200) {
+                    console.log(response)
+                    VueCookies.set('isLoggedIn', response.data.Message)
+                    console.log('loginberhasil')
+                    
+                }
             } catch (error) {
                 this.error = 'ada kesalahan dari sistem, mohon coba lagi'
             }
         },
-        handleResponse(response) {
-            const cookies = response.headers['set-cookie'];
-
-            // Lakukan pemeriksaan apakah cookies tidak kosong
-            if (cookies && cookies.length > 0) {
-                // Loop melalui cookies untuk menemukan token
-                cookies.forEach(cookie => {
-                    // Anda harus menyesuaikan ini dengan cara bagaimana server Anda mengirimkan cookie token
-                    if (cookie.includes('token')) {
-                        // Ekstrak token dari cookie
-                        const Authorization = cookie.split(';')[0].split('=')[1];
-
-                        // Simpan token di sini, misalnya ke Local Storage
-                        localStorage.setItem('token', Authorization);
-
-                        // Jika token diperlukan di seluruh aplikasi, Anda bisa juga menyimpannya di Vuex Store
-                        // this.$store.commit('setToken', token); // contoh jika menggunakan Vuex
-                    }
-                });
-            }
-        }
-
     },
     mounted() {
         const rememberedUsername = localStorage.getItem('rememberedUsername');

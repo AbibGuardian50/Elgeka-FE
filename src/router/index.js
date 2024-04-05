@@ -16,6 +16,18 @@ const router = createRouter({
     },
 
     {
+      path: '/akunsukses',
+      name: 'akunsukses',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Akunsukses.vue'),
+      meta: {
+        title: 'Akun Berhasil Dibuat'
+      }
+    },
+
+    {
       path: '/aturancerita',
       name: 'aturancerita',
       // route level code-splitting
@@ -60,6 +72,18 @@ const router = createRouter({
       component: () => import('../views/Donasi.vue'),
       meta: {
         title: 'Donasi Elgeka Jawa Barat'
+      }
+    },
+
+    {
+      path: '/gantipasswordsukses',
+      name: 'gantipasswordsukses',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/Gantipasswordsukses.vue'),
+      meta: {
+        title: 'Sukses Ganti Password'
       }
     },
 
@@ -142,6 +166,24 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
       component: () => import('../views/playground.vue')
+    },
+
+    {
+      path: '/Optionotp',
+      name: 'Optionotp',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/OptionOTP.vue')
+    },
+
+    {
+      path: '/sendotpemail',
+      name: 'sendotpemail',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/SendOtpEmail.vue')
     },
 
     {

@@ -1,24 +1,47 @@
 <script>
 import Navbar from './Navbar.vue'
+import VueCookies from 'vue-cookies';
+import Cookies from 'js-cookie';
+import axios from 'axios'
 
 export default {
+    async created() {
+        try {
+            const url = 'https://elgeka-mobile-production.up.railway.app/api/user/profile'
+            const tokenlogin = await VueCookies.get(response.headers['set-cookie'])
+            const response = await axios.get(url, {
+                    headers: {
+                        Authorization: `Bearer ${tokenlogin}`
+                    },
+                })
+                this.profiluser = response.data
+                console.log(this.profiluser)
+        } catch (error) {
+            console.log(error)
+        }
+    },
     components: {
         Navbar,
-    }
+    },
+    data() {
+        return {
+            profiluser: '',
+        }
+    },
 }
 </script>
 
 <template>
     <Navbar />
 
-    <div>
+    <div class="pt-20">
         <p class="pt-[4rem] ml-4 font-poppins font-semibold text-orange text-[32px]">Informasi Tentang anda</p>
         <div class="flex gap-16">
-            <div class="border border-orange mt-4 ml-4 px-8">
+            <div v-if="profiluser" class="border border-orange mt-4 ml-4 px-8">
                 <div class="flex my-8 gap-8 items-center">
                     <img src="../assets/pp.png" alt="">
                     <div class="flex flex-col">
-                        <p class="font-poppins font-bold text-2xl text-orange">User 2321412</p>
+                        <p class="font-poppins font-bold text-2xl text-orange">{{ profiluser.Message }}</p>
                         <p class="font-poppins font-medium text-xl text-lightorange">user2321412@gmail.com</p>
                     </div>
                 </div>
@@ -56,8 +79,10 @@ export default {
                     <img src="../assets/rectanglepp.png" alt="foto profil">
 
                     <div class="flex justify-around items-center mt-2 mb-4">
-                        <button class="bg-orange py-1 px-6 text-white font-medium font-poppins rounded-[4px] border border-black">Ganti</button>
-                        <button class="bg-white py-1 px-6 font-medium font-poppins rounded-md rounded-[4px] border border-black">Hapus</button>
+                        <button
+                            class="bg-orange py-1 px-6 text-white font-medium font-poppins rounded-[4px] border border-black">Ganti</button>
+                        <button
+                            class="bg-white py-1 px-6 font-medium font-poppins rounded-md rounded-[4px] border border-black">Hapus</button>
                     </div>
                 </div>
 
@@ -65,7 +90,8 @@ export default {
                 <div class="flex flex-col items-center gap-4">
                     <div class="w-full flex flex-col">
                         <p class="font-poppins font-bold text-[16px] text-orange text-center">Tentang saya</p>
-                        <input type="text" name="" id="" placeholder=" Seorang pasien yang sedang berjuang" class="border border-black py-1 px-2">
+                        <input type="text" name="" id="" placeholder=" Seorang pasien yang sedang berjuang"
+                            class="border border-black py-1 px-2">
                     </div>
 
                     <div class="w-full flex flex-col">
@@ -78,7 +104,7 @@ export default {
                         <input type="text" name="" id="" placeholder=" @user2321412" class="py-1 px-2 border border-black">
                     </div>
 
-                    <div class="w-full flex flex-col"> 
+                    <div class="w-full flex flex-col">
                         <p class="font-poppins font-bold text-[16px] text-orange text-center">Akun Facebook</p>
                         <input type="text" name="" id="" placeholder=" user2321412" class=" py-1 px-2 border border-black">
                     </div>
@@ -88,5 +114,4 @@ export default {
 
             </div>
         </div>
-    </div>
-</template>
+</div></template>
