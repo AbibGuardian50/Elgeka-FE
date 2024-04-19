@@ -28,12 +28,10 @@ export default {
       const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/profilKomunitas');
       this.profilkomunitas = response.data.result;
       console.log(this.profilkomunitas)
-      this.StatusUser = VueCookies.get('isLoggedIn')
-      console.log(this.StatusUser)
 
-      const tokenlogin = VueCookies.get('Authentication')
-      console.log(tokenlogin)
-      const response_user = 'https://elgeka-mobile-production.up.railway.app/api/user/validate'
+
+      // const tokenlogin = VueCookies.get('Authentication')
+      // const response_user = 'https://elgeka-mobile-production.up.railway.app/api/user/validate'
 
     } catch (error) {
       console.error(error);

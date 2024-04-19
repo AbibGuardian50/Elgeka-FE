@@ -4,18 +4,22 @@ import VueCookies from 'vue-cookies';
 import Cookies from 'js-cookie';
 import axios from 'axios'
 
+
 export default {
     async created() {
         try {
             const url = 'https://elgeka-mobile-production.up.railway.app/api/user/profile'
-            const tokenlogin = await VueCookies.get(response.headers['set-cookie'])
-            const response = await axios.get(url, {
-                    headers: {
-                        Authorization: `Bearer ${tokenlogin}`
-                    },
-                })
-                this.profiluser = response.data
+            // const tokenlogin = VueCookies.get('Authentication')
+            axios.defaults.withCredentials = true;
+            const response = axios.get(url, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }).then((response) => {
+                this.profiluser = response.data.Data[0]
                 console.log(this.profiluser)
+            });
+
         } catch (error) {
             console.log(error)
         }
@@ -25,7 +29,7 @@ export default {
     },
     data() {
         return {
-            profiluser: '',
+            profiluser: [],
         }
     },
 }
@@ -34,15 +38,15 @@ export default {
 <template>
     <Navbar />
 
-    <div class="pt-20">
+    <div class="pt-20 max-w-[1440px] m-auto">
         <p class="pt-[4rem] ml-4 font-poppins font-semibold text-orange text-[32px]">Informasi Tentang anda</p>
         <div class="flex gap-16">
             <div v-if="profiluser" class="border border-orange mt-4 ml-4 px-8">
                 <div class="flex my-8 gap-8 items-center">
                     <img src="../assets/pp.png" alt="">
                     <div class="flex flex-col">
-                        <p class="font-poppins font-bold text-2xl text-orange">{{ profiluser.Message }}</p>
-                        <p class="font-poppins font-medium text-xl text-lightorange">user2321412@gmail.com</p>
+                        <p class="font-poppins font-bold text-2xl text-orange">{{ profiluser.Name }}</p>
+                        <p class="font-poppins font-medium text-xl text-lightorange">{{ profiluser.Email }}</p>
                     </div>
                 </div>
 
@@ -53,8 +57,8 @@ export default {
                     </div>
 
                     <div class="w-96 pb-8 border border-orange flex flex-col">
-                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Instagram</p>
-                        <p class="pl-8 text-lightorange font-poppins font-medium">@user2321412</p>
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Alamat</p>
+                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ profiluser.Address }}</p>
                     </div>
 
                     <div class="w-96 pb-8 border border-orange flex flex-col">
@@ -114,4 +118,5 @@ export default {
 
             </div>
         </div>
-</div></template>
+    </div>
+</template>

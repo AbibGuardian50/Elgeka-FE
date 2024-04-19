@@ -28,7 +28,7 @@ export default {
         'fullblack': '#000000',
         'darkblue': '#000000D9',
         'lightwhite': 'rgba(255, 255, 255, 0.7)',
-        'lightgrayish': '#D0D5DD',
+        'lightgrayish': '#D0D5DD',  
         'lightgrey': '#F6F6F6',
         'darkgrey': '#363636',
         'bluegrey': '#64748b',

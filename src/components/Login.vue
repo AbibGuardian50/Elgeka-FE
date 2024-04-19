@@ -14,27 +14,39 @@ export default {
             error: '',
             rememberMe: false,
             rememberedUsername: '',
-            rememberedPassword: ''
+            rememberedPassword: '',
+            profiledata: '',
         }
     },
     methods: {
         async login() {
             try {
-                const url = 'https://elgeka-mobile-production.up.railway.app/api/user/login'
+                axios.defaults.withCredentials = true;
+                const url = 'https://elgeka-mobile-production.up.railway.app/api/user/login_website'
                 const response = await axios.post(url, {
                     email: this.email,
                     password: this.password
-                })
+                },
+                )
                 if (response.status === 200) {
                     console.log(response)
-                    VueCookies.set('isLoggedIn', response.data.Message)
-                    console.log('loginberhasil')
-                    
+                    // VueCookies.set('Authentication',response.data.Token)
+                    VueCookies.set('Name', response.data.Data[0].Name)
+                    VueCookies.set('Message', response.data.Message)
+                    const token = ('Authentication', response.data.Token);
+                    this.setTokenCookie(token);
+                    this.$router.push('/')
                 }
             } catch (error) {
                 this.error = 'ada kesalahan dari sistem, mohon coba lagi'
             }
         },
+        setTokenCookie(token) {
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 30);
+            // Mengatur cookie dengan nama "token" dan nilai token yang diberikan bersama dengan tanggal kedaluwarsa 30 hari dari saat ini
+            Cookies.set('token', token, { expires: expirationDate });
+        }
     },
     mounted() {
         const rememberedUsername = localStorage.getItem('rememberedUsername');
@@ -60,7 +72,7 @@ export default {
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
             <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Selamat Datang !</h1>
-            <form @submit.prevent="login()">
+            <form @submit.prevent="login">
                 <!-- Email Input -->
                 <div class="mb-4">
                     <label for="Email"
@@ -101,7 +113,6 @@ export default {
 
             </form>
             <!-- Forgot Password Link -->
-
         </div>
     </div>
 </template>

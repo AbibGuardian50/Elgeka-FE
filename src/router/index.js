@@ -1,4 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import VueCookies from 'vue-cookies';
+
+// const cookieParser = require('cookie-parser'); 
+// app.use(cookieParser());
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,7 +64,15 @@ const router = createRouter({
       component: () => import('../views/Createcerita.vue'),
       meta: {
         title: 'Buat Cerita Blog'
-      }
+      },
+      // beforeEnter: (to, from, next) => {
+      //   const tokenlogin = VueCookies.get('tokenlogin');
+      //   if (!tokenlogin) {
+      //     next('/login')
+      //   } else {
+      //     next()
+      //   }
+      // }
     },
 
     {
@@ -96,13 +108,22 @@ const router = createRouter({
       component: () => import('../views/KomunitasKegiatan.vue')
     },
 
+    // {
+    //   path: '/komentar/:id',
+    //   name: 'komentar',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visitedcd .
+    //   component: () => import('../views/Komentar.vue')
+    // },
+
     {
-      path: '/komentar',
-      name: 'komentar',
+      path: '/detailblog/:id',
+      name: 'detailblog',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/Komentar.vue')
+      component: () => import('../views/DetailBlog.vue')
     },
 
     {

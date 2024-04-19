@@ -1,7 +1,10 @@
 <script>
-import Navbar from './Navbar.vue'
+import Navbar from '../components/Navbar.vue'
 import axios from 'axios'
 import VueCookies from 'vue-cookies';
+import moment from 'moment';
+import 'moment/locale/id'; // Impor locale bahasa Indonesia
+import 'moment-timezone';
 
 export default {
     async created() {
@@ -30,7 +33,7 @@ export default {
             content: [],
             storyblog: [],
             commentblog: [],
-            user_name:'',
+            user_name: '',
         }
     },
     methods: {
@@ -54,10 +57,19 @@ export default {
                         console.log(response)
                         // Lakukan sesuatu dengan data yang diperoleh
                     })
-                
+
             } catch (error) {
                 console.error(error)
             }
+        },
+        formatDateTime(dateTimeString) {
+            // Parsing string tanggal dan waktu dengan moment.js
+            const dateTime = moment(dateTimeString).tz('Asia/Jakarta');
+
+            // Mengubah format tanggal dan waktu
+            const formattedDateTime = dateTime.format('DD MMMM YYYY HH:mm:ss');
+
+            return formattedDateTime;
         }
     }
 }
@@ -71,9 +83,9 @@ export default {
             <p class="text-center font-poppins font-bold text-[40px] pt-2 pb-4 mt-16">{{ storyblog.title }}</p>
             <p v-html="storyblog.content" class="px-16 text-[#000000B2] font-base"></p>
             <div>
-                <form class="px-16 pt-4 flex gap-2 justify-between" @submit.prevent="createcomment()">
-                    <input class="bg-grey w-11/12 px-4 placeholder:text-[#000000B2] border border-orange" type="text"
-                        name="komentar" id="" placeholder="Berikan Komentar......." v-model="content">
+                <form class="px-16 pt-4 flex gap-2 justify-between max-w-[1800px]" @submit.prevent="createcomment()">
+                    <input class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-orange"
+                        type="text" name="komentar" id="" placeholder="Berikan Komentar......." v-model="content">
                     <button type="submit"
                         class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">kirim</button>
                 </form>
@@ -88,6 +100,7 @@ export default {
                 <p class="max-w-[673px] px-4 text-black font-poppins font-bold text-base"> {{ kolomkomentar.user_name }}
                 </p>
                 <p class="max-w-[673px] px-4 text-[#000000D9] font-poppins font-base">{{ kolomkomentar.content }}</p>
+                <p class="px-4 text-darkgrey">Created at {{ formatDateTime(kolomkomentar.createdAt) }}</p>
             </div>
 
         </div>

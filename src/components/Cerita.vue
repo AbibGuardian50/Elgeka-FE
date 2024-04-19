@@ -1,5 +1,6 @@
 <script>
 import Navbar from './Navbar.vue'
+import VueCookies from 'vue-cookies';
 import Createcerita from './Createcerita.vue'
 import axios from 'axios'
 export default {
@@ -17,6 +18,9 @@ export default {
                 { title: 'Cerita', content: 'Lorem ipsum dolor sit amet consectetur. Commodo adipiscing massa et sem. Neque elementum non facilisi eget. Eget quis et tortor cras sed. Nec vulputate neque non mi.' },
             ],
             showModal: false,
+            username: '',
+            userstory: [],
+            allstory: [],
 
         }
     },
@@ -29,6 +33,29 @@ export default {
         try {
             const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/aturanBlog');
             this.aturanblog = response.data.result;
+            this.username = VueCookies.get('Name')
+            const token = VueCookies.get('token')
+            // if (token) {
+            //     const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog/user/id'
+            //     const response_story = await axios.get(url, {
+            //         headers: {
+            //             Authorization: `Bearer ${token}`
+            //         },
+
+            //     })
+            //     this.userstory = response_story.data.result.data
+            //     console.log(this.userstory)
+            // } masih stuck disini
+
+            const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog'
+            const response_allstory = await axios.get(url, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+            this.allstory = response_allstory.data.result.data
+            console.log(this.allstory)
+
             // this.parsed_aturanblog = this.aturanblog.split("\n");
             console.log(this.aturanblog)
         } catch (error) {
@@ -40,9 +67,8 @@ export default {
 </script>
 <template>
     <Navbar />
-
     <div>
-        <div class="pt-24 flex justify-between max-w-[1400px] m-auto">
+        <div v-if="username" class="pt-24 flex justify-between max-w-[1400px] m-auto">
             <button
                 class="font-inter text-white text-xl flex bg-orange items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Cerita
                 Anda</button>
@@ -51,11 +77,34 @@ export default {
                 Cerita</button>
         </div>
 
-        <div class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto">
-            <div class="flex flex-col items-center" v-for="cerita in Ceritaanda">
+        <div v-else class="pt-24 flex flex-row-reverse justify-between max-w-[1400px] m-auto">
+            <button v-on:click="toggleModal()"
+                class="font-inter text-white text-xl flex bg-orange items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
+                Cerita</button>
+        </div>
+
+        <!-- <div v-if="userstory" class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto">
+            <div class="flex flex-col items-center" v-for="cerita in userstory">
                 <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
                 <p class="font-poppins font-normal text-[16px] text-center py-4">{{ cerita.content }}</p>
+                <p v-if="cerita.isVerified === false" class="font-poppins font-normal text-[16px] text-center py-4">Belum
+                    diverifikasi / Pending</p>
+                <p v-if="cerita.isVerified === true" class="font-poppins font-normal text-[16px] text-center py-4">Sudah
+                    diverifikasi</p>
                 <button class="rounded-md bg-orange py-4 text-white text-xl font-bold w-full">Lihat Semua</button>
+            </div>
+        </div> -->
+
+        <div class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto">
+            <div class="flex flex-col" v-for="cerita in allstory">
+                <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
+                <div v-html="cerita.content" class="font-poppins font-normal text-[16px] text-center py-4"></div>
+                <!-- <p v-if="cerita.isVerified === false" class="font-poppins font-normal text-[16px] text-center py-4">Belum
+                    diverifikasi / Pending</p>
+                <p v-if="cerita.isVerified === true" class="font-poppins font-normal text-[16px] text-center py-4">Sudah
+                    diverifikasi</p> -->
+                <a :href="'detailblog/' + cerita.id"><button class="rounded-md bg-orange py-4 text-white text-xl font-bold w-full">Lihat
+                        Semua</button></a>
             </div>
         </div>
 
@@ -85,11 +134,12 @@ export default {
                     </div>
                     <!--body-->
                     <div class="relative p-6">
-<!-- 
+                        <!-- 
                         <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
                             
                         </p> -->
-                        <div v-html="aturanblog.data.content" class="font-poppins text-xl font-medium leading-8 text-darkblue whitespace-break-spaces"></div>
+                        <div v-html="aturanblog.data.content"
+                            class="font-poppins text-xl font-medium leading-8 text-darkblue whitespace-break-spaces"></div>
 
 
                     </div>
