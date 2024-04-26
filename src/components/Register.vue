@@ -7,6 +7,10 @@ export default {
             form: {
                 Name: '',
                 Address: '',
+                Province: '',
+                District: '',
+                SubDistrict: '',
+                Village: '',
                 PhoneNumber: '628',
                 Gender: '',
                 BirthDate: '',
@@ -24,6 +28,10 @@ export default {
             const formData = new FormData();
             formData.append('Name', this.form.Name);
             formData.append('Address', this.form.Address);
+            formData.append('Province', this.form.Province);
+            formData.append('District', this.form.District);
+            formData.append('SubDistrict', this.form.SubDistrict);
+            formData.append('Village', this.form.Village);
             formData.append('PhoneNumber', this.form.PhoneNumber);
             formData.append('Gender', this.form.Gender);
             formData.append('BirthDate', this.form.BirthDate);
@@ -34,7 +42,9 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     VueCookies.set('user_id',response.data.Data[0].ID)
-                    
+                    if (response.data.Message === 'Register Success') {
+                        this.$router.push('/optionotp')
+                    }
                 })
                 .catch(error => {
                     console.log(error)
@@ -94,11 +104,43 @@ export default {
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter Alamat" v-model="form.Address">
                 </div>
+                <!-- Provinsi Input -->
+                <div class="mb-4">
+                    <label for="Provinsi" class="block text-[#344054] mb-2">Provinsi</label>
+                    <input type="text" id="Provinsi" name="Provinsi" required
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        autocomplete="off" placeholder="enter Province" v-model="form.Province">
+                </div>
+
+                <!-- Kabupaten Input -->
+                <div class="mb-4">
+                    <label for="Kabupaten" class="block text-[#344054] mb-2">Kabupaten</label>
+                    <input type="text" id="Kabupaten" name="Kabupaten" required
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        autocomplete="off" placeholder="enter District" v-model="form.District">
+                </div>
+
+                <!-- Kecamatan Input -->
+                <div class="mb-4">
+                    <label for="Kecamatan" class="block text-[#344054] mb-2">Kecamatan</label>
+                    <input type="text" id="Kecamatan" name="Kecamatan" required
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        autocomplete="off" placeholder="enter Sub District" v-model="form.SubDistrict">
+                </div>
+
+                <!-- Desa/Kelurahan Input -->
+                <div class="mb-4">
+                    <label for="Desa/Kelurahan" class="block text-[#344054] mb-2">Desa/Kelurahan</label>
+                    <input type="text" id="Desa/Kelurahan" name="Desa/Kelurahan" required
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        autocomplete="off" placeholder="enter Village" v-model="form.Village">
+                </div>
+                
                 <!-- jenis Kelamin Input -->
                 <div class="mb-4">
                     <label for="jeniskelamin" class="block text-[#344054] mb-2">Jenis Kelamin</label>
                     <select id="jeniskelamin" name="Jenis Kelamin" required v-model="form.Gender"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        class="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="jeniskelamin">
                         <option value="male">laki-Laki</option>
                         <option value="female">Perempuan</option>
@@ -112,7 +154,7 @@ export default {
                 <div class="mb-4">
                     <label for="Golongan Darah" class="block text-[#344054] mb-2">Golongan Darah</label>
                     <select id="Golongan Darah" name="Golongan Darah" required v-model="form.BloodGroup"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        class="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter Golongan Darah">
                         <option value="A">A</option>
                         <option value="AB">AB</option>

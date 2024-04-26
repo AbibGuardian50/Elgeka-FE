@@ -27,13 +27,28 @@ export default {
             this.$router.push(e.target.value);
         },
         logout() {
-        // Hapus token dari localStorage atau dari state aplikasi
-        window.location.reload();
-        VueCookies.remove('Message'); // Contoh jika token disimpan di localStorage atau cookies
-        VueCookies.remove('Name');
-        VueCookies.remove('token');
-        // Lakukan langkah lain yang diperlukan saat logout
-    },
+            // Hapus token dari localStorage atau dari state aplikasi
+            try {
+                const url = 'https://elgeka-mobile-production.up.railway.app/api/user/logout'
+                const token = VueCookies.get('token')
+                const response = axios.post(url, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => {
+                        // Mengakses data dari respons
+                        this.$router.push('/')
+                        window.location.reload();
+                        console.log(response)
+                        // Lakukan sesuatu dengan data yang diperoleh
+                    })
+            } catch (error) {
+                console.log(error)
+            }
+            // Lakukan langkah lain yang diperlukan saat logout
+        },
     },
     data() {
         return {
@@ -92,7 +107,8 @@ export default {
 
                             <router-link v-if="profiluser" to="/">
                                 <p @click="logout"
-                                    class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">Logout</p>
+                                    class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">
+                                    Logout</p>
                             </router-link>
 
                             <!-- <router-link to="/userprofil">
@@ -106,8 +122,7 @@ export default {
                 <div
                     class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 gap-y-1.5">
 
-                    <div v-if="!profiluser"
-                        >
+                    <div v-if="!profiluser">
                         <router-link to="/login"><button type="button"
                                 class="font-inter font-extrabold leading-5 text-white text-xl bg-orange mr-4 border border-white py-2 px-5 rounded-md">Login</button></router-link>
                         <router-link to="/register"><button type="button"

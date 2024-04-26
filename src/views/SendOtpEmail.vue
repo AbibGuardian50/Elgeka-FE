@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             email: '',
-            OtpCode: ['', '', '', ''], // Array untuk menyimpan setiap digit OTP
+            OtpCode: [], // Array untuk menyimpan setiap digit OTP
             otpDigits: 4, // Jumlah digit OTP
             // userdata: '',
         }
@@ -16,9 +16,11 @@ export default {
             const formData = new FormData();
             formData.append('OtpCode', this.OtpCode);
             const url = `https://elgeka-mobile-production.up.railway.app/api/user/activate/${User_Id}`
-            axios.post(url, formData)
+            axios.post(url,formData)
                 .then(response => {
                     console.log(response.data);
+                    VueCookies.remove('user_id');
+                    // if (response.data.Message === )
                     // this.userdata = response.data.Data[0].Email
                     // console.log(this.userdata);
                 })
@@ -71,9 +73,9 @@ export default {
                 <!-- Email Input -->
                 <div class="my-8 flex flex-col">
                     <div class="otp-input">
-                        <input v-for="(digit, index) in otpDigits" :key="index" type="text"
-                            class="otp-digit w-[90px] h-[90px] border border-[#B2B2B2]" v-model="OtpCode[index]" maxlength="1"
-                            @input="focusNextInput(index)" />
+                        <input type="text"
+                            class="otp-digit w-[90px] h-[90px] border border-[#B2B2B2]" v-model="OtpCode"
+                            />
                     </div>
 
                 </div>
@@ -84,7 +86,7 @@ export default {
                 </div>
             </form>
             <button @click="SendOtpEmail()"
-                            class="text-[#A5A6A6] font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Kirim Ulang code</button>
+                class="text-[#A5A6A6] font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Kirim Ulang code</button>
             <!-- Forgot Password Link -->
 
         </div>

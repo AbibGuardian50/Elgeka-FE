@@ -3,6 +3,8 @@ import Navbar from './Navbar.vue'
 import VueCookies from 'vue-cookies';
 import Cookies from 'js-cookie';
 import axios from 'axios'
+import { format } from 'date-fns';
+import idLocale from 'date-fns/locale/id';
 
 
 export default {
@@ -32,6 +34,16 @@ export default {
             profiluser: [],
         }
     },
+    methods: {
+        formatDate(dateString) {
+        if (dateString) {
+            // Ubah format tanggal
+            return format(new Date(dateString), 'dd MMMM yyyy', { locale: idLocale });
+        } else {
+            return "Tanggal lahir tidak tersedia";
+        }
+    }
+    }
 }
 </script>
 
@@ -50,28 +62,42 @@ export default {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-8">
+                <div class="grid grid-cols-2 gap-8 mb-8">
                     <div class="w-96 pb-8 border border-orange flex flex-col">
-                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Tentang Saya</p>
-                        <p class="pl-8 text-lightorange font-poppins font-medium">Seorang pasien yang sedang berjuang</p>
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Nama</p>
+                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ profiluser.Name }}</p>
                     </div>
 
                     <div class="w-96 pb-8 border border-orange flex flex-col">
-                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Alamat</p>
-                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ profiluser.Address }}</p>
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Email</p>
+                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ profiluser.Email }}</p>
                     </div>
 
                     <div class="w-96 pb-8 border border-orange flex flex-col">
-                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Twitter</p>
-                        <p class="pl-8 text-lightorange font-poppins font-medium">@user2321412</p>
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Nomor HP</p>
+                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ profiluser.PhoneNumber }}</p>
                     </div>
 
                     <div class="w-96 pb-8 border border-orange flex flex-col">
-                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Facebook</p>
-                        <p class="pl-8 text-lightorange font-poppins font-medium">@user2321412</p>
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Gender</p>
+                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ profiluser.Gender }}</p>
+                    </div>
+
+                    <div class="w-96 pb-8 border border-orange flex flex-col">
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Golongan Darah</p>
+                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ profiluser.BloodGroup }}</p>
+                    </div>
+
+                    <div class="w-96 pb-8 border border-orange flex flex-col">
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Tanggal Lahir</p>
+                        <p class="pl-8 text-lightorange font-poppins font-medium">{{ formatDate(profiluser.BirthDate) }}</p>
                     </div>
                 </div>
 
+                <div class="w-[97%] pb-8 border border-orange flex flex-col mb-4">
+                        <p class="pl-8 py-8 font-poppins font-bold text-2xl text-orange text-left">Alamat</p>
+                        <p class="px-8 text-lightorange font-poppins font-medium">{{ profiluser.Address }} Provinsi {{ profiluser.Province }} Kabupaten {{ profiluser.District }} Kecamatan {{ profiluser.SubDistrict }} Desa {{ profiluser.Village }}</p>
+                    </div>
 
 
 
@@ -91,26 +117,61 @@ export default {
                 </div>
 
 
-                <div class="flex flex-col items-center gap-4">
+                <div v-if="profiluser" class="flex flex-col items-center gap-4">
                     <div class="w-full flex flex-col">
-                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Tentang saya</p>
-                        <input type="text" name="" id="" placeholder=" Seorang pasien yang sedang berjuang"
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Nama</p>
+                        <input type="text" name="" id="" v-model= profiluser.Name
                             class="border border-black py-1 px-2">
                     </div>
 
                     <div class="w-full flex flex-col">
-                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Akun Instagram</p>
-                        <input type="text" name="" id="" placeholder=" @user2321412" class=" py-1 px-2 border border-black">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Email</p>
+                        <input type="text" name="" id="" v-model= profiluser.Email class=" py-1 px-2 border border-black">
                     </div>
 
                     <div class="w-full flex flex-col">
-                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Akun Twitter</p>
-                        <input type="text" name="" id="" placeholder=" @user2321412" class="py-1 px-2 border border-black">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Nomor HP</p>
+                        <input type="text" name="" id="" v-model= profiluser.PhoneNumber class="py-1 px-2 border border-black">
                     </div>
 
                     <div class="w-full flex flex-col">
-                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Akun Facebook</p>
-                        <input type="text" name="" id="" placeholder=" user2321412" class=" py-1 px-2 border border-black">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Gender</p>
+                        <input type="text" name="" id="" v-model= profiluser.Gender class=" py-1 px-2 border border-black">
+                    </div>
+
+                    <div class="w-full flex flex-col">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Tanggal Lahir</p>
+                        <input type="text" name="" id="" v-model= profiluser.BirthDate class=" py-1 px-2 border border-black">
+                    </div>
+
+                    <div class="w-full flex flex-col">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Golongan Darah</p>
+                        <input type="text" name="" id="" v-model= profiluser.BloodGroup class=" py-1 px-2 border border-black">
+                    </div>
+
+                    <div class="w-full flex flex-col">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Alamat</p>
+                        <input type="text" name="" id="" v-model= profiluser.PhoneNumber class=" py-1 px-2 border border-black">
+                    </div>
+
+                    <div class="w-full flex flex-col">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Provinsi</p>
+                        <input type="text" name="" id="" v-model= profiluser.Province class=" py-1 px-2 border border-black">
+                    </div>
+
+                    <div class="w-full flex flex-col">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Kabupaten/Kota</p>
+                        <input type="text" name="" id="" v-model= profiluser.District class=" py-1 px-2 border border-black">
+                    </div>
+
+                    <div class="w-full flex flex-col">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Kecamatan</p>
+                        <input type="text" name="" id="" v-model= profiluser.SubDistrict class=" py-1 px-2 border border-black">
+                    </div>
+
+                    <div class="w-full flex flex-col">
+                        <p class="font-poppins font-bold text-[16px] text-orange text-center">Desa</p>
+                        <input type="text" name="" id="" v-model= profiluser.Village class=" py-1 px-2 border border-black">
                     </div>
 
                     <button class="bg-orange mt-4 py-1 px-6">Ganti</button>

@@ -103,17 +103,17 @@ export default {
                     <input type="text" v-model="username">
                 </div> -->
                
-                <div id="editor" class=" border-2 border-[#8B1A0FCC] mt-24 mx-8 mb-8 rounded-lg p-4 bg-grey">
-                    <p class="text-red font-bold">Judul Cerita</p>
-                    <input class="w-full" type="text" name="judul cerita" id="" v-model="form.title">
+                <div id="editor" class=" border-2 border-orange mt-24 mx-8 mb-8 rounded-lg p-4 bg-white">
+                    <p class="text-darktransparent font-bold">Judul Cerita</p>
+                    <input class="w-full bg-grey" type="text" name="judul cerita" id="" v-model="form.title">
                     <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="essential" /> -->
                 </div>
 
-                <div class="border-2 border-[#8B1A0FCC] m-8 rounded-lg p-4 bg-grey">
-                    <p class="text-red font-bold">Tuliskan Cerita anda</p>
-                    <quill-editor :toolbar="['bold', 'italic', 'underline', 'image']" theme="snow" class="bg-white"
+                <div class="border-2 border-orange m-8 rounded-lg p-4 bg-white">
+                    <p class="text-darktransparent font-bold">Tuliskan Cerita anda</p>
+                    <quill-editor :toolbar="['bold', 'italic', 'underline', 'image']" theme="snow" class="bg-grey"
                         contentType="html" v-model:content="form.content"></quill-editor>
-                    <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="full" /> -->
+                   
                 </div>
 
                 <div class="flex justify-end pr-8">

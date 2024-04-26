@@ -3,6 +3,8 @@ import Navbar from './Navbar.vue'
 import VueCookies from 'vue-cookies';
 import Createcerita from './Createcerita.vue'
 import axios from 'axios'
+import { format } from 'date-fns';
+import idLocale from 'date-fns/locale/id';
 export default {
     components: {
         Navbar
@@ -21,12 +23,18 @@ export default {
             username: '',
             userstory: [],
             allstory: [],
+            stories: [],
+            tokenlogin: '',
 
         }
     },
     methods: {
         toggleModal: function () {
             this.showModal = !this.showModal;
+        },
+        formatDate(dateString) {
+            // Ubah format tanggal
+            return format(new Date(dateString), 'dd MMMM yyyy', { locale: idLocale });
         }
     },
     async created() {
@@ -34,18 +42,18 @@ export default {
             const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/aturanBlog');
             this.aturanblog = response.data.result;
             this.username = VueCookies.get('Name')
+            this.tokenlogin = VueCookies.get('token')
             const token = VueCookies.get('token')
-            // if (token) {
-            //     const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog/user/id'
-            //     const response_story = await axios.get(url, {
-            //         headers: {
-            //             Authorization: `Bearer ${token}`
-            //         },
 
-            //     })
-            //     this.userstory = response_story.data.result.data
-            //     console.log(this.userstory)
-            // } masih stuck disini
+
+            const url_by_user_id = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog/user/id'
+            const response_userstory = await axios.get(url_by_user_id, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+            this.userstory = response_userstory.data.result.data
+            console.log(response_userstory)
 
             const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog'
             const response_allstory = await axios.get(url, {
@@ -53,11 +61,14 @@ export default {
                     Authorization: `Bearer ${token}`
                 },
             })
-            this.allstory = response_allstory.data.result.data
+            this.allstory = response_allstory.data.result.data.filter(story => story.isVerified === true)
             console.log(this.allstory)
 
             // this.parsed_aturanblog = this.aturanblog.split("\n");
             console.log(this.aturanblog)
+
+            this.stories = [this.userstory, this.allstory];
+            console.log(this.stories)
         } catch (error) {
             console.error(error);
         }
@@ -69,9 +80,45 @@ export default {
     <Navbar />
     <div>
         <div v-if="username" class="pt-24 flex justify-between max-w-[1400px] m-auto">
-            <button
-                class="font-inter text-white text-xl flex bg-orange items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Cerita
-                Anda</button>
+            <ul class="max-w-2xl divide-y rounded-xl">
+                <li>
+                    <details class="group">
+                        <summary
+                            class="font-inter text-white text-xl flex bg-orange items-center gap-2  mt-16  font-bold hover:cursor-pointer rounded-md flex items-center gap-3 px-4 py-3 font-medium marker:content-none hover:cursor-pointer ">
+                            <span>Cerita Anda</span>
+                            <svg class="w-5 h-5 text-gray-500 transition group-open:rotate-90"
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                                </path>
+                            </svg>
+
+                        </summary>
+
+                        <article class="absolute max-h-[300px] overflow-y-scroll max-w-[534px] bg-white mx-4 pb-4">
+                            <div v-for="story in userstory" class="flex justify-center items-center gap-4 px-4 py-4 shadow-md text-opacity-40">
+                                <p class="font-inter text-fullblack font-medium text-[14px]">
+                                    {{ story.title }}
+                                </p>
+
+                                <p class="font-inter text-fullblack font-medium text-[14px]" v-if="story.isVerified === true">
+                                    Sudah di Verifikasi
+                                </p>
+
+                                <p class="font-inter text-fullblack font-medium text-[14px]" v-else-if="story.isVerified === false">
+                                    Pending
+                                </p>
+
+                                <p class="font-inter text-fullblack font-medium text-[14px]">
+                                    {{ formatDate(story.createdAt) }}
+                                </p>
+                            </div>
+
+                        </article>
+                    </details>
+                </li>
+            </ul>
             <button v-on:click="toggleModal()"
                 class="font-inter text-white text-xl flex bg-orange items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
                 Cerita</button>
@@ -95,16 +142,41 @@ export default {
             </div>
         </div> -->
 
-        <div class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto">
+        <!-- <div v-if="tokenlogin" class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto">
+            <div class="flex flex-col" v-for="(subArray, index) in stories" :key="index">
+                <div v-for="(cerita, subIndex) in subArray" :key="cerita.id">
+                    <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
+                    <div v-html="cerita.content" class="line-clamp-3 font-poppins font-normal text-base text-center pt-4">
+                    </div>
+                    <a :href="'detailblog/' + cerita.id"><button
+                            class="rounded-md bg-orange py-4 text-white text-xl font-bold w-full">Lihat Semua</button></a>
+                </div>
+            </div>
+
+        </div> -->
+
+        <div class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto items-end">
             <div class="flex flex-col" v-for="cerita in allstory">
                 <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
-                <div v-html="cerita.content" class="font-poppins font-normal text-[16px] text-center py-4"></div>
+                <div v-html="cerita.content" class="line-clamp-3 font-poppins font-normal text-base text-center pt-4"></div>
                 <!-- <p v-if="cerita.isVerified === false" class="font-poppins font-normal text-[16px] text-center py-4">Belum
                     diverifikasi / Pending</p>
                 <p v-if="cerita.isVerified === true" class="font-poppins font-normal text-[16px] text-center py-4">Sudah
                     diverifikasi</p> -->
-                <a :href="'detailblog/' + cerita.id"><button class="rounded-md bg-orange py-4 text-white text-xl font-bold w-full">Lihat
+                <a :href="'detailblog/' + cerita.id"><button
+                        class="rounded-md bg-orange py-4 text-white text-xl font-bold w-full mt-4">Lihat
                         Semua</button></a>
+
+                <div class="flex gap-1 items-center justify-center mt-4">
+                    <p class="font-poppins font-normal text-[12px] text-darktransparent">
+                        {{ cerita.author_name }} -
+                    </p>
+
+                    <p class="font-poppins font-normal text-[12px] text-darktransparent">
+                        {{ formatDate(cerita.createdAt) }}
+                    </p>
+                </div>
+
             </div>
         </div>
 

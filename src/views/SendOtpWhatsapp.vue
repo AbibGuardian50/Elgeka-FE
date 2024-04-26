@@ -5,19 +5,24 @@ export default {
     data() {
         return {
             email: '',
-            otp: ['', '', '', ''], // Array untuk menyimpan setiap digit OTP
-            otpDigits: 4 // Jumlah digit OTP
-
+            OtpCode: [], // Array untuk menyimpan setiap digit OTP
+            otpDigits: 4, // Jumlah digit OTP
+            // userdata: '',
         }
     },
     methods: {
-        async login() {
+        activateaccount() {
             const User_Id = VueCookies.get('user_id')
-            const url = `https://elgeka-mobile-production.up.railway.app/api/user/whatsapp_otp/:${User_Id}`
-            axios.post(url, this.form)
+            const formData = new FormData();
+            formData.append('OtpCode', this.OtpCode);
+            const url = `https://elgeka-mobile-production.up.railway.app/api/user/activate/${User_Id}`
+            axios.post(url,formData)
                 .then(response => {
                     console.log(response.data);
-                    window.location.reload();
+                    VueCookies.remove('user_id');
+                    // if (response.data.Message === )
+                    // this.userdata = response.data.Data[0].Email
+                    // console.log(this.userdata);
                 })
                 .catch(error => {
                     console.log(error)
@@ -25,15 +30,29 @@ export default {
         },
         focusNextInput(index) {
             // Fokus ke input berikutnya setelah mengisi digit pada input saat ini
-            if (index < this.otpDigits - 1 && this.otp[index]) {
-                this.$refs[`otpInput${index + 1}`].focus();
+            if (index < this.OtpCodeDigits - 1 && this.OtpCode[index]) {
+                this.$refs[`OtpCodeInput${index + 1}`].focus();
             }
         },
         verifyOTP() {
             // Menggabungkan digit-digit OTP menjadi satu string untuk verifikasi
-            const otpValue = this.otp.join('');
-            // Lakukan verifikasi dengan nilai otpValue
-            console.log('Kode OTP:', otpValue);
+            const OtpCodeValue = this.OtpCode.join('');
+            // Lakukan verifikasi dengan nilai OtpCodeValue
+            console.log('Kode OtpCode:', OtpCodeValue);
+        },
+        SendOtpWhatsapp() {
+            try {
+                const user_id = VueCookies.get('user_id');
+                const url = `https://elgeka-mobile-production.up.railway.app/api/user/whatsapp_otp/${user_id}`
+                axios.post(url)
+                    .then(response =>
+                        console.log(response),
+                        this.$router.push('/sendotpwhatsapp')
+                        // this.$router.push('sendotpwhatsapp')
+                    )
+            } catch (error) {
+                console.log(error)
+            }
         }
     },
 }
@@ -51,13 +70,14 @@ export default {
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
             <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Masukan kode Autentikasi</h1>
-            <p>Masukan 4 digit angka yang telah dikirimkan ke email a*****02@gmail.com</p>
-            <form @submit.prevent="login()">
+            <p>Masukan 4 digit angka yang telah dikirimkan ke email</p>
+            <form @submit.prevent="activateaccount()">
                 <!-- Email Input -->
                 <div class="my-8 flex flex-col">
                     <div class="otp-input">
-                        <input v-for="(digit, index) in otpDigits" :key="index" type="text" class="otp-digit w-[90px] h-[90px] border border-[#B2B2B2]"
-                            v-model="otp[index]" maxlength="1" @input="focusNextInput(index)" />
+                        <input type="text"
+                            class="otp-digit w-[90px] h-[90px] border border-[#B2B2B2]" v-model="OtpCode"
+                            />
                     </div>
 
                 </div>
@@ -66,8 +86,9 @@ export default {
                     <button type="submit"
                         class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Lanjutkan</button>
                 </div>
-
             </form>
+            <button @click="SendOtpWhatsapp()"
+                class="text-[#A5A6A6] font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Kirim Ulang code</button>
             <!-- Forgot Password Link -->
 
         </div>

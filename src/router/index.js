@@ -195,7 +195,15 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/OptionOTP.vue')
+      component: () => import('../views/OptionOTP.vue'),
+      beforeEnter: (to, from, next) => {
+        const tokenlogin = VueCookies.get('user_id');
+        if (!tokenlogin) {
+          next('/register')
+        } else {
+          next()
+        }
+      }
     },
 
     {
@@ -204,7 +212,41 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visitedcd .
-      component: () => import('../views/SendOtpEmail.vue')
+      component: () => import('../views/SendOtpEmail.vue'),
+      beforeEnter: (to, from, next) => {
+        const tokenlogin = VueCookies.get('user_id');
+        if (!tokenlogin) {
+          next('/register')
+        } else {
+          next()
+        }
+      }
+    },
+
+    {
+      path: '/sendotpwhatsapp',
+      name: 'sendotpWhatsapp',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/SendOtpWhatsapp.vue'),
+      beforeEnter: (to, from, next) => {
+        const tokenlogin = VueCookies.get('user_id');
+        if (!tokenlogin) {
+          next('/register')
+        } else {
+          next()
+        }
+      }
+    },
+
+    {
+      path: '/successregister',
+      name: 'successregister',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/SuccessRegister.vue')
     },
 
     {
