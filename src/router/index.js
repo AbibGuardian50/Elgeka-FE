@@ -10,9 +10,6 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visitedcd .
       component: () => import('../views/HomePage.vue'),
       meta: {
         title: 'Halaman Utama Elgeka Jawa Barat'
@@ -22,9 +19,6 @@ const router = createRouter({
     {
       path: '/akunsukses',
       name: 'akunsukses',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visitedcd .
       component: () => import('../views/Akunsukses.vue'),
       meta: {
         title: 'Akun Berhasil Dibuat'
@@ -65,14 +59,15 @@ const router = createRouter({
       meta: {
         title: 'Buat Cerita Blog'
       },
-      // beforeEnter: (to, from, next) => {
-      //   const tokenlogin = VueCookies.get('tokenlogin');
-      //   if (!tokenlogin) {
-      //     next('/login')
-      //   } else {
-      //     next()
-      //   }
-      // }
+      beforeEnter: (to, from, next) => {
+        const tokenlogin = VueCookies.get('token');
+        if (!tokenlogin) {
+          next('/login')
+        } else {
+          next()
+        }
+      },
+      
     },
 
     {

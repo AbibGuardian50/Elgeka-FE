@@ -16,6 +16,9 @@ export default {
             const response_commentblog = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/blogComment/${id}`)
             this.commentblog = response_commentblog.data.result.data
 
+            const logintoken = VueCookies.get('token')
+            this.usertoken = logintoken
+            // console.log(this.usertoken)
         } catch (error) {
             console.error(error);
         }
@@ -34,6 +37,7 @@ export default {
             storyblog: [],
             commentblog: [],
             user_name: '',
+            usertoken: '',
         }
     },
     methods: {
@@ -57,6 +61,7 @@ export default {
                         // Mengakses data dari respons
                         window.location.reload();
                         console.log(response)
+                        
                         // Lakukan sesuatu dengan data yang diperoleh
                     })
                 } else if(!token) {
@@ -72,7 +77,6 @@ export default {
 
             // Mengubah format tanggal dan waktu
             const formattedDateTime = dateTime.format("HH:mm,  DD MMMM YYYY");
-
             return formattedDateTime;
         }
     }
@@ -88,10 +92,14 @@ export default {
             <p v-html="storyblog.content" class="px-16 text-[#000000B2] font-base"></p>
             <div>
                 <form class="px-16 pt-4 flex gap-2 justify-between max-w-[1800px] m-auto" @submit.prevent="createcomment()">
-                    <input class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-orange"
+                    <input v-if="usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-orange"
                         type="text" name="komentar" id="" placeholder="Berikan Komentar......." v-model="content">
-                    <button type="submit"
+                        <input v-else-if="!usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] cursor-not-allowed border border-orange"
+                        type="text" name="komentar" id="" placeholder="Login terlebih dahulu sebelum memberikan komentar" v-model="content" disabled>
+                    <button v-if="usertoken" type="submit"
                         class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">kirim</button>
+                        <button v-if="!usertoken" type="submit"
+                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12 cursor-not-allowed opacity-50" disabled>kirim</button>
                 </form>
 
             </div>
