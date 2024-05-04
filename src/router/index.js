@@ -95,6 +95,18 @@ const router = createRouter({
     },
 
     {
+      path: '/infoRS',
+      name: 'infoRS',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/InfoRS.vue'),
+      meta: {
+        title: 'Info Rumah Sakit'
+      }
+    },
+
+    {
       path: '/komunitaskegiatan',
       name: 'komunitaskegiatan',
       // route level code-splitting
