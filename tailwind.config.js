@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'hospital' : "url('/src/assets/Hospital.png')"
+      },
       width: {
         '88': '22.5rem',
       },
@@ -31,6 +34,7 @@ export default {
         'lightwhite': 'rgba(255, 255, 255, 0.7)',
         'lightgrayish': '#D0D5DD',  
         'lightgrey': '#F6F6F6',
+        'verylightgray': '#F0F0F0',
         'darkgrey': '#363636',
         'bluegrey': '#64748b',
         'grey': '#D9D9D9',

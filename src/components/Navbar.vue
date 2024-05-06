@@ -90,9 +90,11 @@ export default {
                                     Berita</p>
                             </router-link>
 
-                            <a
-                                class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">Info
-                                RS</a>
+                            <router-link to="/infors">
+                                <p
+                                    class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">
+                                    Info RS</p>
+                            </router-link>
                             <!--Ada bug dimana info RS mengarah ke /perkembangancml padahal tidak ada router-link atau href tpi dah solved hehe -->
                             <router-link to="/cerita">
                                 <p
