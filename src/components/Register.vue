@@ -14,6 +14,7 @@ export default {
                 PhoneNumber: '628',
                 Gender: '',
                 BirthDate: '',
+                DiagnosisDate: '',
                 BloodGroup: '',
                 Email: '',
                 Password: '',
@@ -35,6 +36,7 @@ export default {
             formData.append('PhoneNumber', this.form.PhoneNumber);
             formData.append('Gender', this.form.Gender);
             formData.append('BirthDate', this.form.BirthDate);
+            formData.append('DiagnosisDate', this.form.DiagnosisDate);
             formData.append('BloodGroup', this.form.BloodGroup);
             formData.append('Email', this.form.Email);
             formData.append('Password', this.form.Password);
@@ -96,6 +98,14 @@ export default {
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="yyyy-mm-dd" min="1997-01-01" max="2030-12-31"
                         v-model="form.BirthDate">
+                </div>
+                <!-- Tanggal Diagnosis Input -->
+                <div class="mb-4">
+                    <label for="Tanggal Diagnosis" class="block text-[#344054] mb-2">Tanggal Diagnosis</label>
+                    <input type="date" id="date" name="date" required
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                        autocomplete="off" placeholder="yyyy-mm-dd" min="1997-01-01" max="2030-12-31"
+                        v-model="form.DiagnosisDate">
                 </div>
                 <!-- Alamat Input -->
                 <div class="mb-4">
@@ -179,7 +189,7 @@ export default {
                 </div>
                 <div class="flex items-center flex-col">
                     <button type="submit"
-                        class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
+                        class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
                     <p class="mt-4 font-[verdana] font-normal text-[14px]">Already have an account ? <span
                             class="font-bold text-[#4D4D4F]">Sign in</span> </p>
                 </div>

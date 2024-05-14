@@ -33,7 +33,7 @@ export default {
 
     <div v-if="detailberita" class="flex flex-col m-auto p-8 min-[1600px]:max-w-[1440px]">
         <img class="mt-32 rounded-t-md max-h-[404px]" :src="url + detailberita.image_url" alt="gambar">
-        <div class="rounded-b-md bg-orange">
+        <div class="rounded-b-md bg-teal">
             <div class="pt-8 pl-20 pr-4 pb-12">
                 <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">BERITA</p>
                 <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">{{ detailberita.title}}

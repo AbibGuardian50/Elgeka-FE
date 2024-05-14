@@ -87,9 +87,9 @@ export default {
             <!-- <p class="font-gotham font-normal text-2xl text-black mb-2">Quotes</p> -->
             <input type="text" class="bg-grey pl-4 py-1 w-full rounded-full" v-model="prompt"
                 placeholder="Enter your prompt here">
-            <button class="px-8 py-2 bg-orange text-white font-poppins rounded-md my-2" @click="generateblog">Generate
+            <button class="px-8 py-2 bg-teal text-white font-poppins rounded-md my-2" @click="generateblog">Generate
                 blog</button>
-            <div class="bg-orange text-white font-bold font-poppins px-2" v-if="blog">{{ blog.generated_blog
+            <div class="bg-teal text-white font-bold font-poppins px-2" v-if="blog">{{ blog.generated_blog
             }}</div>
             <div v-else>(Hasil Generate blog akan tampil disini)</div>
         </div>
@@ -103,13 +103,13 @@ export default {
                     <input type="text" v-model="username">
                 </div> -->
                
-                <div id="editor" class=" border-2 border-orange mt-24 mx-8 mb-8 rounded-lg p-4 bg-white">
+                <div id="editor" class=" border-2 border-teal mt-24 mx-8 mb-8 rounded-lg p-4 bg-white">
                     <p class="text-darktransparent font-bold">Judul Cerita</p>
                     <input class="w-full bg-grey" type="text" name="judul cerita" id="" v-model="form.title">
                     <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="essential" /> -->
                 </div>
 
-                <div class="border-2 border-orange m-8 rounded-lg p-4 bg-white">
+                <div class="border-2 border-teal m-8 rounded-lg p-4 bg-white">
                     <p class="text-darktransparent font-bold">Tuliskan Cerita anda</p>
                     <quill-editor :toolbar="['bold', 'italic', 'underline', 'image']" theme="snow" class="bg-grey"
                         contentType="html" v-model:content="form.content"></quill-editor>
@@ -118,9 +118,9 @@ export default {
 
                 <div class="flex justify-end pr-8">
                     <!-- <router-link to="/komentar"><button
-                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button></router-link> -->
+                        class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button></router-link> -->
                     <button type="submit"
-                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button>
+                        class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button>
                 </div>
             </form>
 

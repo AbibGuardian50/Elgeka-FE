@@ -92,14 +92,14 @@ export default {
             <p v-html="storyblog.content" class="px-16 text-[#000000B2] font-base"></p>
             <div>
                 <form class="px-16 pt-4 flex gap-2 justify-between max-w-[1800px] m-auto" @submit.prevent="createcomment()">
-                    <input v-if="usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-orange"
+                    <input v-if="usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-teal"
                         type="text" name="komentar" id="" placeholder="Berikan Komentar......." v-model="content">
-                        <input v-else-if="!usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] cursor-not-allowed border border-orange"
+                        <input v-else-if="!usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] cursor-not-allowed border border-teal"
                         type="text" name="komentar" id="" placeholder="Login terlebih dahulu sebelum memberikan komentar" v-model="content" disabled>
                     <button v-if="usertoken" type="submit"
-                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">kirim</button>
+                        class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">kirim</button>
                         <button v-if="!usertoken" type="submit"
-                        class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12 cursor-not-allowed opacity-50" disabled>kirim</button>
+                        class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12 cursor-not-allowed opacity-50" disabled>kirim</button>
                 </form>
 
             </div>
@@ -108,7 +108,7 @@ export default {
         <p class="pl-16 font-poppins font-bold text-[24px] text-black">Komentar :</p>
 
         <div class="pt-2 flex flex-col items-start mx-16" v-for="kolomkomentar in commentblog" name="kolom komentar">
-            <div class="flex flex-col gap-2 py-4 border border-orange rounded-lg justify-start items-start">
+            <div class="flex flex-col gap-2 py-4 border border-teal rounded-lg justify-start items-start">
                 <p class="max-w-[673px] px-4 text-black font-poppins font-bold text-base"> {{ kolomkomentar.user_name }}
                 </p>
                 <p class="min-w-[152px] max-w-[673px] px-4 text-[#636363D9] font-poppins font-base">{{ kolomkomentar.content }}</p>

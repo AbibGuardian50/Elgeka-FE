@@ -61,12 +61,12 @@ export default {
 </script>
 
 <template>
-    <nav class="bg-orange backdrop-blur-xl w-full fixed z-10">
+    <nav class="bg-teal backdrop-blur-xl w-full fixed z-10">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-32 items-center justify-between">
                 <div>
                     <router-link to="/">
-                        <img class="bg-white rounded-md" src="../assets/Logo_elgeka.png" alt="">
+                        <img class="rounded-md" src="../assets/logoElgekaPutih1.png" alt="">
                     </router-link>
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch">
@@ -80,7 +80,7 @@ export default {
                             </router-link>
 
                             <!-- <select v-on:change="changeRoute($event)"
-                                class="bg-orange text-white rounded-md px-3 py-2 text-xl font-medium" name="" id="">
+                                class="bg-teal text-white rounded-md px-3 py-2 text-xl font-medium" name="" id="">
                                 <option selected>Berita</option>
                             </select> -->
 
@@ -126,9 +126,9 @@ export default {
 
                     <div v-if="!profiluser">
                         <router-link to="/login"><button type="button"
-                                class="font-inter font-extrabold leading-5 text-white text-xl bg-orange mr-4 border border-white py-2 px-5 rounded-md">Login</button></router-link>
+                                class="font-inter font-extrabold leading-5 text-white text-xl bg-teal mr-4 border border-white py-2 px-5 rounded-md">Login</button></router-link>
                         <router-link to="/register"><button type="button"
-                                class="font-inter font-extrabold leading-5 bg-white text-orange border border-orange text-xl py-2 px-5 rounded-md">Daftar</button></router-link>
+                                class="font-inter font-extrabold leading-5 bg-white text-teal border border-teal text-xl py-2 px-5 rounded-md">Daftar</button></router-link>
                     </div>
                     <div v-else class="flex flex-row-reverse items-center border-2 border-white gap-2 py-1 px-4">
                         <img class="w-[39px] h-[39px]" src="../assets/pp.png" alt="">

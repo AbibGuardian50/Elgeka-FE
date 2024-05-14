@@ -30,10 +30,10 @@ export default {
     <div>
         <div class="pt-4 mx-4 flex justify-between">
             <button
-                class="text-white flex bg-orange items-center gap-2 p-2 mb-4 font-medium hover:cursor-pointer rounded-md">Cerita
+                class="text-white flex bg-teal items-center gap-2 p-2 mb-4 font-medium hover:cursor-pointer rounded-md">Cerita
                 Anda</button>
             <button v-on:click="toggleModal()"
-                class="font-inter text-white flex bg-orange items-center gap-2 p-2 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
+                class="font-inter text-white flex bg-teal items-center gap-2 p-2 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
                 Cerita</button>
         </div>
 
@@ -41,7 +41,7 @@ export default {
             <div class="flex flex-col items-center" v-for="cerita in Ceritaanda">
                 <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
                 <p class="font-poppins font-normal text-[16px] text-center py-4">{{ cerita.content }}</p>
-                <button class="rounded-md bg-orange py-4 text-white text-xl font-bold w-full">Lihat Semua</button>
+                <button class="rounded-md bg-teal py-4 text-white text-xl font-bold w-full">Lihat Semua</button>
             </div>
         </div>
 
@@ -95,7 +95,7 @@ export default {
                     <!--footer-->
                     <div class="flex items-center justify-center p-6 border-t border-blueGray-200 rounded-b">
                         <router-link to="/createcerita"><button
-                                class="text-white bg-orange border hover:text-white active:bg-orange-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                class="text-white bg-teal border hover:text-white active:bg-teal-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                 type="button">
                                 Setuju
                             </button></router-link>

@@ -77,15 +77,15 @@ export default {
       class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 w-[630px] text-center line-clamp-4">
     </div>
     <router-link to="/profilkomunitas"> <button type="button"
-        class="bg-orange font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">Selengkapnya</button></router-link>
+        class="bg-teal font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">Selengkapnya</button></router-link>
   </div>
 
   <!-- Kegiatan Komunitas -->
   <div class="bg-greymercury flex flex-col items-center pt-10 pb-10">
     <div>
       <p class="text-center font-poppins font-semibold text-xl text-black">Kegiatan Komunitas</p>
-      <p class="text-center font-poppins font-semibold text-5xl text-orange">Kegiatan dari</p>
-      <p class="text-center font-poppins font-semibold text-5xl text-orange">komunitas kami</p>
+      <p class="text-center font-poppins font-semibold text-5xl text-teal">Kegiatan dari</p>
+      <p class="text-center font-poppins font-semibold text-5xl text-teal">komunitas kami</p>
       <p class="text-center text-black text-base font-normal font-poppins">Lorem ipsum dolor sit amet consectetur.
         Commodo adipiscing massa et sem. Neque elementum </p>
     </div>
@@ -106,7 +106,7 @@ export default {
     </div>
 
     <router-link to="/komunitaskegiatan"><button type="button"
-        class="bg-orange text-white py-2 px-10 rounded-md font-poppins font-bold text-2xl">Lihat
+        class="bg-teal text-white py-2 px-10 rounded-md font-poppins font-bold text-2xl">Lihat
         Semua</button></router-link>
 
   </div>
@@ -124,24 +124,24 @@ export default {
 
     <div class="flex flex-col items-center">
       <div class="flex justify-around gap-16 pt-8 px-8 max-sm:flex-wrap">
-        <div class="group active:bg-orange flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
-          <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
+        <div class="group active:bg-teal flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
+          <!-- <span class="group-active:bg-white rounded-full bg-teal w-24 h-24 block"></span> -->
           <img src="../assets/Rectangle179.png" alt="">
           <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita
             Komunitas highlight
           </p>
         </div>
 
-        <div class="group active:bg-orange flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
-          <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
+        <div class="group active:bg-teal flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
+          <!-- <span class="group-active:bg-white rounded-full bg-teal w-24 h-24 block"></span> -->
           <img src="../assets/Rectangle179.png" alt="">
           <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita terkini
             highlight
           </p>
         </div>
 
-        <div class="group active:bg-orange flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
-          <!-- <span class="group-active:bg-white rounded-full bg-orange w-24 h-24 block"></span> -->
+        <div class="group active:bg-teal flex items-center flex-col pt-12 pb-40 px-4 bg-white rounded-[5px]">
+          <!-- <span class="group-active:bg-white rounded-full bg-teal w-24 h-24 block"></span> -->
           <img src="../assets/Rectangle179.png" alt="">
           <p class="group-active:text-white text-3xl text-center font-poppins font-semibold leading-9 pt-4">Berita CML
             highlight</p>
@@ -151,7 +151,7 @@ export default {
 
       <div class="my-20">
         <router-link to="/perkembangancml"><button type="button"
-            class="bg-orange text-white py-2 px-10 mr-8 rounded-md font-poppins font-bold text-2xl">Lihat
+            class="bg-teal text-white py-2 px-10 mr-8 rounded-md font-poppins font-bold text-2xl">Lihat
             Semua</button></router-link>
       </div>
     </div>

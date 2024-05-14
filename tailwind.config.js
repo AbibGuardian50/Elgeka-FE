@@ -43,6 +43,7 @@ export default {
         'lightorange': '#FF914CB2',
         'silver' : '#E5E5E5',
         'silvergray': '#A5A6A6',
+        'teal': '#0A6B77',
       },
     fontFamily: {
       'inter' : ['inter', 'sans-serif'],

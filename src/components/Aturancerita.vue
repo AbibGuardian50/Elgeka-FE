@@ -45,7 +45,7 @@ export default {
 
         <div class="">
             <router-link to="/createcerita"><button
-                    class="bg-orange font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Setuju</button></router-link>
+                    class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Setuju</button></router-link>
         </div>
 
     </div>

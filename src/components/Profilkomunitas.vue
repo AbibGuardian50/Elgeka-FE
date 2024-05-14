@@ -65,12 +65,12 @@ export default {
 
             <div class="flex flex-col gap-12">
                 <div class="border-2 border-grey flex flex-col items-center px-4 pt-1 max-[900px]:w-auto w-[972px] m-auto relative">
-                    <p class="absolute bg-orange bottom-[75%] right-[46%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">VISI</p>
+                    <p class="absolute bg-teal bottom-[75%] right-[46%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">VISI</p>
                     <p class="p-4 font-poppins font-normal text-[20px] text-darkgrey">{{ profilkomunitas.data.visi }}</p>
                 </div>
 
                 <div class="border-2 border-grey flex flex-col items-center px-4 pt-1 max-[900px]:w-auto w-[972px] m-auto relative">
-                    <p class="absolute bg-orange bottom-[75%] right-[46%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">MISI</p>
+                    <p class="absolute bg-teal bottom-[75%] right-[46%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">MISI</p>
                     <p class="p-4 font-poppins font-normal text-[20px] text-darkgrey">{{ profilkomunitas.data.misi }}</p>
                 </div>
             </div>
