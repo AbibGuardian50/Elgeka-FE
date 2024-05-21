@@ -40,6 +40,7 @@ export default {
             formData.append('BloodGroup', this.form.BloodGroup);
             formData.append('Email', this.form.Email);
             formData.append('Password', this.form.Password);
+            formData.append('PasswordConfirmation', this.form.passwordconfirmation);
             axios.post(url, formData)
                 .then(response => {
                     console.log(response.data);
@@ -65,7 +66,7 @@ export default {
         </div>
         <!-- Right: Login Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
+            <img class="w-[120px] bg-teal mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Lets Create your account</h1>
             <form @submit.prevent="createuser()">
                 <!-- nama lengkap Input -->
@@ -182,7 +183,7 @@ export default {
                 <!-- Password confirmation Input -->
                 <div class="mb-4">
                     <label for="Password" class="block text-[#344054] mb-2">Confirmation Password</label>
-                    <input type="password" id="PasswordConfirmation" name="Password" required v-model="form.confirmpassword"
+                    <input type="password" id="PasswordConfirmation" name="Password" required v-model="form.passwordconfirmation"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter password">
                     <p v-if="error" class="error text-red">{{ error }}</p>

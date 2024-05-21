@@ -70,7 +70,7 @@ export default {
         </div>
         <!-- Right: Login Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
+            <img class="w-[120px] bg-teal rounded-md mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Selamat Datang !</h1>
             <form @submit.prevent="login">
                 <!-- Email Input -->

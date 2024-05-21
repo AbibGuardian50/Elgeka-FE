@@ -4,6 +4,24 @@ export default {
     components: {
         Navbar
     },
+    methods: {
+        async forgotpassword() {
+            try {
+                axios.defaults.withCredentials = true;
+                const url = 'https://elgeka-mobile-production.up.railway.app/api/user/forgot_password'
+                const response = await axios.post(url, {
+                    email: this.email,
+                },
+                )
+                if (response.status === 200) {
+                    
+                }
+            } catch (error) {
+
+            }
+
+        }
+    }
 }
 </script>
 
@@ -30,26 +48,21 @@ export default {
                 </div>
                 <!-- kata Sandi Baru Input -->
                 <div class="mb-4">
-                    <label for="Kata Sandi" class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Kata Sandi Baru</label>
+                    <label for="Kata Sandi" class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Kata
+                        Sandi Baru</label>
                     <input type="password" id="password" name="password"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter new password">
                 </div>
-
-                <!-- Ulang Kata Sandi Baru Input -->
-                <div class="mb-4">
-                    <label for="Ulang Kata Sandi baru" class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Ulang Kata Sandi Baru</label>
-                    <input type="Ulang Kata Sandi baru" id="Ulang Kata Sandi baru" name="Ulang Kata Sandi baru"
-                        class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="enter password">
-                </div>
                 <!-- Login Button -->
                 <div class="flex items-center flex-col">
-                    <button type="submit" class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Kirim</button>
+                    <button type="submit"
+                        class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Kirim</button>
                 </div>
 
             </form>
-           
 
+
+        </div>
     </div>
-</div></template>
+</template>
