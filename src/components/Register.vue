@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
+import { useToast } from 'vue-toastification';
 
 export default {
     data() {
@@ -34,15 +35,18 @@ export default {
     },
     methods: {
         fetchProvinces() {
+            const toast = useToast();
             axios.get('https://abibguardian50.github.io/api-wilayah-indonesia/api/provinces.json')
                 .then(response => {
                     this.provinces = response.data;
                 })
                 .catch(error => {
+                    toast.error('Error fetching provinces, mohon refresh halaman')
                     console.error('Error fetching provinces:', error);
                 });
         },
         fetchDistricts(provinceId) {
+            const toast = useToast();
             axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/regencies/${provinceId}.json`)
                 .then(response => {
                     this.districts = response.data;
@@ -50,29 +54,35 @@ export default {
                     this.villages = [];
                 })
                 .catch(error => {
+                    toast.error('Error fetching districts, mohon refresh halaman')
                     console.error('Error fetching districts:', error);
                 });
         },
         fetchSubDistricts(districtId) {
+            const toast = useToast();
             axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/districts/${districtId}.json`)
                 .then(response => {
                     this.subDistricts = response.data;
                     this.villages = [];
                 })
                 .catch(error => {
+                    toast.error('Error fetching subDistricts, mohon refresh halaman')
                     console.error('Error fetching subDistricts:', error);
                 });
         },
         fetchVillages(subDistrictId) {
+            const toast = useToast();
             axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/villages/${subDistrictId}.json`)
                 .then(response => {
                     this.villages = response.data;
                 })
                 .catch(error => {
+                    toast.error('Error fetching villages, mohon refresh halaman')
                     console.error('Error fetching villages:', error);
                 });
         },
         createuser() {
+            const toast = useToast();
             const url = 'https://elgeka-mobile-production.up.railway.app/api/user/register';
             const formData = new FormData();
             formData.append('Name', this.form.Name);
@@ -92,14 +102,20 @@ export default {
 
             axios.post(url, formData)
                 .then(response => {
-                    console.log(response.data);
+                    console.log(response.data.ErrorMessage);
                     VueCookies.set('user_id', response.data.Data[0].ID);
                     if (response.data.Message === 'Register Success') {
                         this.$router.push('/optionotp');
-                    }
+                        toast.success('registrasi sukses')
+                    } 
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log(error.response.data.ErrorMessage);
+                    if (error.response.data.ErrorMessage === "Email Already Use") {
+                        toast.error('registrasi gagal karena email sudah digunakan, mohon gunakan email yang lain')
+                    } else if (error.response.data.ErrorMessage === "Phone Number Already Use") {
+                        toast.error('registrasi gagal karena nomor telepon sudah digunakan, mohon gunakan nomor yang lain')
+                    }
                 });
         },
         validatePassword() {

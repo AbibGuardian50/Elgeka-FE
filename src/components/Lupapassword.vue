@@ -38,13 +38,13 @@ export default {
     <!-- component -->
     <div class="bg-gray-100 flex flex-row-reverse">
         <!-- Right: Image -->
-        <div class="w-1/2 h-screen hidden lg:block">
+        <div class="w-1/2 hidden lg:block">
             <router-link to="/"><img src="../assets/sign.png" alt="Placeholder Image"
                     class="object-cover w-full h-full"></router-link>
         </div>
         <!-- left: Forget Password Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
+            <img class="w-[120px] bg-teal rounded-md mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Buat Kata Sandi Baru</h1>
             <p class="font-poppins font-normal text-silvergray text-[14px] mb-8">Silahkan masukan email anda untuk menerima
                 kode verifikasi</p>
