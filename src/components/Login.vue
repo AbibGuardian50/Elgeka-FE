@@ -9,7 +9,7 @@ export default {
     },
     data() {
         return {
-            email: '',
+            EmailOrPhoneNumber: '',
             password: '',
             error: '',
             rememberMe: false,
@@ -24,7 +24,7 @@ export default {
                 axios.defaults.withCredentials = true;
                 const url = 'https://elgeka-mobile-production.up.railway.app/api/user/login_website'
                 const response = await axios.post(url, {
-                    email: this.email,
+                    EmailOrPhoneNumber: this.EmailOrPhoneNumber,
                     password: this.password
                 },
                 )
@@ -52,7 +52,7 @@ export default {
         const rememberedUsername = localStorage.getItem('rememberedUsername');
         const rememberedPassword = localStorage.getItem('rememberedPassword');
         if (rememberedUsername && rememberedPassword) {
-            this.email = rememberedUsername; // Perbaikan disini
+            this.EmailOrPhoneNumber = rememberedUsername; // Perbaikan disini
             this.password = rememberedPassword;
             this.rememberMe = true;
         }
@@ -76,10 +76,10 @@ export default {
                 <!-- Email Input -->
                 <div class="mb-4">
                     <label for="Email"
-                        class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Email</label>
-                    <input type="email" id="Email" name="Email" v-model="email"
+                        class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Email atau Nomor HP</label>
+                    <input type="text" id="Email" name="Email" v-model="EmailOrPhoneNumber"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="enter your email address">
+                        autocomplete="off" placeholder="enter your EmailOrPhoneNumber address">
                 </div>
                 <!-- Password Input -->
                 <div class="mb-4">

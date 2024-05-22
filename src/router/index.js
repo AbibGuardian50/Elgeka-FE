@@ -38,6 +38,18 @@ const router = createRouter({
     },
 
     {
+      path: '/BuatKataSandiBaru',
+      name: 'BuatKataSandiBaru',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/BuatKataSandiBaru.vue'),
+      meta: {
+        title: 'BuatKataSandiBaru'
+      }
+    },
+
+    {
       path: '/cerita',
       name: 'cerita',
       // route level code-splitting
@@ -46,6 +58,18 @@ const router = createRouter({
       component: () => import('../views/Cerita.vue'),
       meta: {
         title: 'Cerita'
+      }
+    },
+
+    {
+      path: '/CheckingOTPForgotPassword',
+      name: 'CheckingOTPForgotPassword',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visitedcd .
+      component: () => import('../views/CheckingOTPForgotPassword.vue'),
+      meta: {
+        title: 'Forgot Password'
       }
     },
 

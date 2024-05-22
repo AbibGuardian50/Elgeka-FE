@@ -253,8 +253,8 @@ export default {
                 <div class="flex items-center flex-col">
                     <button type="submit"
                         class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
-                    <p class="mt-4 font-[verdana] font-normal text-[14px]">Already have an account? <span
-                            class="font-bold text-[#4D4D4F]">Sign in</span></p>
+                    <a href="/login" class="mt-4 font-[verdana] font-normal text-[14px]">Already have an account? <span
+                            class="font-bold text-[#4D4D4F]">Sign in</span></a>
                 </div>
             </form>
     </div>
