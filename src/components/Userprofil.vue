@@ -8,8 +8,8 @@ import { useToast } from 'vue-toastification';
 
 export default {
     async created() {
+        const toast = useToast()
         try {
-            const toast = useToast()
             const url = 'https://elgeka-mobile-production.up.railway.app/api/user/profile';
             axios.defaults.withCredentials = true;
             const response = await axios.get(url, {
@@ -25,7 +25,6 @@ export default {
             this.fetchProvinces();
             console.log(response);
         } catch (error) {
-            const toast = useToast();
             toast.error('Data profil user gagal dimuat, mohon coba lagi')
             console.log(error);
         }
