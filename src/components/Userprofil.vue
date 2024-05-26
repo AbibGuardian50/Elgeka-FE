@@ -244,18 +244,6 @@ export default {
                         </div>
 
                         <div class="w-full flex flex-col">
-                            <p class="font-poppins font-bold text-[16px] text-teal text-center">Email</p>
-                            <input type="text" name="" id="" v-model="profiluser.Email"
-                                class=" py-1 px-2 border border-black">
-                        </div>
-
-                        <div class="w-full flex flex-col">
-                            <p class="font-poppins font-bold text-[16px] text-teal text-center">Nomor HP</p>
-                            <input type="text" name="" id="" v-model="profiluser.PhoneNumber"
-                                class="py-1 px-2 border border-black">
-                        </div>
-
-                        <div class="w-full flex flex-col">
                             <p class="font-poppins font-bold text-[16px] text-teal text-center">Gender</p>
                             <!-- <input type="text" name="" id="" v-model="profiluser.Gender"
                                 class=" py-1 px-2 border border-black"> -->
