@@ -36,6 +36,7 @@
 <script>
 import axios from 'axios'
 import VueCookies from 'vue-cookies';
+import { useToast } from 'vue-toastification';
 
 export default {
     data() {
@@ -48,6 +49,7 @@ export default {
     },
     methods: {
         activateaccount() {
+            const toast = useToast();
             const User_Id = VueCookies.get('user_id');
             const OtpCodeValue = this.OtpCode.join(''); // Gabungkan digit OTP menjadi satu string
             const formData = new FormData();
@@ -55,14 +57,19 @@ export default {
             const url = `https://elgeka-mobile-production.up.railway.app/api/user/activate/${User_Id}`;
             axios.post(url, formData)
                 .then(response => {
-                    console.log(response.data);
+                    console.log(response);
                     VueCookies.remove('user_id');
-                    if(response.data.Message === "User Activated Successfully") {
-                        this.$router.push ('/akunsukses')
+                    if (response.data.Message === "User Activated Successfully") {
+                        toast.success('OTP Benar')
+                        this.$router.push('/akunsukses')
                     }
                 })
                 .catch(error => {
                     console.log(error)
+                    if (error.response.data.ErrorMessage === "Incorrect OTP code") {
+                        toast.error('Kode OTP Salah, mohon coba lagi')
+                    }
+
                 });
         },
         focusNextInput(index) {
@@ -73,12 +80,23 @@ export default {
         },
         SendOtpEmail() {
             try {
+                const toast = useToast();
                 const user_id = VueCookies.get('user_id');
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/email_otp/${user_id}`;
                 axios.post(url)
-                    .then(response => console.log(response))
-                    .catch(error => console.log(error));
+                    .then(response => {
+                        console.log(response)
+                        if (response.data.Message === "Send Email OTP Successfully") {
+                            toast.success('OTP Berhasil dikirim kembali, mohon cek email anda')
+                        }
+                    })
+                    .catch(error => {
+                        toast.error('Terdapat kesalahan pada sistem, mohon ulangi lagi')
+                        console.log(error)
+                    } );
             } catch (error) {
+                const toast = useToast();
+                toast.error('Terdapat kesalahan pada sistem, mohon ulangi lagi')
                 console.log(error);
             }
         },

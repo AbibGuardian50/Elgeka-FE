@@ -1,6 +1,8 @@
 <script>
 import axios from 'axios'
 import VueCookies from 'vue-cookies';
+import { useToast } from 'vue-toastification';
+
 export default {
     data() {
         return {
@@ -13,12 +15,17 @@ export default {
     methods: {
         SendOtpEmail() {
             try {
+                const toast = useToast();
                 const user_id = VueCookies.get('user_id');
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/email_otp/${user_id}`
                 axios.post(url)
-                    .then(response =>
-                        console.log(response),
-                        this.$router.push('/sendotpemail')
+                    .then(response => {
+                        console.log(response)
+                        if (response.data.Message === "Send Email OTP Successfully") {
+                            toast.success('OTP berhasil dikirim ke Email')
+                            this.$router.push('/sendotpemail')
+                        }
+                    }
                     )
             } catch (error) {
                 console.log(error)
@@ -55,19 +62,19 @@ export default {
             <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Pilih Metode OTP yang diinginkan</h1>
             <img src="../assets/OTP-security.png" class="max-w-[400px] max-h-[360px]" alt="OTP Ilustration">
-                <!-- Email Input -->
-                <div class="my-8 flex flex-col gap-4">
-                        <p class="font-poppins text-base text-silvergray">OTP akan dikirim melalui Email</p>
-                        <button @click="SendOtpEmail()"
-                            class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Kirim OTP
-                            Lewat Email</button>
-                    
-                    <h1>Atau</h1>
-                    <p class="font-poppins text-base text-silvergray">OTP akan dikirim melalui Whatsapp</p>
-                    <button @click="SendOtpWhatsapp()"
-                            class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Kirim OTP
-                            Lewat Whatsapp</button>
-                </div>
+            <!-- Email Input -->
+            <div class="my-8 flex flex-col gap-4">
+                <p class="font-poppins text-base text-silvergray">OTP akan dikirim melalui Email</p>
+                <button @click="SendOtpEmail()"
+                    class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Kirim OTP
+                    Lewat Email</button>
+
+                <h1>Atau</h1>
+                <p class="font-poppins text-base text-silvergray">OTP akan dikirim melalui Whatsapp</p>
+                <button @click="SendOtpWhatsapp()"
+                    class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Kirim OTP
+                    Lewat Whatsapp</button>
+            </div>
             <!-- Forgot Password Link -->
 
         </div>

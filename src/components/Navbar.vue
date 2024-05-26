@@ -2,6 +2,7 @@
 import VueCookies from 'vue-cookies';
 import axios from 'axios';
 
+
 export default {
     async created() {
         try {
@@ -42,6 +43,9 @@ export default {
                         this.$router.push('/')
                         window.location.reload();
                         console.log(response)
+                        VueCookies.remove('token')
+                        VueCookies.remove('Message')
+                        VueCookies.remove('Name')
                         // Lakukan sesuatu dengan data yang diperoleh
                     })
             } catch (error) {

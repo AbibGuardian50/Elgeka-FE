@@ -162,7 +162,7 @@ export default {
                 <!-- No Telepon Input -->
                 <div class="mb-4">
                     <label for="phonenumber" class="block text-[#344054] mb-2">Nomor Telepon</label>
-                    <input type="number" id="phonenumber" name="phonenumber" required
+                    <input type="text" id="phonenumber" name="phonenumber" required
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="No telepon" v-model="form.PhoneNumber">
                 </div>

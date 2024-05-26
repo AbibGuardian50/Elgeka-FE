@@ -1,19 +1,22 @@
 <script>
 import axios from 'axios'
 import VueCookies from 'vue-cookies';
+import { useToast } from 'vue-toastification';
 
 export default {
-    data () {
+    data() {
         return {
             email: '',
             form: {
                 Password: '',
                 PasswordConfirmation: '',
-            }
+            },
+            passwordError: '',
         }
     },
     methods: {
         async ChangePassword() {
+            const toast = useToast();
             try {
                 axios.defaults.withCredentials = true;
                 const otp_code = localStorage.getItem('OTPCode-forgot_password')
@@ -23,12 +26,32 @@ export default {
                 formData.append('PasswordConfirmation', this.form.PasswordConfirmation);
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/change_password/${user_id}/${otp_code}`
                 const response = await axios.post(url, formData)
+                if (response.data.Message === "Update Password Successfully") {
+                    toast.success('Kata sandi berhasil diubah, halaman akan otomatis dialihkan ke login')
+                    localStorage.removeItem("OTPCode-forgot_password"); 
+                    localStorage.removeItem("User_ID-forgot_password");
+                    this.$router.push('/login') 
+                }
                 console.log(response)
             } catch (error) {
+                if (error.response.data.ErrorMessage === "Password Confirmation Must Same as Password") {
+                    toast.error ('Kata sandi harus sama dengan konfirmasi kata sandi')
+                }
                 console.log(error)
             }
-        }
-    }
+        },
+        validatePassword() {
+            if (this.form.Password !== this.form.PasswordConfirmation) {
+                this.passwordError = 'Password dan confirmation password harus sama';
+            } else {
+                this.passwordError = '';
+            }
+        },
+    },
+    watch: {
+        'form.Password': 'validatePassword',
+        'form.PasswordConfirmation': 'validatePassword'
+    },
 }
 </script>
 
@@ -56,11 +79,14 @@ export default {
                 </div>
                 <!-- Konfirmasi kata Sandi Baru Input -->
                 <div class="mb-4">
-                    <label for="Kata Sandi" class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Konfirmasi Kata
+                    <label for="Kata Sandi"
+                        class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Konfirmasi Kata
                         Sandi Baru</label>
                     <input type="password" id="password" name="password"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="enter confirmation new password" v-model="form.PasswordConfirmation">
+                        autocomplete="off" placeholder="enter confirmation new password"
+                        v-model="form.PasswordConfirmation">
+                    <p v-if="passwordError" class="error text-red">{{ passwordError }}</p>
                 </div>
                 <!-- Login Button -->
                 <div class="flex items-center flex-col mt-12">
