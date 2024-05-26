@@ -79,7 +79,7 @@ export default {
                         class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Email atau Nomor HP</label>
                     <input type="text" id="Email" name="Email" v-model="EmailOrPhoneNumber"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="enter your EmailOrPhoneNumber address">
+                        autocomplete="off" placeholder="enter your email or phone number">
                 </div>
                 <!-- Password Input -->
                 <div class="mb-4">
