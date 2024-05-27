@@ -11,7 +11,7 @@ export default {
         const toast = useToast()
         try {
             const url = 'https://elgeka-mobile-production.up.railway.app/api/user/profile';
-            axios.defaults.withCredentials = true;
+            
             const response = await axios.get(url, {
                 headers: {
                     'Content-Type': 'application/json',
