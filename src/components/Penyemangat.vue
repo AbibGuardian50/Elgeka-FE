@@ -67,7 +67,7 @@ export default {
         <div class="bg-white py-16">
             <div class=" pl-16">
                 <p class="text-center font-poppins font-medium text-2xl">Pengurus Komunitas</p>
-                <p class="text-center font-poppins font-semibold text-5xl text-red pt-4 pb-16">Pengurus Komunitas</p>
+                <p class="text-center font-poppins font-semibold text-5xl text-teal pt-4 pb-16">Pengurus Komunitas</p>
             </div>
 
             <div class="w-full pb-4">
@@ -104,7 +104,7 @@ export default {
 
 <style>
 .penyemangat .swiper-pagination-bullet-active {
-    background-color: #FF914C;
+    background-color: #0A6B77;
     margin-top: 4rem;
     width: 46px;
     height: 7px;
