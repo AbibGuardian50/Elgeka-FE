@@ -79,7 +79,7 @@ export default {
         }" :spaceBetween="15" :modules="modules" class="mySwiper">
             <swiper-slide v-for="recite in received_quotes" class="rounded-lg">
                 <div class="flex flex-col p-8 w-[1440px]">
-                    <div class="bg-[#FF914C] flex p-5 items-center justify-center h-[520px]">
+                    <div class="bg-teal flex p-5 items-center justify-center h-[520px]">
                         <img class="min-w-[700px] h-[470px]" :src="url + recite.image_url" alt="" srcset="">
                         <div class="flex flex-col ml-8">
                             <!-- <p class="text-5xl text-center text-black font-poppins font-semibold leading-[3.875rem] pb-4">

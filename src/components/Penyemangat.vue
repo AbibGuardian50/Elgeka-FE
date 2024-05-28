@@ -33,14 +33,14 @@ export default {
         return {
             url: 'https://elgeka-web-api-production.up.railway.app/',
             modules: [Pagination, Navigation],
-            QuotesPengurus: [
-                { name: 'John Doe', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik', image: 'Rectangle69.png' },
-                { name: 'Dennis Harahap', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-                { name: 'Cecep Sudarma', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-                { name: 'Muhammad Sulaiman', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-                { name: 'Surya Somad', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-                { name: 'Ijal', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-            ]
+            // QuotesPengurus: [
+            //     { name: 'John Doe', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik', image: 'Rectangle69.png' },
+            //     { name: 'Dennis Harahap', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
+            //     { name: 'Cecep Sudarma', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
+            //     { name: 'Muhammad Sulaiman', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
+            //     { name: 'Surya Somad', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
+            //     { name: 'Ijal', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
+            // ]
         };
     },
     async created() {
