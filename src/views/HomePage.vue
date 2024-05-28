@@ -1,12 +1,10 @@
 <template>
   <Navbar />
 
-  <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center min-h-screen"
-    id="profile">
+  <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center min-h-screen" id="profile">
     <p class="font-poppins font-semibold text-3xl sm:text-5xl text-white">PROFILE</p>
     <p class="text-center font-poppins font-semibold text-3xl sm:text-5xl text-white">Komunitas ELGEKA Jawa Barat</p>
-    <div v-html="profilkomunitas.data.content"
-      class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 w-[90%] sm:w-[630px] text-center line-clamp-4">
+    <div v-html="profilkomunitas.data.content" class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 w-[90%] sm:w-[630px] text-center line-clamp-4">
     </div>
     <router-link to="/profilkomunitas">
       <button type="button" class="bg-teal font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">
@@ -34,8 +32,7 @@
             <div class="max-w-md rounded overflow-hidden drop-shadow-lg shadow-lg bg-white">
               <div class="flex justify-center">
                 <a target="_blank" :href="'detailkegiatan/' + foto.id">
-                  <img class="min-w-[347px] max-w-[350px] min-h-[367px] max-h-[370px] object-cover" :src="url + foto.image_url"
-                    :alt="foto.alt_text || 'Foto Kegiatan'">
+                  <img class="min-w-[347px] max-w-[350px] min-h-[367px] max-h-[370px] object-cover" :src="url + foto.image_url" :alt="foto.alt_text || 'Foto Kegiatan'">
                 </a>
               </div>
             </div>
@@ -44,8 +41,7 @@
       </div>
 
       <router-link to="/komunitaskegiatan">
-        <button type="button"
-          class="bg-teal text-white py-2 px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl mt-4">
+        <button type="button" class="bg-teal text-white py-2 px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl mt-4">
           Lihat Semua
         </button>
       </router-link>
@@ -63,44 +59,34 @@
 
     <div class="flex flex-col items-center">
       <div class="flex flex-wrap justify-around gap-8 sm:gap-16 pt-8 px-4 sm:px-8">
-        <div v-for="berita in beritaKomunitas" :key="berita.id"
-          class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
+        <div v-for="berita in beritaKomunitas" :key="berita.id" class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
-              :src="url + berita.image_url" alt="foto berita">
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg" :src="url + berita.image_url" alt="foto berita">
           </a>
-          <p
-            class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
+          <p class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
             Berita Komunitas highlight</p>
         </div>
 
-        <div v-for="berita in beritaumum" :key="berita.id"
-          class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
+        <div v-for="berita in beritaumum" :key="berita.id" class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
-              :src="url + berita.image_url" alt="foto berita">
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg" :src="url + berita.image_url" alt="foto berita">
           </a>
-          <p
-            class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
+          <p class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
             Berita terkini highlight</p>
         </div>
 
-        <div v-for="berita in beritaCML" :key="berita.id"
-          class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
+        <div v-for="berita in beritaCML" :key="berita.id" class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
-              :src="url + berita.image_url" alt="foto berita">
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg" :src="url + berita.image_url" alt="foto berita">
           </a>
-          <p
-            class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
+          <p class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
             Berita CML highlight</p>
         </div>
       </div>
 
       <div class="my-8 sm:my-20">
         <router-link target="_blank" to="/perkembangancml">
-          <button type="button"
-            class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl">
+          <button type="button" class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl">
             Lihat Semua
           </button>
         </router-link>
@@ -113,9 +99,9 @@
 </template>
 
 <script>
-import Penyemangat from '../components/Penyemangat.vue'
-import Navbar from '../components/Navbar.vue'
-import Quotes from '../components/Quotes.vue'
+import Penyemangat from '../components/Penyemangat.vue';
+import Navbar from '../components/Navbar.vue';
+import Quotes from '../components/Quotes.vue';
 import VueCookies from 'vue-cookies';
 import axios from 'axios';
 // Import Swiper Vue.js components
@@ -133,21 +119,21 @@ import { Navigation, Pagination } from 'swiper/modules';
 export default {
   async created() {
     try {
-      const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/profilKomunitas');
-      this.profilkomunitas = response.data.result;
-      console.log(this.profilkomunitas);
+      const [profilKomunitasResponse, kegiatanKomunitasResponse, beritaUmumResponse, beritaCMLResponse, beritaKomunitasResponse] = await Promise.all([
+        axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/profilKomunitas'),
+        axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas'),
+        axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita'),
+        axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganCML'),
+        axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas'),
+      ]);
 
-      const response_kegiatankomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas');
-      this.kegiatankomunitas = this.shuffleArray(response_kegiatankomunitas.data.result.data).slice(0, 8);
-      console.log(this.kegiatankomunitas);
+      this.profilkomunitas = profilKomunitasResponse.data.result;
+      this.kegiatankomunitas = this.shuffleArray(kegiatanKomunitasResponse.data.result.data).slice(0, 8);
+      this.beritaumum = this.shuffleArray(beritaUmumResponse.data.result.data).slice(0, 1);
+      this.beritaCML = this.shuffleArray(beritaCMLResponse.data.result.data).slice(0, 1);
+      this.beritaKomunitas = this.shuffleArray(beritaKomunitasResponse.data.result.data).slice(0, 1);
 
-      const response_beritaumum = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita');
-      const response_beritaCML = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganCML');
-      const response_beritaKomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas');
-
-      this.beritaumum = this.shuffleArray(response_beritaumum.data.result.data).slice(0, 1);
-      this.beritaCML = this.shuffleArray(response_beritaCML.data.result.data).slice(0, 1);
-      this.beritaKomunitas = this.shuffleArray(response_beritaKomunitas.data.result.data).slice(0, 1);
+      console.log(this.profilkomunitas, this.kegiatankomunitas, this.beritaumum, this.beritaCML, this.beritaKomunitas);
     } catch (error) {
       console.error(error);
     }
@@ -225,7 +211,6 @@ export default {
 }
 
 @media (min-width: 768px) {
-
   .swiper-button-next,
   .swiper-button-prev {
     right: 10px;
@@ -238,10 +223,10 @@ export default {
 }
 
 @media (min-width: 1024px) {
-
   .swiper-button-next,
   .swiper-button-prev {
     right: 20px;
     left: 20px;
   }
-}</style>
+}
+</style>

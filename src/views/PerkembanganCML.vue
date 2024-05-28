@@ -26,6 +26,7 @@ export default {
             const response_beritaKomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas');
 
             this.received_beritaumum = response_beritaumum.data.result.data;
+            console.log(response_beritaumum)
             this.received_beritaCML = response_beritaCML.data.result.data;
             this.received_beritaKomunitas = response_beritaKomunitas.data.result.data;
 
