@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.vue'
 import axios from 'axios'
 import VueCookies from 'vue-cookies';
 import Cookies from 'js-cookie';
+import { useToast } from 'vue-toastification';
 export default {
     components: {
         Navbar
@@ -20,6 +21,7 @@ export default {
     },
     methods: {
         async login() {
+            const toast = useToast();
             try {
                 axios.defaults.withCredentials = true;
                 const url = 'https://elgeka-mobile-production.up.railway.app/api/user/login_website'
@@ -28,8 +30,10 @@ export default {
                     password: this.password
                 },
                 )
-                if (response.status === 200) {
+                console.log(response)
+                if (response.data.Message === "Login Success") {
                     console.log(response)
+                    toast.success('Berhasil Login')
                     // VueCookies.set('Authentication',response.data.Token)
                     VueCookies.set('Name', response.data.Data[0].Name)
                     VueCookies.set('Message', response.data.Message)
@@ -38,7 +42,14 @@ export default {
                     this.$router.push('/')
                 }
             } catch (error) {
-                this.error = 'ada kesalahan dari sistem, mohon coba lagi'
+                console.log(error)
+                if (error.response.data.ErrorMessage === "Invalid password") {
+                    toast.error("Password salah")
+                } else if (error.response.data.ErrorMessage === "Invalid email or phone number") {
+                    toast.error ('Email atau password yang dimasukkan salah')
+                } else {
+                    toast.error ('Terdapat kesalahan sistem, mohon coba lagi')
+                }
             }
         },
         setTokenCookie(token) {

@@ -94,11 +94,6 @@ export default {
                                     Donasi
                                 </p>
                             </router-link>
-                            <router-link v-if="profiluser" to="/">
-                                <p @click="logout" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">
-                                    Logout
-                                </p>
-                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -117,6 +112,11 @@ export default {
                             <p class="font-inter font-black text-white">{{ profiluser.Name }}</p>
                         </router-link>
                     </div>
+                    <router-link v-if="profiluser" to="/">
+                                <p @click="logout" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">
+                                    Logout
+                                </p>
+                            </router-link>
                 </div>
             </div>
         </div>

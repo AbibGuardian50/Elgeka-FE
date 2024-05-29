@@ -1,103 +1,3 @@
-<template>
-  <Navbar />
-
-  <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center min-h-screen" id="profile">
-    <p class="font-poppins font-semibold text-3xl sm:text-5xl text-white">PROFILE</p>
-    <p class="text-center font-poppins font-semibold text-3xl sm:text-5xl text-white">Komunitas ELGEKA Jawa Barat</p>
-    <div v-html="profilkomunitas.data.content" class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 w-[90%] sm:w-[630px] text-center line-clamp-4">
-    </div>
-    <router-link to="/profilkomunitas">
-      <button type="button" class="bg-teal font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">
-        Selengkapnya
-      </button>
-    </router-link>
-  </div>
-
-  <!-- Kegiatan Komunitas -->
-  <div class="kegiatan">
-    <div class="bg-greymercury flex flex-col items-center pt-10 pb-10">
-      <div>
-        <p class="text-center font-poppins font-semibold text-xl text-black">Kegiatan Komunitas</p>
-        <p class="text-center font-poppins font-semibold text-2xl sm:text-5xl text-teal">Kegiatan dari</p>
-        <p class="text-center font-poppins font-semibold text-2xl sm:text-5xl text-teal">komunitas kami</p>
-      </div>
-
-      <!-- Carousel/Slideshow -->
-      <div class="w-[90%] sm:w-4/5 pt-4" id="kegiatan">
-        <swiper :slidesPerView="1" :spaceBetween="10" :breakpoints="{
-          640: { slidesPerView: 2, spaceBetween: 20 },
-          1024: { slidesPerView: 3, spaceBetween: 30 }
-        }" :navigation="true" :pagination="{ clickable: true }" :modules="modules" class="mySwiper">
-          <swiper-slide v-for="foto in kegiatankomunitas" :key="foto.id" class="rounded-[20px]">
-            <div class="max-w-md rounded overflow-hidden drop-shadow-lg shadow-lg bg-white">
-              <div class="flex justify-center">
-                <a target="_blank" :href="'detailkegiatan/' + foto.id">
-                  <img class="min-w-[347px] max-w-[350px] min-h-[367px] max-h-[370px] object-cover" :src="url + foto.image_url" :alt="foto.alt_text || 'Foto Kegiatan'">
-                </a>
-              </div>
-            </div>
-          </swiper-slide>
-        </swiper>
-      </div>
-
-      <router-link to="/komunitaskegiatan">
-        <button type="button" class="bg-teal text-white py-2 px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl mt-4">
-          Lihat Semua
-        </button>
-      </router-link>
-    </div>
-  </div>
-
-  <!-- Berita -->
-  <div class="pt-4 pb-16 bg-greymercury">
-    <div class="pl-8 sm:pl-16 min-[2000px]:items-center min-[2000px]:flex min-[2000px]:flex-col">
-      <p class="font-poppins font-medium text-xl sm:text-2xl pb-4">Berita</p>
-      <div class="flex justify-between items-center">
-        <p class="font-poppins font-semibold text-2xl sm:text-5xl text-teal">Disini Berita</p>
-      </div>
-    </div>
-
-    <div class="flex flex-col items-center">
-      <div class="flex flex-wrap justify-around gap-8 sm:gap-16 pt-8 px-4 sm:px-8">
-        <div v-for="berita in beritaKomunitas" :key="berita.id" class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
-          <a target="_blank" :href="'detailberita/' + berita.id">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg" :src="url + berita.image_url" alt="foto berita">
-          </a>
-          <p class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
-            Berita Komunitas highlight</p>
-        </div>
-
-        <div v-for="berita in beritaumum" :key="berita.id" class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
-          <a target="_blank" :href="'detailberita/' + berita.id">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg" :src="url + berita.image_url" alt="foto berita">
-          </a>
-          <p class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
-            Berita terkini highlight</p>
-        </div>
-
-        <div v-for="berita in beritaCML" :key="berita.id" class="group active:bg-teal flex items-center flex-col pt-8 pb-16 sm:pb-40 px-4 bg-white rounded-[5px]">
-          <a target="_blank" :href="'detailberita/' + berita.id">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg" :src="url + berita.image_url" alt="foto berita">
-          </a>
-          <p class="group-active:text-white text-xl sm:text-3xl text-center font-poppins font-semibold leading-6 sm:leading-9 pt-4">
-            Berita CML highlight</p>
-        </div>
-      </div>
-
-      <div class="my-8 sm:my-20">
-        <router-link target="_blank" to="/perkembangancml">
-          <button type="button" class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl">
-            Lihat Semua
-          </button>
-        </router-link>
-      </div>
-    </div>
-  </div>
-
-  <Quotes />
-  <Penyemangat />
-</template>
-
 <script>
 import Penyemangat from '../components/Penyemangat.vue';
 import Navbar from '../components/Navbar.vue';
@@ -173,12 +73,152 @@ export default {
 };
 </script>
 
+
+<template>
+  <Navbar />
+
+  <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center" id="profile">
+    <p class="font-poppins font-semibold text-5xl text-white">PROFILE</p>
+    <p class="text-center font-poppins font-semibold text-5xl text-white">Komunitas ELGEKA Jawa Barat</p>
+    <div v-html="profilkomunitas.data.content"
+      class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 w-[630px] text-center line-clamp-4">
+    </div>
+    <router-link to="/profilkomunitas">
+      <button type="button" class="bg-teal font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">
+        Selengkapnya
+      </button>
+    </router-link>
+  </div>
+
+  <!-- Kegiatan Komunitas -->
+  <div class="kegiatan">
+    <div class="bg-greymercury flex flex-col items-center pt-10 pb-10">
+      <div>
+        <p class="text-center font-poppins font-semibold text-xl text-black">Kegiatan Komunitas</p>
+        <p class="text-center font-poppins font-semibold text-5xl text-teal">Kegiatan dari</p>
+        <p class="text-center font-poppins font-semibold text-5xl text-teal">komunitas kami</p>
+      </div>
+
+      <!-- Carousel/Slideshow -->
+      <div class="w-4/5 pt-4" id="kegiatan">
+        <swiper :slidesPerView="3" :spaceBetween="20" :navigation="true" :pagination="{ clickable: true }"
+          :modules="modules" class="mySwiper">
+          <swiper-slide v-for="foto in kegiatankomunitas" :key="foto.id" class="relative group rounded-[20px]">
+            <div class="max-w-md rounded overflow-hidden drop-shadow-lg shadow-lg bg-white relative">
+              <div class="flex justify-center">
+                <a target="_blank" :href="'detailkegiatan/' + foto.id">
+                  <img class="min-w-[347px] max-w-[350px] min-h-[367px] max-h-[370px] object-cover"
+                    :src="url + foto.image_url" :alt="foto.alt_text || 'Foto Kegiatan'">
+                </a>
+              </div>
+              <a target="_blank" :href="'detailkegiatan/' + foto.id"
+                class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-4">
+                <p class="text-xl font-semibold">{{ foto.title }}</p>
+                <div v-html="foto.content" class="line-clamp-3 text-sm"></div>
+              </a>
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+
+      <router-link to="/komunitaskegiatan">
+        <button type="button" class="bg-teal text-white py-2 px-10 rounded-md font-poppins font-bold text-2xl mt-4">
+          Lihat Semua
+        </button>
+      </router-link>
+    </div>
+  </div>
+
+  <!-- Berita -->
+  <div class="pt-4 pb-16 bg-greymercury">
+  <div class="pl-8 sm:pl-16 min-[2000px]:items-center min-[2000px]:flex min-[2000px]:flex-col">
+    <p class="font-poppins font-medium text-xl sm:text-2xl pb-4">Berita</p>
+    <div class="flex justify-between items-center">
+      <p class="font-poppins font-semibold text-2xl sm:text-5xl text-teal">Disini Berita</p>
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <div class="flex flex-wrap justify-around gap-8 sm:gap-16 pt-8 px-4 sm:px-8">
+      <div v-for="berita in beritaKomunitas" :key="berita.id"
+        class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+        <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
+          <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+            :src="url + berita.image_url" alt="foto berita">
+        </a>
+        <div class="relative text-center pt-4 w-full transition-opacity duration-300">
+          <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita Komunitas highlight</p>
+          <p class="text-xl font-semibold break-word group-hover:block group-hover:max-w-[350px] group-hover:break-words hidden">{{ berita.title }}</p>
+          <div v-html="berita.content" class="line-clamp-3 truncate group-hover:block group-hover:max-w-[350px] group-hover:break-words text-sm berita-content hidden"></div>
+        </div>
+      </div>
+
+      <div v-for="berita in beritaumum" :key="berita.id"
+        class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+        <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
+          <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+            :src="url + berita.image_url" alt="foto berita">
+        </a>
+        <div class="relative text-center pt-4 w-full transition-opacity duration-300">
+          <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita Terkini highlight</p>
+          <p class="text-xl font-semibold group-hover:block group-hover:max-w-[350px] group-hover:break-words hidden">{{ berita.title }}</p>
+          <div v-html="berita.content" class="line-clamp-3 truncate group-hover:block group-hover:max-w-[350px] group-hover:break-words text-sm berita-content hidden"></div>
+        </div>
+      </div>
+
+      <div v-for="berita in beritaCML" :key="berita.id"
+        class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+        <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
+          <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+            :src="url + berita.image_url" alt="foto berita">
+        </a>
+        <a target="_blank" :href="'detailkegiatan/' + berita.id"
+                class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-4">
+                <p class="text-xl font-semibold">{{ berita.title }}</p>
+                <div v-html="berita.content" class="line-clamp-3 text-sm"></div>
+              </a>
+        <div class="relative text-center pt-4 w-full transition-opacity duration-300">
+          <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita CML highlight</p>
+          <p class="text-xl font-semibold group-hover:block group-hover:max-w-[350px] group-hover:break-words hidden max-w-[350px]">{{ berita.title }}</p>
+          <div v-html="berita.content" class="line-clamp-3 truncate group-hover:block group-hover:max-w-[350px] group-hover:break-words text-sm berita-content hidden max-w-[360px]"></div>
+        </div>
+      </div>
+
+      <!-- Ulangi struktur yang sama untuk beritaumum dan beritaCML -->
+
+    </div>
+
+    <div class="my-8 sm:my-20">
+      <router-link target="_blank" to="/perkembangancml">
+        <button type="button" class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl">
+          Lihat Semua
+        </button>
+      </router-link>
+    </div>
+  </div>
+</div>
+
+
+  <div>
+    <Quotes />
+  </div>
+
+  <div>
+    <Penyemangat />
+  </div>
+</template>
+
+
+
+
+
 <style>
 #profile {
   background: rgba(0, 0, 0, 0.4) url('../assets/kerjasama.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  height: 100vh;
   filter: brightness(91%);
 }
 
@@ -192,41 +232,79 @@ export default {
 }
 
 .swiper-button-next {
-  right: 0px;
+  right: 10px;
 }
 
 .swiper-button-prev {
-  left: 0px;
+  left: 10px;
 }
 
 .swiper-button-prev,
 .swiper-button-next {
   color: #fff;
+  top: 50%;
+  width: 3rem;
+  height: 3rem;
+  margin-top: -1.5rem;
 }
 
-@media (min-width: 640px) {
-  #profile {
-    background-size: contain;
-  }
+.relative {
+  position: relative;
 }
 
-@media (min-width: 768px) {
-  .swiper-button-next,
-  .swiper-button-prev {
-    right: 10px;
-    left: 10px;
-  }
+/* .absolute {
+  position: absolute;
+} */
 
-  #profile {
-    background-size: cover;
-  }
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-@media (min-width: 1024px) {
-  .swiper-button-next,
-  .swiper-button-prev {
-    right: 20px;
-    left: 20px;
-  }
+.bg-opacity-50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.transition-opacity {
+  transition: opacity 0.3s;
+}
+
+/* .flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+} */
+
+.text-white {
+  color: white;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.group:hover .berita-highlight {
+  display: none;
+}
+
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group .group-hover\:opacity-100 {
+  opacity: 0;
 }
 </style>

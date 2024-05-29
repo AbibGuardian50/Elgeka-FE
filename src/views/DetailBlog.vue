@@ -5,9 +5,11 @@ import VueCookies from 'vue-cookies';
 import moment from 'moment';
 import 'moment/locale/id'; // Impor locale bahasa Indonesia
 import 'moment-timezone';
+import { useToast } from 'vue-toastification';
 
 export default {
     async created() {
+        const toast = useToast();
         try {
             const id = this.$route.params.id
             const response_blog = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/blog/${id}`);
@@ -21,6 +23,7 @@ export default {
             // console.log(this.usertoken)
         } catch (error) {
             console.error(error);
+            toast.error('Terdapat kesalahan sistem, mohon coba lagi')
         }
     },
     components: {
@@ -43,6 +46,7 @@ export default {
     methods: {
         createcomment() {
             try {
+                const toast = useToast();
                 const id = this.$route.params.id
                 const url = `https://elgeka-web-api-production.up.railway.app/api/v1/blogComment/${id}`
                 const token = VueCookies.get('token')
@@ -61,7 +65,9 @@ export default {
                         // Mengakses data dari respons
                         window.location.reload();
                         console.log(response)
-                        
+                        if (response.data.message === "Create Blog Comment Successfully") {
+                            toast.success('Komentar berhasil dibuat')
+                        }
                         // Lakukan sesuatu dengan data yang diperoleh
                     })
                 } else if(!token) {
@@ -92,7 +98,7 @@ export default {
             <p v-html="storyblog.content" class="px-16 text-[#000000B2] font-base"></p>
             <div>
                 <form class="px-16 pt-4 flex gap-2 justify-between max-w-[1800px] m-auto" @submit.prevent="createcomment()">
-                    <input v-if="usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-teal"
+                    <input v-if="usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-teal" required
                         type="text" name="komentar" id="" placeholder="Berikan Komentar......." v-model="content">
                         <input v-else-if="!usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] cursor-not-allowed border border-teal"
                         type="text" name="komentar" id="" placeholder="Login terlebih dahulu sebelum memberikan komentar" v-model="content" disabled>

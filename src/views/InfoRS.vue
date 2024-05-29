@@ -47,17 +47,24 @@
 <script>
 import Navbar from '../components/Navbar.vue'
 import axios from 'axios'
+import { useToast } from 'vue-toastification';
 
 export default {
     async created() {
+        const toast = useToast();
         try {
             const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/infoRS');
             this.InfoRS = response.data.result.data;
             this.totalPages = Math.ceil(this.InfoRS.length / this.perPage);
             this.updatePaginatedData();
-            console.log(this.InfoRS);
+            console.log(response);
+
+            if (response.data.message === "Get Info RS Successfully") {
+                toast.success('Data Info RS berhasil dimuat')
+            }
         } catch (error) {
             console.error(error);
+            toast.error('Data Info RS gagal dimuat, mohon coba lagi')
         }
     },
     components: {

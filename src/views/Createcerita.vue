@@ -25,6 +25,7 @@ export default {
     },
     methods: {
         createcerita() {
+            const toast = useToast();
             const Token = VueCookies.get('token')
             axios.defaults.withCredentials = true;
             this.username = VueCookies.get('Name')
@@ -35,14 +36,16 @@ export default {
             formData.append('content', this.form.content);
             axios.post(url, formData, { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${Token}` } })
                 .then(response => {
-                    console.log(response.data);
+                    console.log(response);
                     this.statuscode = response.data.code;
                     console.log(this.statuscode);
-                    if (response.data.code === 201) {
+                    if (response.data.code === 201 || response.data.message === "Create Blog Successfully") {
+                        toast.success('Blog berhasil dibuat, mohon untuk menunggu verifikasi')
                         setTimeout(() => {
                             this.$router.push('/cerita');
                         }, 2000);
                     } else if (response.data.code === 400) {
+                        toast.error('Blog gagal dibuat, mohon coba lagi')
                     }
                 })
                 .catch(error => {

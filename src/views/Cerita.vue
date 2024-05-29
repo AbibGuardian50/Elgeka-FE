@@ -4,6 +4,7 @@ import VueCookies from 'vue-cookies';
 import axios from 'axios'
 import { format } from 'date-fns';
 import idLocale from 'date-fns/locale/id';
+import { useToast } from 'vue-toastification';
 
 export default {
     components: {
@@ -70,6 +71,7 @@ export default {
         }
     },
     async created() {
+        const toast = useToast();
         try {
             const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/aturanBlog');
             this.aturanblog = response.data.result;
@@ -83,18 +85,24 @@ export default {
                     Authorization: `Bearer ${token}`
                 },
             });
+            console.log(response_userstory)
             if (token) {
                 this.userstory = response_userstory.data.result.data;
                 this.totalPagesUserStory = Math.ceil(this.userstory.length / this.perPage);
+                if (response_userstory.data.message === 'Get Blog by User ID Successfully') {
+                    toast.success('Cerita user berhasil dimuat')
+                }
             }
-
-
             const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog';
             const response_allstory = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
             });
+            console.log(response_allstory)
+            if (response_allstory.data.message === 'Get Blog Successfully') {
+                toast.success ('Cerita berhasil dimuat')
+            }
             this.allstory = response_allstory.data.result.data.filter(story => story.isVerified === true);
             this.totalPagesAllStory = Math.ceil(this.allstory.length / this.perPage);
         } catch (error) {

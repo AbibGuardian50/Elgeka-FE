@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import Navbar from '../components/Navbar.vue'
+import { useToast } from 'vue-toastification';
 
 export default {
     components: {
@@ -17,16 +18,22 @@ export default {
         };
     },
     async created() {
+        const toast = useToast();
         try {
             const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas'
             const response_kegiatankomunitas = await axios.get(url);
             this.received_kegiatankomunitas = response_kegiatankomunitas.data.result.data
-            console.log(this.received_kegiatankomunitas)
+            console.log(response_kegiatankomunitas)
 
             this.totalPages = Math.ceil(this.received_kegiatankomunitas.length / this.perPage); // Calculate total pages
             this.updatePaginatedData(); // Update paginated data
+
+            if (response_kegiatankomunitas.data.message === "Get Kegiatan Komunitas Successfully") {
+                toast.success('Kegiatan Komunitas berhasil dimuat')
+            }
         } catch (error) {
             console.error(error);
+            toast.error('Kegiatan Komunitas gagal dimuat, mohon coba lagi')
         }
     },
     methods: {
