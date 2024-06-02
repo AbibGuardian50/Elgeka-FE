@@ -103,25 +103,27 @@ export default {
     <Navbar />
 
     <div>
-        <div class="flex flex-col gap-2 items-end pt-20 ml-auto mr-10 ">
-            <select autocomplete="off" name="Pilih Kategori"
-                class="form-select focus:bg-white focus:text-teal text-white flex bg-teal items-center gap-2 p-2 mb-4 mt-20 font-bold font-inter marker:content-none hover:cursor-pointer rounded-lg"
-                v-model="pilih_kategori">
+        <div class="flex flex-col gap-2 items-end pt-20 ml-auto mr-10">
+            <select autocomplete="off" name="Pilih Kategori" class="form-select focus:bg-white focus:text-teal text-white bg-teal p-2 mb-4 mt-20 font-bold font-inter hover:cursor-pointer rounded-lg
+                sm:text-sm sm:p-1 md:text-base md:p-2 lg:text-lg lg:p-3" v-model="pilih_kategori">
                 <option class="bg-white" :value="null" selected>Pilih Kategori</option>
                 <option class="bg-white" value="perkembanganKomunitas">Komunitas</option>
                 <option class="bg-white" value="perkembanganCML">CML</option>
             </select>
         </div>
 
+
         <div>
-            <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]" v-show="pilih_kategori === null">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
+                v-show="pilih_kategori === null">
                 <div v-for="berita in paginatedreceived_beritaumum" :key="berita.id"
                     class="flex items-center flex-col rounded-md p-4">
-                    <img class="w-[642px] h-[340px]" :src="url + berita.image_url" alt="" srcset="">
-                    <p class="truncate max-w-[619px] font-poppins font-semibold text-4xl text-center text-teal">{{
-                        berita.title }}</p>
+                    <img class="w-full sm:h-auto md:w-[642px] md:h-[340px]" :src="url + berita.image_url" alt="" srcset="">
+                    <p
+                        class=" max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                        {{ berita.title }}</p>
                     <div v-html="berita.content"
-                        class="max-w-[619px] truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                        class="max-w-full md:max-w-[619px]  line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
                     </div>
                     <a :href="'detailberita/' + berita.id"><button type="button"
                             class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Tampilan
@@ -129,15 +131,16 @@ export default {
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
                 v-show="pilih_kategori === 'perkembanganKomunitas'">
                 <div v-for="berita in paginatedreceived_beritaKomunitas" :key="berita.id"
                     class="flex items-center flex-col rounded-md p-4">
-                    <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
-                    <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-teal">{{
-                        berita.title }}</p>
+                    <img class="w-full sm:h-auto md:w-[619px] md:h-[320px]" :src="url + berita.image_url" alt="" srcset="">
+                    <p
+                        class="max-w-full md:max-w-[619px]  font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                        {{ berita.title }}</p>
                     <div v-html="berita.content"
-                        class="max-w-[619px] truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                        class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
                     </div>
                     <a :href="'detailberita/' + berita.id"><button type="button"
                             class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Tampilan
@@ -146,14 +149,16 @@ export default {
 
             </div>
 
-            <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]" v-show="pilih_kategori === 'perkembanganCML'">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
+                v-show="pilih_kategori === 'perkembanganCML'">
                 <div v-for="berita in paginatedreceived_beritaCML" :key="berita.id"
                     class="flex items-center flex-col rounded-md p-4">
-                    <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
-                    <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-teal">{{
-                        berita.title }}</p>
+                    <img class="w-full sm:h-auto md:w-[619px] md:h-[320px]" :src="url + berita.image_url" alt="" srcset="">
+                    <p
+                        class="max-w-full md:max-w-[619px]  font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                        {{ berita.title }}</p>
                     <div v-html="berita.content"
-                        class="max-w-[619px] truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                        class="max-w-full md:max-w-[619px]  line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
                     </div>
                     <a :href="'detailberita/' + berita.id"><button type="button"
                             class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Tampilan
@@ -175,4 +180,24 @@ export default {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* Menambahkan beberapa styling untuk mengatasi tumpang tindih konten */
+@media (max-width: 640px) {
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+</style>
+
