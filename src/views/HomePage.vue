@@ -74,7 +74,7 @@ export default {
 </script>
 
 
-<template>
+<template class="max-[500px]:overflow-x-hidden">
   <Navbar />
 
   <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center" id="profile">
@@ -160,7 +160,7 @@ export default {
     <div class="flex flex-col items-center">
       <div class="flex flex-wrap justify-around gap-8 sm:gap-16 pt-8 px-4 sm:px-8">
         <div v-for="berita in beritaKomunitas" :key="berita.id"
-          class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+          class="relative group flex items-center flex-col pt-8  pb-8 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
             <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
               :src="url + berita.image_url" alt="foto berita">
@@ -178,7 +178,7 @@ export default {
         </div>
 
         <div v-for="berita in beritaumum" :key="berita.id"
-          class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+          class="relative group flex items-center flex-col pt-8  pb-8 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
             <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
               :src="url + berita.image_url" alt="foto berita">
@@ -196,7 +196,7 @@ export default {
         </div>
 
         <div v-for="berita in beritaCML" :key="berita.id"
-          class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+          class="relative group flex items-center flex-col pt-8  pb-8 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
             <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
               :src="url + berita.image_url" alt="foto berita">
