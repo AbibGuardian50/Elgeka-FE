@@ -146,15 +146,15 @@ export default {
                 </li>
             </ul>
             <button v-on:click="toggleModal()"
-                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
+                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah
                 Cerita</button>
         </div>
         <div v-else class="pt-24 flex flex-row-reverse justify-between max-w-[1400px] m-auto">
             <button v-on:click="toggleModal()"
-                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md">Unggah
+                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah
                 Cerita</button>
         </div>
-        <div class="grid grid-cols-2 gap-8 pb-4 px-16 max-w-[1400px] m-auto items-end">
+        <div class="grid grid-cols-2 max-md:grid-cols-1 gap-8 pb-4 px-16 max-w-[1400px] m-auto items-end">
             <div class="flex flex-col" v-for="cerita in updatePaginatedAllStory()" :key="cerita.id">
                 <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
                 <div v-html="cerita.content" class="line-clamp-3 font-poppins font-normal text-base text-center pt-4"></div>
@@ -191,7 +191,7 @@ export default {
 
     <div>
         <div v-if="showModal"
-            class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+            class="overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none justify-center max-[800px]:items-center flex">
             <div v-if="aturanblog.currentPage === 1" class="relative w-auto my-6 mx-auto max-w-6xl">
                 <div
                     class="border border-red rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">

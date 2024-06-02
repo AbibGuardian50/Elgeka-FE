@@ -100,8 +100,8 @@ export default {
                 <form class="px-16 pt-4 flex gap-2 justify-between max-w-[1800px] m-auto" @submit.prevent="createcomment()">
                     <input v-if="usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-teal" required
                         type="text" name="komentar" id="" placeholder="Berikan Komentar......." v-model="content">
-                        <input v-else-if="!usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] cursor-not-allowed border border-teal"
-                        type="text" name="komentar" id="" placeholder="Login terlebih dahulu sebelum memberikan komentar" v-model="content" disabled>
+                        <input v-else-if="!usertoken" class="bg-white w-11/12 max-w-[1600px] px-1 placeholder:text-[#000000B2] max-sm:placeholder:text-[10px] cursor-not-allowed border border-teal"
+                        type="text" name="komentar" id="" placeholder="Harap login terlebih dahulu untuk memberikan komentar " v-model="content" disabled>
                     <button v-if="usertoken" type="submit"
                         class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">kirim</button>
                         <button v-if="!usertoken" type="submit"
