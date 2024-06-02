@@ -31,14 +31,13 @@ export default {
 <template>
     <Navbar />
 
-    <div v-if="detailberita" class="flex flex-col m-auto p-8 min-[1600px]:max-w-[1440px]">
-        <img class="mt-32 rounded-t-md max-h-[404px]" :src="url + detailberita.image_url" alt="gambar">
+    <div v-if="detailberita" class="flex flex-col m-auto sm:p-8 max-sm:w-full min-[1600px]:max-w-[1440px] max-sm:overflow-x-hidden">
+        <img class="sm:mt-32 mt-28 rounded-t-md max-h-[404px]" :src="url + detailberita.image_url" alt="gambar">
         <div class="rounded-b-md bg-teal">
-            <div class="pt-8 pl-20 pr-4 pb-12">
-                <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">BERITA</p>
+            <div class="pt-8 max-sm:pl-4 sm:pl-8 md:pl-20 pr-4 pb-12">
                 <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">{{ detailberita.title}}
                 </p>
-                <p v-html="detailberita.content" class="text-base text-[#FFFFFFB2] font-poppins font-normal leading-6 pr-48"></p>
+                <p v-html="detailberita.content" class="text-base text-[#FFFFFFB2] font-poppins font-normal leading-6 sm:pr-24 md:pr-48"></p>
             </div>
 
         </div>

@@ -1,13 +1,14 @@
 <template>
     <nav
         class="flex flex-row-reverse min-[965px]:flex-row flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-teal fixed z-10">
-        <div class="relative inline-block text-left min-[965px]:hidden" id="user">
+        <div  v-if="profiluser" class="relative inline-block text-left min-[965px]:hidden" id="user">
             <div>
                 <button @click="toggleUserMenu" class="flex items-center">
                     <img src="../assets/pp.png" alt="User Profil" class="w-[70px] rounded-full">
                 </button>
             </div>
-            <transition enter-active-class="transition ease-out duration-100" enter-class="transform opacity-0 scale-95"
+            <div>
+                <transition enter-active-class="transition ease-out duration-100" enter-class="transform opacity-0 scale-95"
                 enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75"
                 leave-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
                 <div v-if="isUserMenuOpen"
@@ -15,11 +16,16 @@
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         <a href="/userprofil" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             role="menuitem">User Profile</a>
-                        <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            role="menuitem">Logout</a>
+                        <router-link to="/">
+                            <p @click="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                role="menuitem">Logout</p>
+                        </router-link>
+
                     </div>
                 </div>
             </transition>
+            </div>
+            
         </div>
         <div>
             <router-link to="/">
@@ -116,7 +122,7 @@
                     <a href="/donasi"
                         class="md:p-4 py-2 flex justify-center text-white hover:bg-gray-700 hover:text-white rounded-md md:px-3 md:py-2 md:text-xl font-inter font-medium">Donasi</a>
                 </li>
-                <div v-if="!profiluser && !isLoading">
+                <div v-if="!profiluser && !isLoading" class="w-full">
                     <li class="w-full border-b border-white"> <!-- Tambahkan w-full, border-b, border-white -->
                         <a href="/login"
                             class="md:p-4 py-2 flex justify-center text-white hover:bg-gray-700 hover:text-white rounded-md md:px-3 md:py-2 md:text-xl font-inter font-medium">Login</a>

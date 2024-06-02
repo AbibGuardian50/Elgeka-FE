@@ -7,7 +7,7 @@
             <p class="text-white text-center font-bold">Komunitas ELGEKA Jawa Barat</p>
         </div>
 
-        <div class="grid justify-center absolute top-[50rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div class="grid justify-center absolute max-md:top-[72rem] max-sm:relative max-sm:top-[81rem] max-sm:overflow-x-hidden  max-[1020px]:top-[61rem] min-[1020px]:top-[50rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center min-w-[320px] sm:min-w-[640px] md:min-w-[960px] lg:min-w-[1200px] max-w-[1260px] bg-gray-100">
                 <div v-for="data in paginatedInfoRS" :key="data.id" class="bg-verylightgray rounded-lg shadow-lg overflow-hidden w-[291px] h-[340px] flex flex-col justify-between">
                     <div class="flex items-center justify-center pt-4">
