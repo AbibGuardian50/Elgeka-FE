@@ -73,13 +73,31 @@ export default {
             <div class="w-full pb-4">
 
                 <div>
-                    <swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
+                    <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{
                         clickable: true,
-                    }" :modules="modules" class="mySwiper">
+                    }" :breakpoints="{
+    '640': {
+        slidesPerView: 2,
+        spaceBetween: 20,
+    },
+    '768': {
+        slidesPerView: 3,
+        spaceBetween: 40,
+    },
+    '1920': {
+        slidesPerView: 4,
+        spaceBetween: 50,
+    },
+    '2800': {
+        slidesPerView: 5,
+        spaceBetween: 50,
+    },
+}" :modules="modules" class="mySwiper">
                         <swiper-slide v-for="quotes in memberkomunitas" class="rounded-lg max-h-72">
                             <div class="max-w-md rounded overflow-hidden drop-shadow-lg shadow-lg">
                                 <div class="flex px-6 py-4">
-                                    <img class="w-[240px] h-[240px] bg-[url('https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg')] bg-cover bg-center" :src="url + quotes.image_url">
+                                    <img class="w-[240px] h-[240px] bg-[url('https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg')] bg-cover bg-center"
+                                        :src="url + quotes.image_url">
                                     <div class="pl-6 flex items-center justify-center flex-col">
                                         <p class="font-poppins font-semibold text-2xl mb-4">{{ quotes.full_name }}</p>
                                         <p class="text-xl text-bluegrey text-base">
@@ -90,7 +108,7 @@ export default {
                                 </div>
                                 <div class="px-6 pt-2 pb-2">
                                     <p v-html="quotes.quote" class="text-gray-700 text-base text-left mb-4">
-                                        
+
                                     </p>
                                 </div>
                             </div>

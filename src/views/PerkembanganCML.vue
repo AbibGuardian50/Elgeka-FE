@@ -15,6 +15,8 @@ export default {
             received_beritaKomunitas: [],
             received_beritaumum: [],
             paginatedreceived_beritaumum: [],
+            paginatedreceived_beritaCML: [],
+            paginatedreceived_beritaKomunitas: [],
             perPage: 6, // Number of items per page
             currentPage: 1, // Current page
             totalPages: 1 // Total number of pages
@@ -23,68 +25,79 @@ export default {
     async created() {
         const toast = useToast();
         try {
+            await this.fetchData();
+            toast.success('Data berita berhasil dimuat');
+        } catch (error) {
+            console.error(error);
+            toast.error('Terdapat kesalahan sistem, mohon muat ulang lagi');
+        }
+    },
+    methods: {
+        async fetchData() {
             const response_beritaumum = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita');
             const response_beritaCML = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganCML');
             const response_beritaKomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas');
 
             this.received_beritaumum = response_beritaumum.data.result.data;
-            console.log(response_beritaumum)
-            console.log(response_beritaCML)
-            console.log(response_beritaKomunitas)
             this.received_beritaCML = response_beritaCML.data.result.data;
             this.received_beritaKomunitas = response_beritaKomunitas.data.result.data;
 
-            // Calculate total pages
-            this.totalPages = Math.ceil(this.received_beritaumum.length / this.perPage);
-
-            // Update paginated data
+            this.updateTotalPages();
             this.updatePaginatedData();
-
-            if (response_beritaumum.data.message === "Get Berita Successfully") {
-                toast.success('Berita berhasil dimuat')
+        },
+        updateTotalPages() {
+            if (this.pilih_kategori === null) {
+                this.totalPages = Math.ceil(this.received_beritaumum.length / this.perPage);
+            } else if (this.pilih_kategori === 'perkembanganCML') {
+                this.totalPages = Math.ceil(this.received_beritaCML.length / this.perPage);
+            } else if (this.pilih_kategori === 'perkembanganKomunitas') {
+                this.totalPages = Math.ceil(this.received_beritaKomunitas.length / this.perPage);
             }
-
-            if (response_beritaCML.data.message === "Get Berita by Kategori Successfully") {
-                setTimeout(() => {
-                    toast.success('Berita CML berhasil dimuat')
-                }, 1000);
-                
-            }
-            if (response_beritaKomunitas.data.message === "Get Berita by Kategori Successfully") {
-                setTimeout(() => {
-                    toast.success('Berita Komunitas berhasil dimuat')
-                }, 2000);
-            }
-        } catch (error) {
-            console.error(error);
-            toast.error ('Terdapat kesalahan sistem, mohon muat ulang lagi')
-        }
-    },
-    methods: {
+        },
         updatePaginatedData() {
+            let data = [];
+            if (this.pilih_kategori === null) {
+                data = this.received_beritaumum;
+            } else if (this.pilih_kategori === 'perkembanganCML') {
+                data = this.received_beritaCML;
+            } else if (this.pilih_kategori === 'perkembanganKomunitas') {
+                data = this.received_beritaKomunitas;
+            }
+
             const startIndex = (this.currentPage - 1) * this.perPage;
             const endIndex = startIndex + this.perPage;
-            this.paginatedreceived_beritaumum = this.received_beritaumum.slice(startIndex, endIndex);
+            this.paginatedreceived_beritaumum = data.slice(startIndex, endIndex);
+            this.paginatedreceived_beritaCML = data.slice(startIndex, endIndex);
+            this.paginatedreceived_beritaKomunitas = data.slice(startIndex, endIndex);
         },
         goToPage(pageNumber) {
-            this.currentPage = pageNumber; // Set current page to the selected page number
-            this.updatePaginatedData(); // Update paginated data for the selected page
+            this.currentPage = pageNumber;
+            this.updatePaginatedData();
         },
         nextPage() {
             if (this.currentPage < this.totalPages) {
                 this.currentPage++;
-                this.updatePaginatedData(); // Update paginated data when navigating to next page
+                this.updatePaginatedData();
             }
         },
         prevPage() {
             if (this.currentPage > 1) {
                 this.currentPage--;
-                this.updatePaginatedData(); // Update paginated data when navigating to previous page
+                this.updatePaginatedData();
             }
         }
+    },
+    watch: {
+        pilih_kategori() {
+            this.updateTotalPages();
+            this.currentPage = 1;
+            this.updatePaginatedData(); // Tambahkan pemanggilan updatePaginatedData di sini
+        }
     }
+
 };
 </script>
+
 
 <template>
     <Navbar />
@@ -118,7 +131,7 @@ export default {
 
             <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
                 v-show="pilih_kategori === 'perkembanganKomunitas'">
-                <div v-for="berita in received_beritaKomunitas" :key="berita.id"
+                <div v-for="berita in paginatedreceived_beritaKomunitas" :key="berita.id"
                     class="flex items-center flex-col rounded-md p-4">
                     <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
                     <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-teal">{{
@@ -134,7 +147,7 @@ export default {
             </div>
 
             <div class="grid grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]" v-show="pilih_kategori === 'perkembanganCML'">
-                <div v-for="berita in received_beritaCML" :key="berita.id"
+                <div v-for="berita in paginatedreceived_beritaCML" :key="berita.id"
                     class="flex items-center flex-col rounded-md p-4">
                     <img class="w-[619px] h-[320px]" :src="url + berita.image_url" alt="" srcset="">
                     <p class="max-w-[619px] truncate font-poppins font-semibold text-4xl text-center text-teal">{{

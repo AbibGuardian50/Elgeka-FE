@@ -72,19 +72,19 @@ export default {
             delay: 5000,
             disableOnInteraction: false,
         }" -->
-    <div class="pb-4">
+    <div class="pb-4 max-[600px]:bg-teal">
         <swiper :slidesPerView="1" :autoplay="{
             delay: 5000,
             disableOnInteraction: false,
         }" :spaceBetween="15" :modules="modules" class="mySwiper">
             <swiper-slide v-for="recite in received_quotes" class="rounded-lg">
-                <div class="flex flex-col p-8 w-[1440px]">
-                    <div class="bg-teal flex p-5 items-center justify-center h-[520px]">
-                        <img class="min-w-[700px] h-[470px]" :src="url + recite.image_url" alt="" srcset="">
+                <div class="flex flex-col max-[500px]:p-0 p-8 min-[1200px]:w-[1440px]">
+                    <div class="bg-teal flex p-5 max-[600px]:p-2 items-center justify-center min-[1200px]:h-[520px] max-[1200px]:h-[450px]">
+                        <img :src="url + recite.image_url" alt="" srcset="">
                         <div class="flex flex-col ml-8">
                             <!-- <p class="text-5xl text-center text-black font-poppins font-semibold leading-[3.875rem] pb-4">
                                 </p> -->
-                            <p class="text-base text-[40px] text-white font-poppins font-semibold leading-[62px]"> "{{
+                            <p class="text-base max-[500px]:text-left min-[1200px]:text-[40px] max-[1200px]:text-[25px] max-[800px]:text-[20px] max-[800px]:text-[15px] text-white font-poppins font-semibold min-[1200px]:leading-[62px] max-[1200px]:leading-[42px] max-[800px]:leading-[32px] max-[500px]:leading-[22px]"> "{{
                                 recite.quote }}" - {{ recite.author_name }} </p>
                         </div>
 
@@ -99,6 +99,51 @@ export default {
 </template>
 
 <style>
+/* Styles untuk layar dengan lebar 1200px atau lebih */
+@media screen and (min-width: 1200px) {
+    .swiper-slide img {
+        width: 700px;
+        height: 80%;
+    }
+}
+
+/* Styles untuk layar dengan lebar 800px atau lebih */
+@media screen and (max-width: 1200px) {
+    .swiper-slide img {
+        width: 450px;
+        height: 80%;
+    }
+}
+
+/* Styles untuk layar dengan lebar 540px atau lebih */
+@media screen and (max-width: 800px) {
+    .swiper-slide img {
+        width: 300px;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .swiper-slide img {
+        width: 250px;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .swiper-slide img {
+        width: 150px;
+        height: 60%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .swiper-slide img {
+        width: 130px;
+        height: 50%;
+    }
+}
+
 /* .swiper-pagination-bullet-active {
     background-color: #fff;
 } */

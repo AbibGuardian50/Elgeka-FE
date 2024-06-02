@@ -78,10 +78,11 @@ export default {
   <Navbar />
 
   <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center" id="profile">
-    <p class="font-poppins font-semibold text-5xl text-white">PROFILE</p>
-    <p class="text-center font-poppins font-semibold text-5xl text-white">Komunitas ELGEKA Jawa Barat</p>
+    <p class="font-poppins font-semibold text-3xl min-[965px]:text-5xl text-white">PROFILE</p>
+    <p class="text-center font-poppins font-semibold text-3xl  min-[965px]:text-5xl text-white">Komunitas ELGEKA Jawa
+      Barat</p>
     <div v-html="profilkomunitas.data.content"
-      class="list-decimal text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 w-[630px] text-center line-clamp-4">
+      class="list-decimal max-w-[70%]  text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 min-[965px]:w-[630px] text-center line-clamp-4">
     </div>
     <router-link to="/profilkomunitas">
       <button type="button" class="bg-teal font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">
@@ -100,9 +101,27 @@ export default {
       </div>
 
       <!-- Carousel/Slideshow -->
-      <div class="w-4/5 pt-4" id="kegiatan">
-        <swiper :slidesPerView="3" :spaceBetween="20" :navigation="true" :pagination="{ clickable: true }"
-          :modules="modules" class="mySwiper">
+      <div class="w-[90%] pt-4" id="kegiatan">
+        <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{
+          clickable: true,
+        }" :breakpoints="{
+  '640': {
+    slidesPerView: 2,
+    spaceBetween: 20,
+  },
+  '768': {
+    slidesPerView: 3,
+    spaceBetween: 40,
+  },
+  '1920': {
+    slidesPerView: 4,
+    spaceBetween: 50,
+  },
+  '2800': {
+    slidesPerView: 5,
+    spaceBetween: 50,
+  },
+}" :modules="modules" class="mySwiper">
           <swiper-slide v-for="foto in kegiatankomunitas" :key="foto.id" class="relative group rounded-[20px]">
             <div class="max-w-md rounded overflow-hidden drop-shadow-lg shadow-lg bg-white relative">
               <div class="flex justify-center">
@@ -131,72 +150,83 @@ export default {
 
   <!-- Berita -->
   <div class="pt-4 pb-16 bg-greymercury">
-  <div class="pl-8 sm:pl-16 min-[2000px]:items-center min-[2000px]:flex min-[2000px]:flex-col">
-    <p class="font-poppins font-medium text-xl sm:text-2xl pb-4">Berita</p>
-    <div class="flex justify-between items-center">
-      <p class="font-poppins font-semibold text-2xl sm:text-5xl text-teal">Disini Berita</p>
+    <div class="pl-8 sm:pl-16 min-[2000px]:items-center min-[2000px]:flex min-[2000px]:flex-col">
+      <p class="font-poppins font-medium text-xl sm:text-2xl pb-4">Berita</p>
+      <div class="flex justify-between items-center">
+        <p class="font-poppins font-semibold text-2xl sm:text-5xl text-teal">Disini Berita</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <div class="flex flex-wrap justify-around gap-8 sm:gap-16 pt-8 px-4 sm:px-8">
+        <div v-for="berita in beritaKomunitas" :key="berita.id"
+          class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+          <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+              :src="url + berita.image_url" alt="foto berita">
+          </a>
+          <div class="relative text-center pt-4 w-full transition-opacity duration-300">
+            <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
+              Komunitas highlight</p> -->
+            <p
+              class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+              {{ berita.title }}</p>
+            <div v-html="berita.content"
+              class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
+            </div>
+          </div>
+        </div>
+
+        <div v-for="berita in beritaumum" :key="berita.id"
+          class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+          <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+              :src="url + berita.image_url" alt="foto berita">
+          </a>
+          <div class="relative text-center pt-4 w-full transition-opacity duration-300">
+            <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
+              Komunitas highlight</p> -->
+            <p
+              class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+              {{ berita.title }}</p>
+            <div v-html="berita.content"
+              class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
+            </div>
+          </div>
+        </div>
+
+        <div v-for="berita in beritaCML" :key="berita.id"
+          class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
+          <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+              :src="url + berita.image_url" alt="foto berita">
+          </a>
+          <div class="relative text-center pt-4 w-full transition-opacity duration-300">
+            <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
+              Komunitas highlight</p> -->
+            <p
+              class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+              {{ berita.title }}</p>
+            <div v-html="berita.content"
+              class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
+            </div>
+          </div>
+        </div>
+
+        <!-- Ulangi struktur yang sama untuk beritaumum dan beritaCML -->
+
+      </div>
+
+      <div class="my-8 sm:my-20">
+        <router-link target="_blank" to="/perkembangancml">
+          <button type="button"
+            class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl">
+            Lihat Semua
+          </button>
+        </router-link>
+      </div>
     </div>
   </div>
-
-  <div class="flex flex-col items-center">
-    <div class="flex flex-wrap justify-around gap-8 sm:gap-16 pt-8 px-4 sm:px-8">
-      <div v-for="berita in beritaKomunitas" :key="berita.id"
-        class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
-        <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
-          <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
-            :src="url + berita.image_url" alt="foto berita">
-        </a>
-        <div class="relative text-center pt-4 w-full transition-opacity duration-300">
-          <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita Komunitas highlight</p>
-          <p class="text-xl font-semibold break-word group-hover:block group-hover:max-w-[350px] group-hover:break-words hidden">{{ berita.title }}</p>
-          <div v-html="berita.content" class="line-clamp-3 truncate group-hover:block group-hover:max-w-[350px] group-hover:break-words text-sm berita-content hidden"></div>
-        </div>
-      </div>
-
-      <div v-for="berita in beritaumum" :key="berita.id"
-        class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
-        <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
-          <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
-            :src="url + berita.image_url" alt="foto berita">
-        </a>
-        <div class="relative text-center pt-4 w-full transition-opacity duration-300">
-          <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita Terkini highlight</p>
-          <p class="text-xl font-semibold group-hover:block group-hover:max-w-[350px] group-hover:break-words hidden">{{ berita.title }}</p>
-          <div v-html="berita.content" class="line-clamp-3 truncate group-hover:block group-hover:max-w-[350px] group-hover:break-words text-sm berita-content hidden"></div>
-        </div>
-      </div>
-
-      <div v-for="berita in beritaCML" :key="berita.id"
-        class="relative group flex items-center flex-col pt-8  sm:pb-8 px-4 bg-white rounded-[5px]">
-        <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
-          <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
-            :src="url + berita.image_url" alt="foto berita">
-        </a>
-        <a target="_blank" :href="'detailkegiatan/' + berita.id"
-                class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-4">
-                <p class="text-xl font-semibold">{{ berita.title }}</p>
-                <div v-html="berita.content" class="line-clamp-3 text-sm"></div>
-              </a>
-        <div class="relative text-center pt-4 w-full transition-opacity duration-300">
-          <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita CML highlight</p>
-          <p class="text-xl font-semibold group-hover:block group-hover:max-w-[350px] group-hover:break-words hidden max-w-[350px]">{{ berita.title }}</p>
-          <div v-html="berita.content" class="line-clamp-3 truncate group-hover:block group-hover:max-w-[350px] group-hover:break-words text-sm berita-content hidden max-w-[360px]"></div>
-        </div>
-      </div>
-
-      <!-- Ulangi struktur yang sama untuk beritaumum dan beritaCML -->
-
-    </div>
-
-    <div class="my-8 sm:my-20">
-      <router-link target="_blank" to="/perkembangancml">
-        <button type="button" class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl">
-          Lihat Semua
-        </button>
-      </router-link>
-    </div>
-  </div>
-</div>
 
 
   <div>
@@ -232,11 +262,15 @@ export default {
 }
 
 .swiper-button-next {
-  right: 10px;
+  right: -12px;
+  /* Jarak dari tepi kanan carousel */
+  z-index: 50;
 }
 
 .swiper-button-prev {
-  left: 10px;
+  left: -12px;
+  /* Jarak dari tepi kiri carousel */
+  z-index: 50;
 }
 
 .swiper-button-prev,
@@ -251,10 +285,6 @@ export default {
 .relative {
   position: relative;
 }
-
-/* .absolute {
-  position: absolute;
-} */
 
 .inset-0 {
   top: 0;
@@ -271,22 +301,6 @@ export default {
   transition: opacity 0.3s;
 }
 
-/* .flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.items-center {
-  align-items: center;
-} */
-
 .text-white {
   color: white;
 }
@@ -295,10 +309,9 @@ export default {
   padding: 1rem;
 }
 
-.group:hover .berita-highlight {
+/* .group:hover .berita-highlight {
   display: none;
 }
-
 
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
@@ -306,5 +319,5 @@ export default {
 
 .group .group-hover\:opacity-100 {
   opacity: 0;
-}
+} */
 </style>
