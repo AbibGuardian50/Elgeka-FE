@@ -8,7 +8,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'hospital' : "url('/src/assets/Hospital.png')"
+        'hospital' : "url('/src/assets/Hospital.png')",
+        'sign': "url('/src/assets/sign.png')"
       },
       width: {
         '88': '22.5rem',
@@ -44,6 +45,7 @@ export default {
         'silver' : '#E5E5E5',
         'silvergray': '#A5A6A6',
         'teal': '#0A6B77',
+        'transparentblack': '#00000073',
       },
     fontFamily: {
       'inter' : ['inter', 'sans-serif'],

@@ -73,7 +73,7 @@ export default {
 
 <template>
     <!-- component -->
-    <div class="bg-gray-100 flex flex-row-reverse ">
+    <div class="bg-sign md:bg-none md:h-full h-screen md:bg-white bg-transparentblack bg-blend-darken md:bg-blend-normal flex flex-row-reverse ">
         <!-- Left: Image -->
         <div class="w-1/2 hidden lg:block">
             <router-link to="/"><img src="../assets/sign.png" alt="Placeholder Image"
@@ -81,20 +81,20 @@ export default {
         </div>
         <!-- Right: Login Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px] bg-teal rounded-md mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
-            <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Selamat Datang !</h1>
+            <img class="w-[120px] md:bg-teal rounded-md mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
+            <h1 class="text-2xl text-white md:text-black font-bold font-[verdana] text-[32px] mb-4">Selamat Datang !</h1>
             <form @submit.prevent="login">
                 <!-- Email Input -->
                 <div class="mb-4">
                     <label for="Email"
-                        class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Email atau Nomor HP</label>
+                        class="block font-[verdana] text-white md:text-black font-normal text-[14px] text-[#344054] mb-2">Email atau Nomor HP</label>
                     <input type="text" id="Email" name="Email" v-model="EmailOrPhoneNumber"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter your email or phone number">
                 </div>
                 <!-- Password Input -->
                 <div class="mb-4">
-                    <label for="password" class="block text-[#344054] mb-2">Password</label>
+                    <label for="password" class="block text-[#344054] mb-2 text-white md:text-black">Password</label>
                     <input type="password" id="password" name="password" v-model="password"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter password">
@@ -103,10 +103,10 @@ export default {
                 <div class="mb-4 flex flex-col">
                     <div>
                         <input type="checkbox" id="remember" name="remember" class="outline-[#D4A02C]">
-                        <label for="remember" class="font-[verdana] text-[#344054] font-normal text[14px] ml-2">Remember
+                        <label for="remember" class="font-[verdana] md:text-[#344054] text-white font-normal text[14px] ml-2">Remember
                             Me</label>
                     </div>
-                    <p class="pl-5 font-[verdana] font-normal text[14px] text-[#667085]">Save my login details for next
+                    <p class="pl-5 font-[verdana] font-normal text[14px] text-white md:text-[#667085]">Save my login details for next
                         time.</p>
                 </div>
                 <!-- Login Button -->
@@ -116,7 +116,7 @@ export default {
                     <div class="mt-6 text-blue-500">
                         <router-link to="/lupapassword">
                             <a target="_blank"
-                                class="hover:underline font-[verdana] font-normal text-[14px] text-[#4D4D4F]">Forgot
+                                class="hover:underline font-[verdana] font-normal text-[14px] text-white md:text-[#4D4D4F]">Forgot
                                 Password?</a>
                         </router-link>
                     </div>
