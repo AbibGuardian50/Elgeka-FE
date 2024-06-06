@@ -17,7 +17,7 @@ export default {
         </div>
         <!-- Right: Login Form -->
         <div class="flex flex-col lg:p-36 md:p-52 min-[2200px]:items-center sm:20 p-2 w-full lg:w-1/2">
-            <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
+            <img class="w-[120px] mb-20" src="../assets/LogoElgekaHijau.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Akun berhasil dibuat!</h1>
             <div class="my-8 flex flex-col gap-4">
                 <div>

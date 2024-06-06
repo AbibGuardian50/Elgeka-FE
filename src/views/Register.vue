@@ -140,7 +140,7 @@ export default {
             <img src="../assets/sign.png" alt="Placeholder Image" class="object-cover w-full h-full">
         </div>
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px] bg-teal mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
+            <img class="w-[120px] mb-20" src="../assets/LogoElgekaHijau.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Let's Create your account</h1>
             <form @submit.prevent="createuser()">
                 <!-- Nama Lengkap Input -->

@@ -49,7 +49,7 @@ export default {
         </div>
         <!-- left: Forget Password Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px] bg-teal rounded-md mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
+            <img class="w-[120px] mb-20" src="../assets/LogoElgekaHijau.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Buat Kata Sandi Baru</h1>
             <p class="font-poppins font-normal text-silvergray text-[14px] mb-8">Silahkan masukan email anda untuk menerima
                 kode verifikasi</p>

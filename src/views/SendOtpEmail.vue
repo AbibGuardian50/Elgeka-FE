@@ -8,7 +8,7 @@
         </div>
         <!-- Right: Login Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <img class="w-[120px] pb-20" src="../assets/Logo_elgeka.png" alt="Logo">
+            <img class="w-[120px] pb-20" src="../assets/LogoElgekaHijau.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Masukan kode Autentikasi</h1>
             <p>Masukan 4 digit angka yang telah dikirimkan ke email</p>
             <form @submit.prevent="activateaccount">
@@ -23,7 +23,7 @@
                 <!-- Login Button -->
                 <div class="flex flex-col">
                     <button type="submit"
-                        class="bg-orange text-white font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Lanjutkan</button>
+                        class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full max-w-[470px]">Lanjutkan</button>
                 </div>
             </form>
             <button @click="SendOtpEmail"

@@ -27,14 +27,14 @@ export default {
 <template>
     <div class="overflow-y-hidden">
         <Navbar />
-        <div v-if="donasielgeka.currentPage === 1" class="flex flex-col justify-center items-center p-40 m-auto min-w-7/12">
-            <p class="font-poppins font-bold text-[40px] text-teal text-center">{{ donasielgeka.data.title }}</p>
+        <div v-if="donasielgeka.currentPage === 1" class="flex flex-col justify-center items-center pt-40 m-auto min-w-7/12">
+            <p class="font-poppins font-bold max-md:text-[30px] text-[40px] text-teal text-center">{{ donasielgeka.data.title }}</p>
             <img class="max-w-[314px] max-h-[283px] border-8 border-teal my-4" :src="gambar_url + donasielgeka.data.image_url" alt="Gambar QR"
                 srcset="">
             <a :href="donasielgeka.data.donate_link"
-                class="font-poppins font-bold text-[40px] text-center hover:underline mb-2" target="_blank">{{
+                class="font-poppins font-bold text-[40px] max-md:text-[30px] text-center hover:underline mb-2" target="_blank">{{
                     donasielgeka.data.donate_link }}</a>
-            <p v-html="donasielgeka.data.content" class="font-poppins font-normal w-[673px] text-[16px] text-[#000000B2]"></p>
+            <p v-html="donasielgeka.data.content" class="font-poppins font-normal max-w-[673px] md:w-[673px] max-md:px-8 max-md:text-[14px] text-[#000000B2]"></p>
 
 
         </div>
