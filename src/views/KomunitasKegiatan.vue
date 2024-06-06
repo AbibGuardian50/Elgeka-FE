@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import Navbar from '../components/Navbar.vue'
+import Navbar from '../components/Navbar.vue';
 import { useToast } from 'vue-toastification';
 
 export default {
@@ -11,10 +11,10 @@ export default {
         return {
             url: 'https://elgeka-web-api-production.up.railway.app/',
             received_kegiatankomunitas: [],
-            perPage: 10, // Number of items per page
+            paginatedreceived_kegiatankomunitas: [],
+            perPage: 6, // Number of items per page
             currentPage: 1, // Current page
-            totalPages: 0, // Total pages
-            paginatedreceived_kegiatankomunitas: [] // Paginated data
+            totalPages: 0 // Total pages
         };
     },
     async created() {
@@ -66,15 +66,15 @@ export default {
     <Navbar />
     <div>
         <div>
-            <div class="grid pt-40 grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
-                <div v-for="kegiatan in received_kegiatankomunitas" :key="kegiatan.id"
+            <div class="grid pt-40 sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
+                <div v-for="kegiatan in paginatedreceived_kegiatankomunitas" :key="kegiatan.id"
                     class="flex items-start flex-col bg-silver rounded-md p-4">
-                    <img class=" w-[642px] h-[340px] overflow-hidden"
-                        :src="url + kegiatan.image_url" alt="" srcset="">
+                    <img class="w-full sm:h-auto md:w-[642px] md:h-[340px]" :src="url + kegiatan.image_url" alt=""
+                        srcset="">
                     <div>
-                        <p class="font-poppins font-semibold text-4xl text-teal">{{ kegiatan.title }}</p>
+                        <p class="font-poppins font-semibold text-2xl md:text-4xl text-teal">{{ kegiatan.title }}</p>
                         <div v-html="kegiatan.content"
-                            class="truncate line-clamp-1 font-poppins font-normal leading-6 text-base text-[#000000B2] pt-4 max-w-[620px]">
+                            class="line-clamp-1 font-poppins font-normal leading-6 text-base text-[#000000B2] pt-4 max-w-full md:max-w-[620px]">
                         </div>
                         <a :href="'detailkegiatan/' + kegiatan.id"><button type="button"
                                 class="bg-teal text-white my-2 py-2 px-16 rounded-md">Selengkapnya</button></a>
@@ -96,8 +96,23 @@ export default {
     </div>
 </template>
 
-<style>
-ol {
-    list-style-type: decimal;
+<style scoped>
+/* Menambahkan beberapa styling untuk mengatasi tumpang tindih konten */
+@media (max-width: 640px) {
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 }
 </style>
