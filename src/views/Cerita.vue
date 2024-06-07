@@ -115,12 +115,12 @@ export default {
 <template>
     <Navbar />
     <div>
-        <div v-if="username" class="pt-24 flex justify-between max-w-[1400px] m-auto">
+        <div v-if="username" class="pt-24 flex max-[380px]:flex-col-reverse max-[380px]:items-center justify-between max-w-[1400px] m-auto">
             <ul class="max-w-2xl divide-y rounded-xl">
                 <li>
                     <details class="group">
                         <summary
-                            class="font-inter text-white text-xl flex bg-teal items-center gap-2  mt-16  font-bold hover:cursor-pointer rounded-md flex items-center gap-3 px-4 py-3 font-medium marker:content-none hover:cursor-pointer ">
+                            class="font-inter max-[380px]:ml-0 ml-4  text-white text-xl flex bg-teal items-center gap-2 max-[380px]:mt-4 mt-16  font-bold hover:cursor-pointer rounded-md flex items-center gap-3 px-4 py-3 font-medium marker:content-none hover:cursor-pointer ">
                             <span>Cerita Anda</span>
                             <svg class="w-5 h-5 text-gray-500 transition group-open:rotate-90"
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -130,9 +130,9 @@ export default {
                                 </path>
                             </svg>
                         </summary>
-                        <article class="absolute max-h-[300px] overflow-y-scroll max-w-[534px] bg-white mx-4 pb-4">
+                        <article class="absolute max-h-[300px] overflow-y-scroll max-w-[534px] bg-white mx-4 max-sm:left-[0rem] pb-4">
                             <div v-for="story in updatePaginatedUserStory()" :key="story.id"
-                                class="flex justify-center items-center gap-4 px-4 py-4 shadow-md text-opacity-40">
+                                class="flex justify-center items-center gap-4 max-sm:gap-2 px-4 py-4 shadow-md text-opacity-40">
                                 <p class="font-inter text-fullblack font-medium text-[14px]">{{ story.title }}</p>
                                 <p class="font-inter text-fullblack font-medium text-[14px]"
                                     v-if="story.isVerified === true">Sudah di Verifikasi</p>
@@ -146,7 +146,7 @@ export default {
                 </li>
             </ul>
             <button v-on:click="toggleModal()"
-                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah
+                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 py-3 mt-16 max-[380px]:mb-2 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah
                 Cerita</button>
         </div>
         <div v-else class="pt-24 flex flex-row-reverse justify-between max-w-[1400px] m-auto">
@@ -191,7 +191,7 @@ export default {
 
     <div>
         <div v-if="showModal"
-            class="overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none justify-center max-[800px]:items-center flex">
+            class="overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none justify-center min-[800px]:items-center flex">
             <div v-if="aturanblog.currentPage === 1" class="relative w-auto my-6 mx-auto max-w-6xl">
                 <div
                     class="border border-red rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">

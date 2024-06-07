@@ -177,9 +177,9 @@ export default {
     <Navbar />
 
     <div class="pt-20 max-w-[1440px] m-auto pb-4">
-        <p class="pt-[4rem] ml-4 font-poppins font-semibold text-teal text-[32px]">Informasi Tentang anda</p>
-        <div class="flex gap-16">
-            <div v-if="profiluser" class="border border-teal mt-4 ml-4 px-8">
+        <p class="pt-[4rem] ml-4 font-poppins font-semibold text-teal max-[800px]:hidden text-[32px]">Informasi Tentang anda</p>
+        <div class="flex gap-16 max-[800px]:justify-center">
+            <div v-if="profiluser" class="border border-teal mt-4 ml-4 px-8 max-[800px]:hidden">
                 <div class="flex my-8 gap-8 items-center">
                     <div class="flex flex-col">
                         <p class="font-poppins font-bold text-2xl text-teal">{{ profiluser.Name }}</p>
@@ -187,7 +187,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="grid max-[1200px]:grid-cols-1 grid-cols-2 gap-8 mb-8">
                     <div class="w-96 pb-8 border border-teal flex flex-col">
                         <p class="pl-8 py-8 font-poppins font-bold text-2xl text-teal text-left">Nama</p>
                         <p class="pl-8 text-lightteal font-poppins font-medium">{{ profiluser.Name }}</p>
@@ -230,7 +230,7 @@ export default {
                 </div>
             </div>
 
-            <div>
+            <div class="mr-4 max-[800px]:mt-12">
                 <div>
                     <p class="text-center text-black text-2xl font-poppins font-bold">Data Profile</p>
                 </div>
@@ -240,6 +240,18 @@ export default {
                             <p class="font-poppins font-bold text-[16px] text-teal text-center">Nama</p>
                             <input type="text" name="" id="" v-model="profiluser.Name"
                                 class="border border-black py-1 px-2">
+                        </div>
+
+                        <div class="w-full flex flex-col">
+                            <p class="font-poppins font-bold text-[16px] text-teal text-center">Email</p>
+                            <input type="text" name="" id="" v-model="profiluser.Email" disabled 
+                                class="border border-black py-1 px-2 cursor-not-allowed opacity-50">
+                        </div>
+
+                        <div class="w-full flex flex-col">
+                            <p class="font-poppins font-bold text-[16px] text-teal text-center">Nama</p>
+                            <input type="text" name="" id="" v-model="profiluser.PhoneNumber" disabled
+                                class="border border-black py-1 px-2 cursor-not-allowed opacity-50">
                         </div>
 
                         <div class="w-full flex flex-col">
