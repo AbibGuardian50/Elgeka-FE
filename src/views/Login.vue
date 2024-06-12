@@ -89,14 +89,14 @@ export default {
                 <div class="mb-4">
                     <label for="Email"
                         class="block font-[verdana] text-white md:text-black font-normal text-[14px] text-[#344054] mb-2">Email atau Nomor HP</label>
-                    <input type="text" id="Email" name="Email" v-model="EmailOrPhoneNumber"
+                    <input type="text" id="Email" name="Email" v-model="EmailOrPhoneNumber" required
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter your email or phone number">
                 </div>
                 <!-- Password Input -->
                 <div class="mb-4">
                     <label for="password" class="block text-[#344054] mb-2 text-white md:text-black">Password</label>
-                    <input type="password" id="password" name="password" v-model="password"
+                    <input type="password" id="password" name="password" v-model="password" required
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off" placeholder="enter password">
                 </div>
