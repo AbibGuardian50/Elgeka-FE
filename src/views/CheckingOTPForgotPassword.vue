@@ -62,12 +62,13 @@ export default {
                         toast.success('OTP Benar')
                         localStorage.setItem('OTPCode-forgot_password', response.data.OtpData[0].OtpCode)
                         this.$router.push('/BuatKataSandiBaru')
-                    } else if (response.data.ErrorMessage === "Incorrect OTP code") {
-                        toast.error('OTP Salah, mohon masukkan lagi')
                     }
                 })
                 .catch(error => {
                     console.log(error)
+                    if (error.response.data.ErrorMessage === "Incorrect OTP code") {
+                        toast.error('OTP Salah, mohon masukkan lagi')
+                    }
                 });
         },
         focusNextInput(index) {
