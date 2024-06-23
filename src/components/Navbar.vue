@@ -139,14 +139,14 @@ export default {
         <div
             class="hidden absolute inset-y-0 right-0 min-[965px]:flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 gap-y-1.5">
             <div v-if="!profiluser && !isLoading">
-                <router-link to="/login">
+                <a href="/login">
                     <button type="button"
                         class="font-inter font-extrabold leading-5 text-white text-xl bg-teal mr-4 border border-white py-2 px-5 rounded-md">Login</button>
-                </router-link>
-                <router-link to="/register">
+                </a>
+                <a href="/register">
                     <button type="button"
                         class="font-inter font-extrabold leading-5 bg-white text-teal border border-teal text-xl py-2 px-5 rounded-md">Daftar</button>
-                </router-link>
+                </a>
             </div>
             <div v-else-if="profiluser" class="flex flex-row-reverse items-center border-2 border-white gap-2 py-1 px-4">
                 <img class="w-[39px] h-[39px]" src="../assets/pp.png" alt="Profile Picture">
