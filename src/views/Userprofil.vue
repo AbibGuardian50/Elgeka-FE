@@ -117,10 +117,12 @@ export default {
                 })
                 .catch(error => {
                     console.error('Error fetching provinces:', error);
+                    const toast = useToast();
+                    toast.error('Error fetching province, please refresh the page');
                 });
         },
-        fetchDistricts(provinceId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${provinceId}.json`)
+        fetchDistricts(DistrictsId) {
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${DistrictsId}.json`)
                 .then(response => {
                     this.districts = response.data;
                     this.subDistricts = [];
@@ -128,25 +130,31 @@ export default {
                 })
                 .catch(error => {
                     console.error('Error fetching districts:', error);
+                    const toast = useToast();
+                    toast.error('Error fetching Districts, please refresh the page');
                 });
         },
-        fetchSubDistricts(districtId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${districtId}.json`)
+        fetchSubDistricts(SubDistrictsId) {
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${SubDistrictsId}.json`)
                 .then(response => {
                     this.subDistricts = response.data;
                     this.villages = [];
                 })
                 .catch(error => {
                     console.error('Error fetching subDistricts:', error);
+                    const toast = useToast();
+                    toast.error('Error fetching Sub Districts, please refresh the page');
                 });
         },
-        fetchVillages(subDistrictId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${subDistrictId}.json`)
+        fetchVillages(VillagesId) {
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${VillagesId}.json`)
                 .then(response => {
                     this.villages = response.data;
                 })
                 .catch(error => {
                     console.error('Error fetching villages:', error);
+                    const toast = useToast();
+                    toast.error('Error fetching Villages, please refresh the page');
                 });
         },
     },
