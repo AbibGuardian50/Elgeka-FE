@@ -49,18 +49,22 @@ export default {
         async fetchRegionData() {
             try {
                 const provinceResponse = await axios.get('https://jeksilaen.github.io/api-wilayah-indonesia/api/provinces.json');
+                console.log('Province Response:', provinceResponse); // Tambahkan log ini
                 const province = provinceResponse.data.find(p => p.id === this.profiluser.Province);
                 this.provinceName = province ? province.name : 'Unknown';
 
                 const districtResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${this.profiluser.Province}.json`);
+                console.log('District Response:', districtResponse); // Tambahkan log ini
                 const district = districtResponse.data.find(d => d.id === this.profiluser.District);
                 this.districtName = district ? district.name : 'Unknown';
 
                 const subDistrictResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${this.profiluser.District}.json`);
+                console.log('SubDistrict Response:', subDistrictResponse); // Tambahkan log ini
                 const subDistrict = subDistrictResponse.data.find(sd => sd.id === this.profiluser.SubDistrict);
                 this.subDistrictName = subDistrict ? subDistrict.name : 'Unknown';
 
                 const villageResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${this.profiluser.SubDistrict}.json`);
+                console.log('Village Response:', villageResponse); // Tambahkan log ini
                 const village = villageResponse.data.find(v => v.id === this.profiluser.Village);
                 this.villageName = village ? village.name : 'Unknown';
             } catch (error) {
@@ -111,7 +115,7 @@ export default {
             }
         },
         fetchProvinces() {
-            axios.get('https://jeksilaen.github.io/api-wilayah-indonesia/api/provinces.json')
+            axios.get('https://elgeka-web-production.up.railway.app/api/v1/location/provinces')
                 .then(response => {
                     this.provinces = response.data;
                 })
@@ -121,12 +125,10 @@ export default {
                     toast.error('Error fetching province, please refresh the page');
                 });
         },
-        fetchDistricts(DistrictsId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${DistrictsId}.json`)
+        fetchRegencies(RegenciesId) {
+            axios.get(`https://elgeka-web-production.up.railway.app/api/v1/location/regencies/${RegenciesId}`)
                 .then(response => {
                     this.districts = response.data;
-                    this.subDistricts = [];
-                    this.villages = [];
                 })
                 .catch(error => {
                     console.error('Error fetching districts:', error);
@@ -134,11 +136,10 @@ export default {
                     toast.error('Error fetching Districts, please refresh the page');
                 });
         },
-        fetchSubDistricts(SubDistrictsId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${SubDistrictsId}.json`)
+        fetchDistricts(DistrictsId) {
+            axios.get(`https://elgeka-web-production.up.railway.app/api/v1/location/districts/${DistrictsId}`)
                 .then(response => {
                     this.subDistricts = response.data;
-                    this.villages = [];
                 })
                 .catch(error => {
                     console.error('Error fetching subDistricts:', error);
@@ -147,7 +148,7 @@ export default {
                 });
         },
         fetchVillages(VillagesId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${VillagesId}.json`)
+            axios.get(`https://elgeka-web-production.up.railway.app/api/v1/location/villages/${VillagesId}`)
                 .then(response => {
                     this.villages = response.data;
                 })
@@ -161,12 +162,12 @@ export default {
     watch: {
         'profiluser.Province'(newProvince) {
             if (newProvince) {
-                this.fetchDistricts(newProvince);
+                this.fetchRegencies(newProvince);
             }
         },
         'profiluser.District'(newDistrict) {
             if (newDistrict) {
-                this.fetchSubDistricts(newDistrict);
+                this.fetchDistricts(newDistrict);
             }
         },
         'profiluser.SubDistrict'(newSubDistrict) {
@@ -185,7 +186,8 @@ export default {
     <Navbar />
 
     <div class="pt-20 max-w-[1440px] m-auto pb-4">
-        <p class="pt-[4rem] ml-4 font-poppins font-semibold text-teal max-[800px]:hidden text-[32px]">Informasi Tentang anda</p>
+        <p class="pt-[4rem] ml-4 font-poppins font-semibold text-teal max-[800px]:hidden text-[32px]">Informasi Tentang anda
+        </p>
         <div class="flex gap-16 max-[800px]:justify-center">
             <div v-if="profiluser" class="border border-teal mt-4 ml-4 px-8 max-[800px]:hidden">
                 <div class="flex my-8 gap-8 items-center">
@@ -252,7 +254,7 @@ export default {
 
                         <div class="w-full flex flex-col">
                             <p class="font-poppins font-bold text-[16px] text-teal text-center">Email</p>
-                            <input type="text" name="" id="" v-model="profiluser.Email" disabled 
+                            <input type="text" name="" id="" v-model="profiluser.Email" disabled
                                 class="border border-black py-1 px-2 cursor-not-allowed opacity-50">
                         </div>
 
@@ -308,7 +310,7 @@ export default {
 
                         <div class="w-full flex flex-col">
                             <p class="font-poppins font-bold text-[16px] text-teal text-center">Provinsi</p>
-                            <select v-model="profiluser.Province" @change="fetchDistricts(profiluser.Province)"
+                            <select v-model="profiluser.Province" @change="fetchRegencies(profiluser.Province)"
                                 class="py-1 px-2 border border-black bg-white">
                                 <option v-for="province in provinces" :key="province.id" :value="province.id">{{
                                     province.name }}</option>
@@ -317,7 +319,7 @@ export default {
 
                         <div class="w-full flex flex-col">
                             <p class="font-poppins font-bold text-[16px] text-teal text-center">Kabupaten/Kota</p>
-                            <select v-model="profiluser.District" @change="fetchSubDistricts(profiluser.District)"
+                            <select v-model="profiluser.District" @change="fetchDistricts(profiluser.District)"
                                 class="py-1 px-2 border border-black bg-white">
                                 <option v-for="district in districts" :key="district.id" :value="district.id">{{
                                     district.name }}</option>
