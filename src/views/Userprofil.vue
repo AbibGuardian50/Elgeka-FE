@@ -48,19 +48,19 @@ export default {
     methods: {
         async fetchRegionData() {
             try {
-                const provinceResponse = await axios.get('https://abibguardian50.github.io/api-wilayah-indonesia/api/provinces.json');
+                const provinceResponse = await axios.get('https://jeksilaen.github.io/api-wilayah-indonesia/api/provinces.json');
                 const province = provinceResponse.data.find(p => p.id === this.profiluser.Province);
                 this.provinceName = province ? province.name : 'Unknown';
 
-                const districtResponse = await axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/regencies/${this.profiluser.Province}.json`);
+                const districtResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${this.profiluser.Province}.json`);
                 const district = districtResponse.data.find(d => d.id === this.profiluser.District);
                 this.districtName = district ? district.name : 'Unknown';
 
-                const subDistrictResponse = await axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/districts/${this.profiluser.District}.json`);
+                const subDistrictResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${this.profiluser.District}.json`);
                 const subDistrict = subDistrictResponse.data.find(sd => sd.id === this.profiluser.SubDistrict);
                 this.subDistrictName = subDistrict ? subDistrict.name : 'Unknown';
 
-                const villageResponse = await axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/villages/${this.profiluser.SubDistrict}.json`);
+                const villageResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${this.profiluser.SubDistrict}.json`);
                 const village = villageResponse.data.find(v => v.id === this.profiluser.Village);
                 this.villageName = village ? village.name : 'Unknown';
             } catch (error) {
@@ -111,7 +111,7 @@ export default {
             }
         },
         fetchProvinces() {
-            axios.get('https://abibguardian50.github.io/api-wilayah-indonesia/api/provinces.json')
+            axios.get('https://jeksilaen.github.io/api-wilayah-indonesia/api/provinces.json')
                 .then(response => {
                     this.provinces = response.data;
                 })
@@ -120,7 +120,7 @@ export default {
                 });
         },
         fetchDistricts(provinceId) {
-            axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/regencies/${provinceId}.json`)
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${provinceId}.json`)
                 .then(response => {
                     this.districts = response.data;
                     this.subDistricts = [];
@@ -131,7 +131,7 @@ export default {
                 });
         },
         fetchSubDistricts(districtId) {
-            axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/districts/${districtId}.json`)
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${districtId}.json`)
                 .then(response => {
                     this.subDistricts = response.data;
                     this.villages = [];
@@ -141,7 +141,7 @@ export default {
                 });
         },
         fetchVillages(subDistrictId) {
-            axios.get(`https://abibguardian50.github.io/api-wilayah-indonesia/api/villages/${subDistrictId}.json`)
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${subDistrictId}.json`)
                 .then(response => {
                     this.villages = response.data;
                 })
