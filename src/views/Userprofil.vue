@@ -48,24 +48,36 @@ export default {
     methods: {
         async fetchRegionData() {
             try {
-                const provinceResponse = await axios.get('https://jeksilaen.github.io/api-wilayah-indonesia/api/provinces.json');
+                const provinceResponse = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/location/provinces');
                 console.log('Province Response:', provinceResponse); // Tambahkan log ini
-                const province = provinceResponse.data.find(p => p.id === this.profiluser.Province);
+                const provinces = Object.entries(provinceResponse.data).map(([id, name]) => ({ id, name }));
+                this.provinces = provinces;
+
+                const province = provinces.find(p => p.id === this.profiluser.Province);
                 this.provinceName = province ? province.name : 'Unknown';
 
-                const districtResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${this.profiluser.Province}.json`);
+                const districtResponse = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/regencies/${this.profiluser.Province}`);
                 console.log('District Response:', districtResponse); // Tambahkan log ini
-                const district = districtResponse.data.find(d => d.id === this.profiluser.District);
+                const districts = Object.entries(districtResponse.data).map(([id, name]) => ({ id, name }));
+                this.districts = districts;
+
+                const district = districts.find(d => d.id === this.profiluser.District);
                 this.districtName = district ? district.name : 'Unknown';
 
-                const subDistrictResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${this.profiluser.District}.json`);
+                const subDistrictResponse = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/districts/${this.profiluser.District}`);
                 console.log('SubDistrict Response:', subDistrictResponse); // Tambahkan log ini
-                const subDistrict = subDistrictResponse.data.find(sd => sd.id === this.profiluser.SubDistrict);
+                const subDistricts = Object.entries(subDistrictResponse.data).map(([id, name]) => ({ id, name }));
+                this.subDistricts = subDistricts;
+
+                const subDistrict = subDistricts.find(sd => sd.id === this.profiluser.SubDistrict);
                 this.subDistrictName = subDistrict ? subDistrict.name : 'Unknown';
 
-                const villageResponse = await axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${this.profiluser.SubDistrict}.json`);
+                const villageResponse = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/villages/${this.profiluser.SubDistrict}`);
                 console.log('Village Response:', villageResponse); // Tambahkan log ini
-                const village = villageResponse.data.find(v => v.id === this.profiluser.Village);
+                const villages = Object.entries(villageResponse.data).map(([id, name]) => ({ id, name }));
+                this.villages = villages;
+
+                const village = villages.find(v => v.id === this.profiluser.Village);
                 this.villageName = village ? village.name : 'Unknown';
             } catch (error) {
                 console.log(error);
@@ -115,7 +127,7 @@ export default {
             }
         },
         fetchProvinces() {
-            axios.get('https://elgeka-web-production.up.railway.app/api/v1/location/provinces')
+            axios.get('https://jeksilaen.github.io/api-wilayah-indonesia/api/provinces.json')
                 .then(response => {
                     this.provinces = response.data;
                 })
@@ -126,7 +138,7 @@ export default {
                 });
         },
         fetchRegencies(RegenciesId) {
-            axios.get(`https://elgeka-web-production.up.railway.app/api/v1/location/regencies/${RegenciesId}`)
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${RegenciesId}.json`)
                 .then(response => {
                     this.districts = response.data;
                 })
@@ -137,7 +149,7 @@ export default {
                 });
         },
         fetchDistricts(DistrictsId) {
-            axios.get(`https://elgeka-web-production.up.railway.app/api/v1/location/districts/${DistrictsId}`)
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${DistrictsId}.json`)
                 .then(response => {
                     this.subDistricts = response.data;
                 })
@@ -148,7 +160,7 @@ export default {
                 });
         },
         fetchVillages(VillagesId) {
-            axios.get(`https://elgeka-web-production.up.railway.app/api/v1/location/villages/${VillagesId}`)
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${VillagesId}.json`)
                 .then(response => {
                     this.villages = response.data;
                 })
@@ -350,4 +362,3 @@ export default {
         </div>
     </div>
 </template>
-
