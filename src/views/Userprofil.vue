@@ -126,19 +126,19 @@ export default {
                 return 'Tanggal lahir tidak tersedia';
             }
         },
-        fetchProvinces() {
-            axios.get('/api/api-wilayah-indonesia/api/provinces.json')
-                .then(response => {
-                    this.provinces = response.data;
-                })
-                .catch(error => {
-                    console.error('Error fetching provinces:', error);
-                    const toast = useToast();
-                    toast.error('Error fetching province, please refresh the page');
-                });
+        async fetchProvinces() {
+            try {
+                const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/location/provinces');
+                const provinces = Object.entries(response.data).map(([id, name]) => ({ id, name }));
+                this.provinces = provinces;
+            } catch (error) {
+                console.error('Error fetching provinces:', error);
+                const toast = useToast();
+                toast.error('Error fetching province, please refresh the page');
+            }
         },
-        fetchRegencies(provinceId) {
-            axios.get(`/api/api-wilayah-indonesia/api/regencies/${provinceId}.json`)
+        fetchRegencies(RegenciesId) {
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${RegenciesId}.json`)
                 .then(response => {
                     this.districts = response.data;
                 })
@@ -148,8 +148,8 @@ export default {
                     toast.error('Error fetching Districts, please refresh the page');
                 });
         },
-        fetchDistricts(regencyId) {
-            axios.get(`/api/api-wilayah-indonesia/api/districts/${regencyId}.json`)
+        fetchDistricts(DistrictsId) {
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${DistrictsId}.json`)
                 .then(response => {
                     this.subDistricts = response.data;
                 })
@@ -159,8 +159,8 @@ export default {
                     toast.error('Error fetching Sub Districts, please refresh the page');
                 });
         },
-        fetchVillages(districtId) {
-            axios.get(`/api/api-wilayah-indonesia/api/villages/${districtId}.json`)
+        fetchVillages(VillagesId) {
+            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${VillagesId}.json`)
                 .then(response => {
                     this.villages = response.data;
                 })
