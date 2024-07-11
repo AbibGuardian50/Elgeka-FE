@@ -178,19 +178,19 @@ export default {
         },
     },
     watch: {
-        'profiluser.Province'(newProvince) {
-            if (newProvince) {
-                this.fetchRegencies(newProvince);
+        'profiluser.Province'(newProvince) { // Ketika profiluser.Province berubah, fungsi ini dipanggil dengan parameter newProvince yang merupakan nilai baru dari Province.
+            if (newProvince) { // Jika newProvince ada (tidak null atau undefined), maka fungsi this.fetchRegencies(newProvince) dipanggil untuk mengambil data kabupaten/kota berdasarkan ID provinsi yang baru.
+                this.fetchRegencies(newProvince); // Mengambil data kabupaten/kota berdasarkan ID provinsi.
             }
         },
         'profiluser.District'(newDistrict) {
             if (newDistrict) {
-                this.fetchDistricts(newDistrict);
+                this.fetchDistricts(newDistrict); // Mengambil data kecamatan berdasarkan ID kabupaten/kota.
             }
         },
         'profiluser.SubDistrict'(newSubDistrict) {
             if (newSubDistrict) {
-                this.fetchVillages(newSubDistrict);
+                this.fetchVillages(newSubDistrict); // Mengambil data desa berdasarkan ID kecamatan.
             }
         },
     },
