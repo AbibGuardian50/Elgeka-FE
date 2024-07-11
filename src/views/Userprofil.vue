@@ -137,10 +137,12 @@ export default {
                 toast.error('Error fetching province, please refresh the page');
             }
         },
-        fetchRegencies(RegenciesId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/regencies/${RegenciesId}.json`)
+        async fetchRegencies(RegenciesId) {
+            axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/regencies/${RegenciesId}`)
                 .then(response => {
-                    this.districts = response.data;
+                    const districts = Object.entries(response.data).map(([id, name]) => ({ id, name }));
+                    this.districts = districts;
+                    console.log('Fetch Regencies:', response.data);
                 })
                 .catch(error => {
                     console.error('Error fetching districts:', error);
@@ -148,10 +150,12 @@ export default {
                     toast.error('Error fetching Districts, please refresh the page');
                 });
         },
-        fetchDistricts(DistrictsId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/districts/${DistrictsId}.json`)
+        async fetchDistricts(DistrictsId) {
+            axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/districts/${DistrictsId}`)
                 .then(response => {
-                    this.subDistricts = response.data;
+                    const subDistricts = Object.entries(response.data).map(([id, name]) => ({ id, name }));
+                    this.subDistricts = subDistricts;
+                    console.log('Fetch Sub Districts:', response);
                 })
                 .catch(error => {
                     console.error('Error fetching subDistricts:', error);
@@ -159,10 +163,12 @@ export default {
                     toast.error('Error fetching Sub Districts, please refresh the page');
                 });
         },
-        fetchVillages(VillagesId) {
-            axios.get(`https://jeksilaen.github.io/api-wilayah-indonesia/api/villages/${VillagesId}.json`)
+        async fetchVillages(VillagesId) {
+            axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/villages/${VillagesId}`)
                 .then(response => {
-                    this.villages = response.data;
+                    const villages = Object.entries(response.data).map(([id, name]) => ({ id, name }));
+                    this.villages = villages;
+                    console.log('Fetch Villages:', response.data);
                 })
                 .catch(error => {
                     console.error('Error fetching villages:', error);
