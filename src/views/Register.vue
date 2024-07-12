@@ -2,6 +2,7 @@
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
 import { useToast } from 'vue-toastification';
+import { isValid, isBefore, parseISO } from 'date-fns';
 
 export default {
     data() {
@@ -24,6 +25,8 @@ export default {
             },
             error: '',
             passwordError: '',
+            dateError: '',
+            ageError: '',
             provinces: [],
             districts: [],
             subDistricts: [],
@@ -81,8 +84,52 @@ export default {
                     console.error('Error fetching villages:', error);
                 });
         },
+        validateDates() {
+            const birthDate = parseISO(this.form.BirthDate);
+            const diagnosisDate = parseISO(this.form.DiagnosisDate);
+            const today = new Date();
+            
+            this.dateError = '';
+            this.ageError = '';
+
+            // Check if birth date and diagnosis date are valid dates
+            if (!isValid(birthDate) || !isValid(diagnosisDate)) {
+                this.dateError = 'Tanggal lahir dan tanggal diagnosis harus valid.';
+                return false;
+            }
+
+            // Check if birth date is before diagnosis date
+            if (this.form.BirthDate === this.form.DiagnosisDate) {
+                this.dateError = 'Tanggal lahir tidak boleh sama dengan tanggal diagnosis.';
+                return false;
+            }
+
+            // Check if dates are in the future
+            if (!isBefore(birthDate, today) || !isBefore(diagnosisDate, today)) {
+                this.dateError = 'Tanggal lahir dan tanggal diagnosis tidak boleh melebihi tanggal saat ini.';
+                return false;
+            }
+
+            // Check age
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            if (age < 10) {
+                this.ageError = 'Umur harus minimal 10 tahun.';
+                return false;
+            }
+
+            return true;
+        },
         createuser() {
             const toast = useToast();
+            if (!this.validateDates()) {
+                toast.error(this.dateError || this.ageError);
+                return;
+            }
+            
             const url = 'https://elgeka-mobile-production.up.railway.app/api/user/register';
             const formData = new FormData();
             formData.append('Name', this.form.Name);
@@ -132,6 +179,7 @@ export default {
     },
 }
 </script>
+
 
 
 <template>
@@ -243,10 +291,14 @@ export default {
                     <label for="golonganDarah" class="block text-[#344054] mb-2">Golongan Darah</label>
                     <select id="golonganDarah" name="golonganDarah" required v-model="form.BloodGroup"
                         class="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
-                        <option value="A">A</option>
-                        <option value="AB">AB</option>
-                        <option value="B">B</option>
-                        <option value="O">O</option>
+                        <option value="A-">A-</option>
+                        <option value="A+">A+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="B-">B-</option>
+                        <option value="B+">B+</option>
+                        <option value="O-">O-</option>
+                        <option value="O+">O+</option>
                     </select>
                 </div>
                 <!-- Password Input -->
