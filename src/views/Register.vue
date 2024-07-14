@@ -2,7 +2,7 @@
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
 import { useToast } from 'vue-toastification';
-import { isValid, isBefore, parseISO } from 'date-fns';
+import { isValid, isBefore, parseISO, formatISO  } from 'date-fns';
 
 export default {
     data() {
@@ -14,7 +14,7 @@ export default {
                 District: '',
                 SubDistrict: '',
                 Village: '',
-                PhoneNumber: '628',
+                PhoneNumber: '',
                 Gender: '',
                 BirthDate: '',
                 DiagnosisDate: '',
@@ -23,10 +23,12 @@ export default {
                 Password: '',
                 confirmpassword: '',
             },
+            maxDate: '', // Untuk menyimpan tanggal maksimal (hari ini)
             error: '',
             passwordError: '',
             dateError: '',
             ageError: '',
+            addressError: '',
             provinces: [],
             districts: [],
             subDistricts: [],
@@ -35,6 +37,8 @@ export default {
     },
     created() {
         this.fetchProvinces();
+        // Setel nilai maxDate dengan tanggal hari ini dalam format ISO
+        this.maxDate = formatISO(new Date(), { representation: 'date' });
     },
     methods: {
         fetchProvinces() {
@@ -88,7 +92,7 @@ export default {
             const birthDate = parseISO(this.form.BirthDate);
             const diagnosisDate = parseISO(this.form.DiagnosisDate);
             const today = new Date();
-            
+
             this.dateError = '';
             this.ageError = '';
 
@@ -116,20 +120,30 @@ export default {
             if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
                 age--;
             }
-            if (age < 10) {
-                this.ageError = 'Umur harus minimal 10 tahun.';
+            if (age < 18) {
+                this.ageError = 'Umur harus minimal 18 tahun.';
                 return false;
             }
 
             return true;
         },
+        validateAddress() {
+            if (this.form.Address.length < 10) {
+                const toast = useToast(); 
+                this.addressError = 'Alamat harus memiliki minimal 10 karakter.';
+                toast.error(this.addressError);
+                return false;
+            }
+            return true;
+        },
+
         createuser() {
             const toast = useToast();
-            if (!this.validateDates()) {
-                toast.error(this.dateError || this.ageError);
+            if (!this.validateDates() || !this.validateAddress()) {
+                toast.error(this.dateError || this.ageError || this.addressError);
                 return;
             }
-            
+
             const url = 'https://elgeka-mobile-production.up.railway.app/api/user/register';
             const formData = new FormData();
             formData.append('Name', this.form.Name);
@@ -154,7 +168,7 @@ export default {
                     if (response.data.Message === 'Register Success') {
                         this.$router.push('/optionotp');
                         toast.success('registrasi sukses')
-                    } 
+                    }
                 })
                 .catch(error => {
                     console.log(error.response.data.ErrorMessage);
@@ -219,7 +233,7 @@ export default {
                     <label for="tanggalLahir" class="block text-[#344054] mb-2">Tanggal Lahir</label>
                     <input type="date" id="tanggalLahir" name="tanggalLahir" required
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="yyyy-mm-dd" min="1997-01-01" max="2030-12-31"
+                        autocomplete="off" placeholder="yyyy-mm-dd" min="1945-01-01" :max="maxDate"
                         v-model="form.BirthDate">
                 </div>
                 <!-- Tanggal Diagnosis Input -->
@@ -227,7 +241,7 @@ export default {
                     <label for="tanggalDiagnosis" class="block text-[#344054] mb-2">Tanggal Diagnosis</label>
                     <input type="date" id="tanggalDiagnosis" name="tanggalDiagnosis" required
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="yyyy-mm-dd" min="1997-01-01" max="2030-12-31"
+                        autocomplete="off" placeholder="yyyy-mm-dd" min="1945-01-01" :max="maxDate"
                         v-model="form.DiagnosisDate">
                 </div>
                 <!-- Alamat Input -->
@@ -325,5 +339,6 @@ export default {
                             class="font-bold text-[#4D4D4F]">Sign in</span></a>
                 </div>
             </form>
+        </div>
     </div>
-</div></template>
+</template>

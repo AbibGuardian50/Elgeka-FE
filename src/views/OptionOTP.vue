@@ -33,13 +33,17 @@ export default {
         },
         SendOtpWhatsapp() {
             try {
+                const toast = useToast();
                 const user_id = VueCookies.get('user_id');
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/whatsapp_otp/${user_id}`
                 axios.post(url)
-                    .then(response =>
-                        console.log(response),
-                        this.$router.push('/sendotpwhatsapp')
-                        // this.$router.push('sendotpwhatsapp')
+                    .then(response => {
+                        console.log(response)
+                        if (response.data.Message === "Send Whatsapp OTP Successfully") {
+                            toast.success('OTP berhasil dikirim ke Whatsapp')
+                            this.$router.push('/sendotpwhatsapp')
+                        }
+                    }
                     )
             } catch (error) {
                 console.log(error)

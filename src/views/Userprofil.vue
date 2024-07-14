@@ -313,10 +313,14 @@ export default {
                             <p class="font-poppins font-bold text-[16px] text-teal text-center">Golongan Darah</p>
                             <select id="golonganDarah" name="golonganDarah" required v-model="profiluser.BloodGroup"
                                 class="w-full bg-white border border-gray-300 py-2 px-3 focus:outline-none focus:border-blue-500">
-                                <option value="A">A</option>
-                                <option value="AB">AB</option>
-                                <option value="B">B</option>
-                                <option value="O">O</option>
+                                <option value="A-">A-</option>
+                                <option value="A+">A+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="B-">B-</option>
+                                <option value="B+">B+</option>
+                                <option value="O-">O-</option>
+                                <option value="O+">O+</option>
                             </select>
                         </div>
 
