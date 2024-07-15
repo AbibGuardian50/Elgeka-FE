@@ -7,6 +7,7 @@ import "quill/dist/quill.snow.css";
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import axios from 'axios'
+import { useToast } from 'vue-toastification';
 import VueCookies from 'vue-cookies';
 
 export default {
@@ -16,7 +17,7 @@ export default {
                 content: '',
                 title: '',
             },
-            username:'',
+            username: '',
             editor: null,
             prompt: '',
             blog: '',
@@ -70,14 +71,6 @@ export default {
         Navbar,
         QuillEditor,
     },
-    // setup: () => {
-    //     const modules = {
-    //         name: 'blotFormatter',
-    //         module: BlotFormatter,
-    //         options: {/* options */ }
-    //     }
-    //     return { modules }
-    // },
 }
 
 </script>
@@ -102,21 +95,17 @@ export default {
     <div>
         <div class="flex flex-col justify-end ">
             <form @submit.prevent="createcerita()">
-                <!-- <div class="bg-grey">
-                    <input type="text" v-model="username">
-                </div> -->
-               
+
                 <div id="editor" class=" border-2 border-teal mt-24 mx-8 mb-8 rounded-lg p-4 bg-white">
                     <p class="text-darktransparent font-bold">Judul Cerita</p>
                     <input class="w-full bg-grey" type="text" name="judul cerita" id="" v-model="form.title">
-                    <!-- <QuillEditor class="bg-white" :modules="modules" toolbar="essential" /> -->
                 </div>
 
                 <div class="border-2 border-teal m-8 rounded-lg p-4 bg-white">
                     <p class="text-darktransparent font-bold">Tuliskan Cerita anda</p>
                     <quill-editor :toolbar="['bold', 'italic', 'underline', 'image']" theme="snow" class="bg-grey"
                         contentType="html" v-model:content="form.content"></quill-editor>
-                   
+
                 </div>
 
                 <div class="flex justify-end pr-8">
