@@ -2,7 +2,7 @@
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
 import { useToast } from 'vue-toastification';
-import { isValid, isBefore, parseISO, formatISO  } from 'date-fns';
+import { isValid, isBefore, parseISO, formatISO } from 'date-fns';
 
 export default {
     data() {
@@ -14,7 +14,7 @@ export default {
                 District: '',
                 SubDistrict: '',
                 Village: '',
-                PhoneNumber: '',
+                PhoneNumber: '628',
                 Gender: '',
                 BirthDate: '',
                 DiagnosisDate: '',
@@ -26,6 +26,7 @@ export default {
             maxDate: '', // Untuk menyimpan tanggal maksimal (hari ini)
             error: '',
             passwordError: '',
+            phoneError: '',
             dateError: '',
             ageError: '',
             addressError: '',
@@ -33,14 +34,45 @@ export default {
             districts: [],
             subDistricts: [],
             villages: [],
+            showPassword: false,
+            showConfirmationPassword: false,
         }
     },
+
     created() {
         this.fetchProvinces();
         // Setel nilai maxDate dengan tanggal hari ini dalam format ISO
         this.maxDate = formatISO(new Date(), { representation: 'date' });
     },
+    computed: {
+        isValidForm() {
+            return this.validatePhoneNumber() &&
+                this.validateDates() &&
+                this.validateAddress() &&
+                this.validatePassword() &&
+                !this.dateError &&
+                !this.ageError &&
+                !this.addressError &&
+                !this.passwordError;
+        }
+    },
     methods: {
+        togglePasswordVisibility() {
+            this.showPassword = !this.showPassword;
+        },
+        toggleConfirmationPasswordVisibility() {
+            this.showConfirmationPassword = !this.showConfirmationPassword;
+        },
+        validatePhoneNumber() {
+            const phonePattern = /^628[0-9]{8,12}$/;
+            if (!phonePattern.test(this.form.PhoneNumber)) {
+                this.phoneError = 'Nomor HP harus dimulai dengan 628 dan memiliki panjang 10 hingga 15 digit';
+                return false;
+            } else {
+                this.phoneError = '';
+            }
+        },
+
         fetchProvinces() {
             const toast = useToast();
             axios.get('https://abibguardian50.github.io/api-wilayah-indonesia/api/provinces.json')
@@ -103,8 +135,8 @@ export default {
             }
 
             // Check if birth date is before diagnosis date
-            if (this.form.BirthDate === this.form.DiagnosisDate) {
-                this.dateError = 'Tanggal lahir tidak boleh sama dengan tanggal diagnosis.';
+            if (!isBefore(birthDate, diagnosisDate)) {
+                this.dateError = 'Tanggal lahir harus sebelum tanggal diagnosis.';
                 return false;
             }
 
@@ -129,21 +161,19 @@ export default {
         },
         validateAddress() {
             if (this.form.Address.length < 10) {
-                const toast = useToast(); 
+                const toast = useToast();
                 this.addressError = 'Alamat harus memiliki minimal 10 karakter.';
                 toast.error(this.addressError);
                 return false;
             }
             return true;
         },
-
         createuser() {
             const toast = useToast();
-            if (!this.validateDates() || !this.validateAddress()) {
-                toast.error(this.dateError || this.ageError || this.addressError);
+            if (!this.isValidForm) {
+                toast.error(this.dateError || this.ageError || this.addressError || this.passwordError || 'Invalid phone number');
                 return;
             }
-
             const url = 'https://elgeka-mobile-production.up.railway.app/api/user/register';
             const formData = new FormData();
             formData.append('Name', this.form.Name);
@@ -226,7 +256,8 @@ export default {
                     <label for="phonenumber" class="block text-[#344054] mb-2">Nomor Telepon</label>
                     <input type="text" id="phonenumber" name="phonenumber" required
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="No telepon" v-model="form.PhoneNumber">
+                        autocomplete="off" placeholder="No telepon" v-model="form.PhoneNumber" @input="validatePhoneNumber">
+                    <p v-if="phoneError" class="error text-red">{{ phoneError }}</p>
                 </div>
                 <!-- Tanggal Lahir Input -->
                 <div class="mb-4">
@@ -318,17 +349,71 @@ export default {
                 <!-- Password Input -->
                 <div class="mb-4">
                     <label for="password" class="block text-[#344054] mb-2">Password</label>
-                    <input type="password" id="password" name="password" required v-model="form.Password"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="Enter password">
+                    <div class="relative">
+                        <input :type="showPassword ? 'text' : 'password'" id="password" name="password" required
+                            v-model="form.Password"
+                            class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                            autocomplete="off" placeholder="Enter password">
+
+                        <button type="button" @click="togglePasswordVisibility"
+                            class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 focus:outline-none">
+                            <span v-if="showPassword"><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 2L22 22" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg></span>
+                            <span v-else><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12" stroke="#000000" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M1 12C1 12 5 20 12 20C19 20 23 12 23 12" stroke="#000000" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <circle cx="12" cy="12" r="3" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></span>
+                        </button>
+                    </div>
+
                 </div>
                 <!-- Password Confirmation Input -->
                 <div class="mb-4">
                     <label for="passwordConfirmation" class="block text-[#344054] mb-2">Confirmation Password</label>
-                    <input type="password" id="passwordConfirmation" name="passwordConfirmation" required
-                        v-model="form.confirmpassword"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="Enter password">
+                    <div class="relative">
+                        <input :type="showConfirmationPassword ? 'text' : 'password'" id="passwordConfirmation"
+                            name="passwordConfirmation" required v-model="form.confirmpassword"
+                            class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                            autocomplete="off" placeholder="Enter password">
+
+                        <button type="button" @click="toggleConfirmationPasswordVisibility"
+                            class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 focus:outline-none">
+                            <span v-if="showConfirmationPassword"><svg width="25px" height="25px" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 2L22 22" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg></span>
+                            <span v-else><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12" stroke="#000000" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M1 12C1 12 5 20 12 20C19 20 23 12 23 12" stroke="#000000" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <circle cx="12" cy="12" r="3" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></span>
+                        </button>
+                    </div>
                     <p v-if="passwordError" class="error text-red">{{ passwordError }}</p>
                 </div>
 
