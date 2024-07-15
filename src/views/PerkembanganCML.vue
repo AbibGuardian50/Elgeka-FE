@@ -38,9 +38,9 @@ export default {
             const response_beritaCML = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganCML');
             const response_beritaKomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas');
 
-            this.received_beritaumum = response_beritaumum.data.result.data;
-            this.received_beritaCML = response_beritaCML.data.result.data;
-            this.received_beritaKomunitas = response_beritaKomunitas.data.result.data;
+            this.received_beritaumum = response_beritaumum.data.result.data.filter(item => item.show === true);
+            this.received_beritaCML = response_beritaCML.data.result.data.filter(item => item.show === true);
+            this.received_beritaKomunitas = response_beritaKomunitas.data.result.data.filter(item => item.show === true);
 
             this.updateTotalPages();
             this.updatePaginatedData();
@@ -66,9 +66,13 @@ export default {
 
             const startIndex = (this.currentPage - 1) * this.perPage;
             const endIndex = startIndex + this.perPage;
-            this.paginatedreceived_beritaumum = data.slice(startIndex, endIndex);
-            this.paginatedreceived_beritaCML = data.slice(startIndex, endIndex);
-            this.paginatedreceived_beritaKomunitas = data.slice(startIndex, endIndex);
+            if (this.pilih_kategori === null) {
+                this.paginatedreceived_beritaumum = data.slice(startIndex, endIndex);
+            } else if (this.pilih_kategori === 'perkembanganCML') {
+                this.paginatedreceived_beritaCML = data.slice(startIndex, endIndex);
+            } else if (this.pilih_kategori === 'perkembanganKomunitas') {
+                this.paginatedreceived_beritaKomunitas = data.slice(startIndex, endIndex);
+            }
         },
         goToPage(pageNumber) {
             this.currentPage = pageNumber;
@@ -91,10 +95,9 @@ export default {
         pilih_kategori() {
             this.updateTotalPages();
             this.currentPage = 1;
-            this.updatePaginatedData(); // Tambahkan pemanggilan updatePaginatedData di sini
+            this.updatePaginatedData();
         }
     }
-
 };
 </script>
 

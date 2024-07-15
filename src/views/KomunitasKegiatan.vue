@@ -22,15 +22,19 @@ export default {
         try {
             const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas'
             const response_kegiatankomunitas = await axios.get(url);
-            this.received_kegiatankomunitas = response_kegiatankomunitas.data.result.data
             console.log(response_kegiatankomunitas)
-
-            this.totalPages = Math.ceil(this.received_kegiatankomunitas.length / this.perPage); // Calculate total pages
-            this.updatePaginatedData(); // Update paginated data
 
             if (response_kegiatankomunitas.data.message === "Get Kegiatan Komunitas Successfully") {
                 toast.success('Kegiatan Komunitas berhasil dimuat')
             }
+
+            // Filter data dengan show === true
+            this.received_kegiatankomunitas = response_kegiatankomunitas.data.result.data.filter(item => item.show === true);
+
+            // Hitung total halaman dan perbarui data terpagination
+            this.totalPages = Math.ceil(this.received_kegiatankomunitas.length / this.perPage);
+            this.updatePaginatedData();
+
         } catch (error) {
             console.error(error);
             toast.error('Kegiatan Komunitas gagal dimuat, mohon coba lagi')
