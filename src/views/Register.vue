@@ -73,7 +73,6 @@ export default {
             }
             return true;
         },
-
         fetchProvinces() {
             const toast = useToast();
             axios.get('https://abibguardian50.github.io/api-wilayah-indonesia/api/provinces.json')
@@ -149,17 +148,17 @@ export default {
             }
 
             // Calculate age
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            if (age < 18) {
-                this.ageError = 'Umur harus minimal 18 tahun.';
-                return false;
-            }
+            // let age = today.getFullYear() - birthDate.getFullYear();
+            // const m = today.getMonth() - birthDate.getMonth();
+            // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            //     age--;
+            // }
+            // if (age < 18) {
+            //     this.ageError = 'Umur harus minimal 18 tahun.';
+            //     return false;
+            // }
 
-            return true;
+            // return true;
         },
 
         validateAddress() {
