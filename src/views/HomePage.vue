@@ -28,8 +28,14 @@ export default {
       ]);
 
       this.profilkomunitas = profilKomunitasResponse.data.result;
-      this.kegiatankomunitas = this.shuffleArray(kegiatanKomunitasResponse.data.result.data).slice(0, 8);
 
+      // Filter kegiatan komunitas yang show === true
+      let kegiatanKomunitasFiltered = kegiatanKomunitasResponse.data.result.data.filter(kegiatan => kegiatan.show === true);
+
+      // Shuffle data yang sudah difilter
+      this.kegiatankomunitas = this.shuffleArray(kegiatanKomunitasFiltered).slice(0, 6);
+
+      // Filter berita yang show === true
       let beritaUmumFiltered = beritaUmumResponse.data.result.data.filter(berita => berita.show === true);
       let beritaCMLFiltered = beritaCMLResponse.data.result.data.filter(berita => berita.show === true);
       let beritaKomunitasFiltered = beritaKomunitasResponse.data.result.data.filter(berita => berita.show === true);
