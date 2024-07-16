@@ -29,9 +29,34 @@ export default {
 
       this.profilkomunitas = profilKomunitasResponse.data.result;
       this.kegiatankomunitas = this.shuffleArray(kegiatanKomunitasResponse.data.result.data).slice(0, 8);
-      this.beritaumum = this.shuffleArray(beritaUmumResponse.data.result.data).slice(0, 1);
-      this.beritaCML = this.shuffleArray(beritaCMLResponse.data.result.data).slice(0, 1);
-      this.beritaKomunitas = this.shuffleArray(beritaKomunitasResponse.data.result.data).slice(0, 1);
+
+      let beritaUmumFiltered = beritaUmumResponse.data.result.data.filter(berita => berita.show === true);
+      let beritaCMLFiltered = beritaCMLResponse.data.result.data.filter(berita => berita.show === true);
+      let beritaKomunitasFiltered = beritaKomunitasResponse.data.result.data.filter(berita => berita.show === true);
+
+      // Shuffle berita untuk memastikan randomization
+      beritaUmumFiltered = this.shuffleArray(beritaUmumFiltered);
+      beritaCMLFiltered = this.shuffleArray(beritaCMLFiltered);
+      beritaKomunitasFiltered = this.shuffleArray(beritaKomunitasFiltered);
+
+      // Ambil berita pertama dari masing-masing kategori tanpa ada duplikasi
+      const beritaTerpilih = [];
+
+      const pilihBeritaUnik = (beritaArray) => { // Fungsi pilih BeritaUnik digunakan untuk memilih berita pertama dari array yang tidak ada di beritaTerpilih. Jika berita terpilih, ID berita disimpan di array beritaTerpilih untuk memastikan bahwa berita tersebut tidak dipilih lagi oleh kategori berita lainnya
+        for (let berita of beritaArray) {
+          if (!beritaTerpilih.includes(berita.id)) {
+            beritaTerpilih.push(berita.id);
+            return berita;
+          }
+        }
+        return null;
+      };
+
+      // Array beritaumum, beritaCML, dan beritaKomunitas diisi dengan berita unik yang dipilih menggunakan fungsi pilihBeritaUnik.
+      this.beritaumum = [pilihBeritaUnik(beritaUmumFiltered)].filter(Boolean);
+      this.beritaCML = [pilihBeritaUnik(beritaCMLFiltered)].filter(Boolean);
+      this.beritaKomunitas = [pilihBeritaUnik(beritaKomunitasFiltered)].filter(Boolean);
+
 
       this.$nextTick(() => {
         this.truncateContent();
