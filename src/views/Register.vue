@@ -121,6 +121,7 @@ export default {
                     console.error('Error fetching villages:', error);
                 });
         },
+
         validateDates() {
             const birthDate = parseISO(this.form.BirthDate);
             const diagnosisDate = parseISO(this.form.DiagnosisDate);
@@ -147,8 +148,8 @@ export default {
                 return false;
             }
 
-            // Check age
-            const age = today.getFullYear() - birthDate.getFullYear();
+            // Calculate age
+            let age = today.getFullYear() - birthDate.getFullYear();
             const m = today.getMonth() - birthDate.getMonth();
             if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
                 age--;
@@ -160,6 +161,7 @@ export default {
 
             return true;
         },
+
         validateAddress() {
             if (this.form.Address.length < 10) {
                 const toast = useToast();
