@@ -55,7 +55,7 @@ export default {
 
 <template>
     <!-- component -->
-    <div class="bg-gray-100 flex h-screen flex-row-reverse">
+    <div class="bg-gray-100 flex flex-row-reverse">
         <!-- Left: Image -->
         <div class="w-1/2 hidden lg:block">
             <router-link to="/"><img src="../assets/sign.png" alt="Placeholder Image"
