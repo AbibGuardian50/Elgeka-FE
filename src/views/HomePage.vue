@@ -33,6 +33,10 @@ export default {
       this.beritaCML = this.shuffleArray(beritaCMLResponse.data.result.data).slice(0, 1);
       this.beritaKomunitas = this.shuffleArray(beritaKomunitasResponse.data.result.data).slice(0, 1);
 
+      this.$nextTick(() => {
+        this.truncateContent();
+      });
+
       console.log(this.profilkomunitas, this.kegiatankomunitas, this.beritaumum, this.beritaCML, this.beritaKomunitas);
     } catch (error) {
       console.error(error);
@@ -63,7 +67,16 @@ export default {
         [array[i], array[j]] = [array[j], array[i]];
       }
       return array;
-    }
+    },
+    truncateContent() {
+      const contents = document.querySelectorAll('.berita-content');
+      contents.forEach(content => {
+        const text = content.textContent;
+        if (text.length > 150) { // Panjang maksimum yang Anda inginkan
+          content.textContent = text.substring(0, 150) + '...';
+        }
+      });
+    },
   },
   setup() {
     return {
@@ -168,8 +181,7 @@ export default {
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
             <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
               Komunitas highlight</p> -->
-            <p
-              class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+            <p class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
               {{ berita.title }}</p>
             <div v-html="berita.content"
               class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
@@ -186,8 +198,7 @@ export default {
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
             <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
               Komunitas highlight</p> -->
-            <p
-              class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+            <p class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
               {{ berita.title }}</p>
             <div v-html="berita.content"
               class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
@@ -204,8 +215,7 @@ export default {
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
             <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
               Komunitas highlight</p> -->
-            <p
-              class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+            <p class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
               {{ berita.title }}</p>
             <div v-html="berita.content"
               class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
