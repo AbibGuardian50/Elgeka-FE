@@ -158,6 +158,5 @@ export default {
                 </div>
 
         </form>
-        <!-- Forgot Password Link -->
     </div>
 </div></template>
