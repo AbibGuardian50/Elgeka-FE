@@ -95,7 +95,7 @@ export default {
     <div>
         <div v-if="storyblog" class="flex flex-col pb-12 pt-20">
             <p class="text-center font-poppins font-bold text-[40px] pt-2 pb-4 mt-16">{{ storyblog.title }}</p>
-            <p v-html="storyblog.content" class="px-16 text-[#000000B2] font-base"></p>
+            <p v-html="storyblog.content" class="px-16 text-[#000000B2] font-base content-richtext"></p>
             <div>
                 <form class="px-16 pt-4 flex gap-2 justify-between max-w-[1800px] m-auto" @submit.prevent="createcomment()">
                     <input v-if="usertoken" class="bg-white w-11/12 max-w-[1600px] px-4 placeholder:text-[#000000B2] border border-teal" required
@@ -124,3 +124,83 @@ export default {
         </div>
     </div>
 </template>
+
+<style>
+.content-richtext b {
+    font-weight: bold;
+}
+
+a {
+    color: #eb0707;
+}
+
+.content-richtext a:link,
+a:visited {
+    color: #eb0707;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.content-richtext a:link:active,
+a:visited:active {
+    color: #eb0707;
+}
+
+.content-richtext i {
+    font-style: italic;
+}
+
+.content-richtext u {
+    text-decoration: underline;
+}
+
+.content-richtext h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+.content-richtext ol {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+</style>

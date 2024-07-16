@@ -49,7 +49,7 @@ export default {
                 <p class="font-poppins font-medium text-xl pb-8">{{ kegiatankomunitas.tempat }}, {{ formatDate(kegiatankomunitas.date)}}</p>
             </div>
 
-            <div v-html="kegiatankomunitas.content" class="font-poppins font-normal text-[12px] flex flex-col">
+            <div v-html="kegiatankomunitas.content" class="font-poppins font-normal text-[12px] flex flex-col content-richtext">
             </div>
 
 
@@ -58,13 +58,81 @@ export default {
 </template>
 
 <style>
-ol {
-    list-style-type: decimal;
-    margin-left: 1rem;
+.content-richtext b {
+    font-weight: bold;
 }
 
-ul {
+a {
+    color: #eb0707;
+}
+
+.content-richtext a:link,
+a:visited {
+    color: #eb0707;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.content-richtext a:link:active,
+a:visited:active {
+    color: #eb0707;
+}
+
+.content-richtext i {
+    font-style: italic;
+}
+
+.content-richtext u {
+    text-decoration: underline;
+}
+
+.content-richtext h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext ul {
+    display: block;
     list-style-type: disc;
-    margin-left: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+.content-richtext ol {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
 }
 </style>
