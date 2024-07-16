@@ -71,6 +71,7 @@ export default {
             } else {
                 this.phoneError = '';
             }
+            return true;
         },
 
         fetchProvinces() {
@@ -80,7 +81,7 @@ export default {
                     this.provinces = response.data;
                 })
                 .catch(error => {
-                    toast.error('Error fetching provinces, mohon refresh halaman')
+                    toast.error('Error fetching provinces, mohon refresh halaman');
                     console.error('Error fetching provinces:', error);
                 });
         },
@@ -93,7 +94,7 @@ export default {
                     this.villages = [];
                 })
                 .catch(error => {
-                    toast.error('Error fetching districts, mohon refresh halaman')
+                    toast.error('Error fetching districts, mohon refresh halaman');
                     console.error('Error fetching districts:', error);
                 });
         },
@@ -105,7 +106,7 @@ export default {
                     this.villages = [];
                 })
                 .catch(error => {
-                    toast.error('Error fetching subDistricts, mohon refresh halaman')
+                    toast.error('Error fetching subDistricts, mohon refresh halaman');
                     console.error('Error fetching subDistricts:', error);
                 });
         },
@@ -116,7 +117,7 @@ export default {
                     this.villages = response.data;
                 })
                 .catch(error => {
-                    toast.error('Error fetching villages, mohon refresh halaman')
+                    toast.error('Error fetching villages, mohon refresh halaman');
                     console.error('Error fetching villages:', error);
                 });
         },
@@ -168,6 +169,15 @@ export default {
             }
             return true;
         },
+        validatePassword() {
+            if (this.form.Password !== this.form.confirmpassword) {
+                this.passwordError = 'Password dan konfirmasi password harus sama';
+                return false;
+            } else {
+                this.passwordError = '';
+                return true;
+            }
+        },
         createuser() {
             const toast = useToast();
             if (!this.isValidForm) {
@@ -197,24 +207,17 @@ export default {
                     VueCookies.set('user_id', response.data.Data[0].ID);
                     if (response.data.Message === 'Register Success') {
                         this.$router.push('/optionotp');
-                        toast.success('registrasi sukses')
+                        toast.success('Registrasi sukses');
                     }
                 })
                 .catch(error => {
                     console.log(error.response.data.ErrorMessage);
                     if (error.response.data.ErrorMessage === "Email Already Use") {
-                        toast.error('registrasi gagal karena email sudah digunakan, mohon gunakan email yang lain')
+                        toast.error('Registrasi gagal karena email sudah digunakan, mohon gunakan email yang lain');
                     } else if (error.response.data.ErrorMessage === "Phone Number Already Use") {
-                        toast.error('registrasi gagal karena nomor telepon sudah digunakan, mohon gunakan nomor yang lain')
+                        toast.error('Registrasi gagal karena nomor telepon sudah digunakan, mohon gunakan nomor yang lain');
                     }
                 });
-        },
-        validatePassword() {
-            if (this.form.Password !== this.form.confirmpassword) {
-                this.passwordError = 'Password dan confirmation password harus sama';
-            } else {
-                this.passwordError = '';
-            }
         },
     },
     watch: {
