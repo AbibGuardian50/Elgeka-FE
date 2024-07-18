@@ -1,6 +1,5 @@
 <script>
 import Navbar from '../components/Navbar.vue'
-import Quill from "quill";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.bubble.css";
 import "quill/dist/quill.snow.css";
@@ -37,9 +36,7 @@ export default {
             formData.append('content', this.form.content);
             axios.post(url, formData, { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${Token}` } })
                 .then(response => {
-                    console.log(response);
                     this.statuscode = response.data.code;
-                    console.log(this.statuscode);
                     if (response.data.code === 201 || response.data.message === "Create Blog Successfully") {
                         toast.success('Blog berhasil dibuat, mohon untuk menunggu verifikasi')
                         setTimeout(() => {
@@ -53,19 +50,6 @@ export default {
                     console.log(error)
                 })
         },
-        async generateblog() {
-            try {
-                const Token = VueCookies.get('token')
-                const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog/generate'
-                const response = await axios.post(url, { prompt: this.prompt }, { headers: { 'Authorization': `Bearer ${Token}` } });
-                this.token = tokenlogin
-                this.blog = response.data.result;
-                console.log(this.blog);
-                console.log(this.token)
-            } catch (error) {
-                console.error('Error generating blog:', error);
-            }
-        },
     },
     components: {
         Navbar,
@@ -77,46 +61,23 @@ export default {
 
 <template>
     <Navbar />
-
-    <div class="flex flex-col gap-4">
-        <div class="mt-40 mx-8">
-            <!-- <p class="font-gotham font-normal text-2xl text-black mb-2">Quotes</p> -->
-            <input type="text" class="bg-grey pl-4 py-1 w-full rounded-full" v-model="prompt"
-                placeholder="Enter your prompt here">
-            <button class="px-8 py-2 bg-teal text-white font-poppins rounded-md my-2" @click="generateblog">Generate
-                blog</button>
-            <div class="bg-teal text-white font-bold font-poppins px-2" v-if="blog">{{ blog.generated_blog
-            }}</div>
-            <div v-else>(Hasil Generate blog akan tampil disini)</div>
-        </div>
-
-    </div>
-
     <div>
-        <div class="flex flex-col justify-end ">
+        <div class="flex flex-col justify-end pt-12">
             <form @submit.prevent="createcerita()">
-
                 <div id="editor" class=" border-2 border-teal mt-24 mx-8 mb-8 rounded-lg p-4 bg-white">
                     <p class="text-darktransparent font-bold">Judul Cerita</p>
-                    <input class="w-full bg-grey" type="text" name="judul cerita" id="" v-model="form.title">
+                    <input class="w-full bg-grey min-h-[2rem]" type="text" name="judul cerita" id="" v-model="form.title">
                 </div>
-
                 <div class="border-2 border-teal m-8 rounded-lg p-4 bg-white">
                     <p class="text-darktransparent font-bold">Tuliskan Cerita anda</p>
-                    <quill-editor :toolbar="['bold', 'italic', 'underline', 'image']" theme="snow" class="bg-grey"
+                    <quill-editor :toolbar="['bold', 'italic', 'underline', 'image', 'link', {'list': 'ordered'}, {'list': 'bullet'}]" theme="snow" class="bg-grey min-h-[4rem]"
                         contentType="html" v-model:content="form.content"></quill-editor>
-
                 </div>
-
                 <div class="flex justify-end pr-8">
-                    <!-- <router-link to="/komentar"><button
-                        class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button></router-link> -->
                     <button type="submit"
-                        class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12">Kirim</button>
+                        class="bg-teal font-bold font-poppins text-[20px] text-white rounded-md py-[10px] px-12 mb-8">Kirim</button>
                 </div>
             </form>
-
-
         </div>
     </div>
 </template>

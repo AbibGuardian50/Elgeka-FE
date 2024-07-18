@@ -65,17 +65,17 @@ export default {
 
 <template class="overflow-y-hidden">
     <!-- component -->
-    <div class="bg-gray-100 flex flex-row-reverse">
+    <div class="bg-gray-100 flex flex-row-reverse h-full">
         <!-- Right: Image -->
-        <div class="w-1/2 h-screen hidden lg:block">
+        <div class="w-1/2 hidden lg:block h-full">
             <router-link to="/"><img src="../assets/sign.png" alt="Placeholder Image"
-                    class="object-cover w-full h-full"></router-link>
+                    class="object-cover w-full"></router-link>
         </div>
         <!-- left: Forget Password Form -->
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
             <img class="w-[120px] rounded-md bg-teal mb-20" src="../assets/logoElgekaPutih1.png" alt="Logo">
             <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Buat Kata Sandi Baru</h1>
-            <p class="font-poppins font-normal text-silvergray text-[14px] mb-8">Silahkan masukkan password baru anda</p>
+            <p class="font-poppins font-normal text-silvergray text-[14px] mb-8">Silahkan masukkan kata sandi baru anda</p>
             <form @submit.prevent="ChangePassword()">
                 <!-- kata Sandi Baru Input -->
                 <div class="mb-4">
@@ -84,7 +84,7 @@ export default {
                         <div class="relative">
                             <input :type="showPassword ? 'text' : 'password'" id="password" name="password"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="enter new password" v-model="form.Password">
+                        autocomplete="off" placeholder="Masukkan kata sandi baru" v-model="form.Password">
                     <button type="button" @click="togglePasswordVisibility"
                         class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 focus:outline-none">
                         <span v-if="showPassword"><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none"
@@ -119,7 +119,7 @@ export default {
                     <div class="relative">
                         <input :type="showConfirmationPassword ? 'text' : 'password'" id="password" name="password"
                             class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                            autocomplete="off" placeholder="enter confirmation new password"
+                            autocomplete="off" placeholder="Masukkan konfirmasi kata sandi baru"
                             v-model="form.PasswordConfirmation">
 
                         <button type="button" @click="toggleConfirmationPasswordVisibility"

@@ -121,7 +121,9 @@ export default {
 <template class="max-[500px]:overflow-x-hidden">
   <Navbar />
 
-  <div v-if="profilkomunitas.currentPage === 1" class="flex flex-col items-center justify-center" id="profile">
+  <div v-if="profilkomunitas.currentPage === 1"
+    :style="{ backgroundImage: `url(${url + profilkomunitas.data.image_url})` }"
+    class="h-screen bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center" id="profile">
     <p class="font-poppins font-semibold text-3xl min-[965px]:text-5xl text-white">PROFILE</p>
     <p class="text-center font-poppins font-semibold text-3xl  min-[965px]:text-5xl text-white">Komunitas ELGEKA Jawa
       Barat</p>
@@ -139,7 +141,6 @@ export default {
   <div class="kegiatan">
     <div class="bg-greymercury flex flex-col items-center pt-10 pb-10">
       <div>
-        <p class="text-center font-poppins font-semibold text-xl text-black">Kegiatan Komunitas</p>
         <p class="text-center font-poppins font-semibold text-5xl text-teal">Kegiatan dari</p>
         <p class="text-center font-poppins font-semibold text-5xl text-teal">komunitas kami</p>
       </div>
@@ -195,9 +196,8 @@ export default {
   <!-- Berita -->
   <div class="pt-4 pb-16 bg-greymercury">
     <div class="pl-8 sm:pl-16 min-[2000px]:items-center min-[2000px]:flex min-[2000px]:flex-col">
-      <p class="font-poppins font-medium text-xl sm:text-2xl pb-4">Berita</p>
       <div class="flex justify-between items-center">
-        <p class="font-poppins font-semibold text-2xl sm:text-5xl text-teal">Disini Berita</p>
+        <p class="font-poppins font-semibold text-2xl sm:text-5xl text-teal">Berita</p>
       </div>
     </div>
 
@@ -253,11 +253,7 @@ export default {
             </div>
           </div>
         </div>
-
-        <!-- Ulangi struktur yang sama untuk beritaumum dan beritaCML -->
-
       </div>
-
       <div class="my-8 sm:my-20">
         <router-link target="_blank" to="/perkembangancml">
           <button type="button"
@@ -284,13 +280,21 @@ export default {
 
 
 <style>
-#profile {
-  background: rgba(0, 0, 0, 0.4) url('../assets/kerjasama.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  filter: brightness(91%);
+#profile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  /* Ubah nilai opacity sesuai kebutuhan */
+  z-index: 1;
+}
+
+#profile * {
+  position: relative;
+  z-index: 2;
 }
 
 #kegiatan .swiper-pagination-bullet-active {
@@ -360,5 +364,4 @@ export default {
 
 .group .group-hover\:opacity-100 {
   opacity: 0;
-} */
-</style>
+} */</style>

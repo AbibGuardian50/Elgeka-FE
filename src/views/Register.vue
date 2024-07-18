@@ -147,18 +147,6 @@ export default {
                 return false;
             }
 
-            // Calculate age
-            // let age = today.getFullYear() - birthDate.getFullYear();
-            // const m = today.getMonth() - birthDate.getMonth();
-            // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            //     age--;
-            // }
-            // if (age < 18) {
-            //     this.ageError = 'Umur harus minimal 18 tahun.';
-            //     return false;
-            // }
-
-            // return true;
         },
 
         validateAddress() {
@@ -237,7 +225,7 @@ export default {
         </div>
         <div class="flex flex-col lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
             <img class="w-[120px] mb-20" src="../assets/LogoElgekaHijau.png" alt="Logo">
-            <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Let's Create your account</h1>
+            <h1 class="text-2xl font-bold font-[verdana] text-[32px] mb-4">Buat Akun Anda</h1>
             <form @submit.prevent="createuser()">
                 <!-- Nama Lengkap Input -->
                 <div class="mb-4">
@@ -245,7 +233,7 @@ export default {
                         Lengkap</label>
                     <input type="text" id="namalengkap" name="namalengkap" required
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="Enter your full name" v-model="form.Name">
+                        autocomplete="off" placeholder="Masukkan Nama Lengkap Kamu" v-model="form.Name">
                 </div>
                 <!-- Email Input -->
                 <div class="mb-4">
@@ -284,7 +272,7 @@ export default {
                     <label for="alamat" class="block text-[#344054] mb-2">Alamat</label>
                     <input type="text" id="alamat" name="alamat" required
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="Enter Alamat" v-model="form.Address">
+                        autocomplete="off" placeholder="Masukkan Alamat" v-model="form.Address">
                 </div>
                 <!-- Provinsi Input -->
                 <div class="mb-4">
@@ -352,12 +340,12 @@ export default {
                 </div>
                 <!-- Password Input -->
                 <div class="mb-4">
-                    <label for="password" class="block text-[#344054] mb-2">Password</label>
+                    <label for="Kata Sandi" class="block text-[#344054] mb-2">Kata Sandi</label>
                     <div class="relative">
-                        <input :type="showPassword ? 'text' : 'password'" id="password" name="password" required
+                        <input :type="showPassword ? 'text' : 'password'" id="password" name="Kata Sandi" required
                             v-model="form.Password"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                            autocomplete="off" placeholder="Enter password">
+                            autocomplete="off" placeholder="Masukkan Kata Sandi">
 
                         <button type="button" @click="togglePasswordVisibility"
                             class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 focus:outline-none">
@@ -387,12 +375,12 @@ export default {
                 </div>
                 <!-- Password Confirmation Input -->
                 <div class="mb-4">
-                    <label for="passwordConfirmation" class="block text-[#344054] mb-2">Confirmation Password</label>
+                    <label for="passwordConfirmation" class="block text-[#344054] mb-2">Konfirmasi Kata Sandi</label>
                     <div class="relative">
                         <input :type="showConfirmationPassword ? 'text' : 'password'" id="passwordConfirmation"
                             name="passwordConfirmation" required v-model="form.confirmpassword"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                            autocomplete="off" placeholder="Enter password">
+                            autocomplete="off" placeholder="Masukkan Konfirmasi Kata Sandi">
 
                         <button type="button" @click="toggleConfirmationPasswordVisibility"
                             class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 focus:outline-none">
@@ -424,8 +412,8 @@ export default {
                 <div class="flex items-center flex-col">
                     <button type="submit"
                         class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
-                    <a href="/login" class="mt-4 font-[verdana] font-normal text-[14px]">Already have an account? <span
-                            class="font-bold text-[#4D4D4F]">Sign in</span></a>
+                    <a href="/login" class="mt-4 font-[verdana] font-normal text-[14px]">Sudah punya akun? bisa masuk <span
+                            class="font-bold text-[#4D4D4F]">disini</span></a>
                 </div>
             </form>
         </div>

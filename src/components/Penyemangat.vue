@@ -33,14 +33,6 @@ export default {
         return {
             url: 'https://elgeka-web-api-production.up.railway.app/',
             modules: [Pagination, Navigation],
-            // QuotesPengurus: [
-            //     { name: 'John Doe', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik', image: 'Rectangle69.png' },
-            //     { name: 'Dennis Harahap', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-            //     { name: 'Cecep Sudarma', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-            //     { name: 'Muhammad Sulaiman', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-            //     { name: 'Surya Somad', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-            //     { name: 'Ijal', role: 'Pengurus', quotes: 'Mari sembuh bersama menjalani hidup yang lebih baik' },
-            // ]
         };
     },
     async created() {
@@ -66,7 +58,6 @@ export default {
     <div class="penyemangat">
         <div class="bg-white py-16">
             <div class=" pl-16">
-                <p class="text-center font-poppins font-medium text-2xl">Pengurus Komunitas</p>
                 <p class="text-center font-poppins font-semibold text-5xl text-teal pt-4 pb-16">Pengurus Komunitas</p>
             </div>
 
@@ -96,8 +87,8 @@ export default {
                         <swiper-slide v-for="quotes in memberkomunitas" class="rounded-lg max-h-72">
                             <div class="max-w-md rounded overflow-hidden drop-shadow-lg shadow-lg">
                                 <div class="flex px-6 py-4">
-                                    <img class="w-[240px] h-[240px] bg-[url('https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg')] bg-cover bg-center"
-                                        :src="url + quotes.image_url">
+                                    <img class="w-[240px] h-[240px] bg-cover bg-center"
+                                    :src="quotes.image_url ? url + quotes.image_url : 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg'">
                                     <div class="pl-6 flex items-center justify-center flex-col">
                                         <p class="font-poppins font-semibold text-2xl mb-4">{{ quotes.full_name }}</p>
                                         <p class="text-xl text-bluegrey text-base">
@@ -107,9 +98,7 @@ export default {
 
                                 </div>
                                 <div class="px-6 pt-2 pb-2">
-                                    <p v-html="quotes.quote" class="text-gray-700 text-base text-left mb-4">
-
-                                    </p>
+                                    <p v-html="quotes.quote" class="text-gray-700 text-base text-left mb-4"></p>
                                 </div>
                             </div>
                         </swiper-slide>

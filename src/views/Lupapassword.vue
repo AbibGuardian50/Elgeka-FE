@@ -60,7 +60,7 @@ export default {
                         class="block font-[verdana] font-normal text-[14px] text-[#344054] mb-2">Email</label>
                     <input type="text" id="username" name="username"
                         class="w-full border border-lightgrayish rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off" placeholder="enter your email address" v-model="email">
+                        autocomplete="off" placeholder="Masukkan alamat email" v-model="email">
                 </div>
                 <!-- kata Sandi Baru Input -->
                 <!-- <div class="mb-4">
