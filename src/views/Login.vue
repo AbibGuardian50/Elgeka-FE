@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { useToast } from 'vue-toastification';
 import CryptoJS from 'crypto-js';
 
-const ENCRYPTION_KEY = 'etrh940945hj945hg409j'; // Gantilah dengan kunci enkripsi yang aman
+const ENCRYPTION_KEY = 'etrh940945hj945hg409j';
 
 export default {
     components: {
