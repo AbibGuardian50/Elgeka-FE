@@ -64,9 +64,9 @@ export default {
             this.showConfirmationPassword = !this.showConfirmationPassword;
         },
         validatePhoneNumber() {
-            const phonePattern = /^628[0-9]{10,15}$/;
+            const phonePattern = /^628[0-9]{10,14}$/;
             if (!phonePattern.test(this.form.PhoneNumber)) {
-                this.phoneError = 'Nomor HP harus dimulai dengan 628 dan memiliki panjang 10 hingga 15 digit';
+                this.phoneError = 'Nomor HP harus dimulai dengan 628 dan memiliki panjang 10 hingga 14 digit';
                 return false;
             } else {
                 this.phoneError = '';
