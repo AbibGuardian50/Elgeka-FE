@@ -74,7 +74,7 @@ export default {
         <div  v-if="profiluser" class="relative inline-block text-left min-[965px]:hidden" id="user">
             <div>
                 <button @click="toggleUserMenu" class="flex items-center">
-                    <img src="https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg" alt="User Profil" class="w-[70px] rounded-full">
+                    <p class="font-inter font-black text-white">{{ profiluser.Name }}</p>
                 </button>
             </div>
             <div>
@@ -149,7 +149,6 @@ export default {
                 </a>
             </div>
             <div v-else-if="profiluser" class="flex flex-row-reverse items-center border-2 border-white gap-2 py-1 px-4">
-                <img class="w-[39px] h-[39px]" src="https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg" alt="Profile Picture">
                 <router-link to="/userprofil">
                     <p class="font-inter font-black text-white">{{ profiluser.Name }}</p>
                 </router-link>
