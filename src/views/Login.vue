@@ -30,8 +30,9 @@ export default {
             try {
                 axios.defaults.withCredentials = true;
                 const url = 'https://elgeka-mobile-production.up.railway.app/api/user/login_website';
+                const formattedEmailOrPhoneNumber = this.formatPhoneNumber(this.EmailOrPhoneNumber);
                 const response = await axios.post(url, {
-                    EmailOrPhoneNumber: this.EmailOrPhoneNumber,
+                    EmailOrPhoneNumber: formattedEmailOrPhoneNumber,
                     password: this.password,
                 });
                 console.log(response);
@@ -73,6 +74,12 @@ export default {
         },
         togglePasswordVisibility() {
             this.showPassword = !this.showPassword;
+        },
+        formatPhoneNumber(input) {
+            if (input.startsWith('0')) {
+                return '62' + input.substring(1);
+            }
+            return input;
         },
     },
     mounted() {
