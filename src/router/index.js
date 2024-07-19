@@ -12,7 +12,7 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue'),
       meta: {
-        title: 'Halaman Utama Elgeka Jawa Barat'
+        title: 'Halaman Utama Sahabat CGI'
       }
     },
 
@@ -30,7 +30,7 @@ const router = createRouter({
       name: 'aturancerita',
       component: () => import('../views/Aturancerita.vue'),
       meta: {
-        title: 'Aturan Cerita Elgeka Jawa Barat'
+        title: 'Aturan Cerita Sahabat CGI'
       }
     },
 
@@ -84,7 +84,7 @@ const router = createRouter({
       name: 'donasi',
       component: () => import('../views/Donasi.vue'),
       meta: {
-        title: 'Donasi Elgeka Jawa Barat'
+        title: 'Donasi Sahabat CGI'
       }
     },
 
@@ -111,7 +111,7 @@ const router = createRouter({
       name: 'komunitaskegiatan',
       component: () => import('../views/KomunitasKegiatan.vue'),
       meta: {
-        title: 'Komunitas Kegiatan Elgeka Jawa Barat'
+        title: 'Komunitas Kegiatan Sahabat CGI'
       }
     },
 
@@ -120,7 +120,7 @@ const router = createRouter({
       name: 'detailblog',
       component: () => import('../views/DetailBlog.vue'),
       meta: {
-        title: 'Detail Blog Elgeka Jawa Barat'
+        title: 'Detail Blog Sahabat CGI'
       }
     },
 
@@ -129,7 +129,7 @@ const router = createRouter({
       name: 'login',
       component: () => import('../views/Login.vue'),
       meta: {
-        title: 'Login Elgeka Jawa Barat'
+        title: 'Login Sahabat CGI'
       }
     },
 
@@ -147,7 +147,7 @@ const router = createRouter({
       name: 'perkembangancml',
       component: () => import('../views/PerkembanganCML.vue'),
       meta: {
-        title: 'Perkembangan CML Elgeka Jawa Barat'
+        title: 'Perkembangan CML Sahabat CGI'
       }
     },
 
@@ -156,7 +156,7 @@ const router = createRouter({
       name: 'Detailkegiatan',
       component: () => import('../views/Detailkegiatan.vue'),
       meta: {
-        title: 'Detail Kegiatan Elgeka Jawa Barat'
+        title: 'Detail Kegiatan Sahabat CGI'
       }
     },
 
@@ -165,7 +165,7 @@ const router = createRouter({
       name: 'detailberita',
       component: () => import('../views/Detailberita.vue'),
       meta: {
-        title: 'Detail Berita Elgeka Jawa Barat'
+        title: 'Detail Berita Sahabat CGI'
       }
     },
 
@@ -240,7 +240,7 @@ const router = createRouter({
       name: 'userprofil',
       component: () => import('../views/Userprofil.vue'),
       meta: {
-        title: 'User Profil Elgeka Jawa Barat'
+        title: 'User Profil Sahabat CGI'
       },
     },
 
@@ -249,7 +249,7 @@ const router = createRouter({
       name: 'profilkomunitas',
       component: () => import('../views/Profilkomunitas.vue'),
       meta: {
-        title: 'Profil Komunitas Elgeka Jawa Barat'
+        title: 'Profil Komunitas Sahabat CGI'
       },
     },
 
@@ -258,7 +258,7 @@ const router = createRouter({
       name: 'Quotes',
       component: () => import('../views/Quotes.vue'),
       meta: {
-        title: 'Quotes Elgeka Jawa Barat'
+        title: 'Quotes Sahabat CGI'
       },
     },
 
@@ -267,7 +267,7 @@ const router = createRouter({
       name: 'Register',
       component: () => import('../views/Register.vue'),
       meta: {
-        title: 'Register akun Elgeka Jawa Barat'
+        title: 'Register akun Sahabat CGI'
       },
     },
     
@@ -275,7 +275,7 @@ const router = createRouter({
   
 })
 router.beforeEach((to,from ) => {
-    document.title = to.meta?.title ?? 'ELGEKA JAWA BARAT 2024'
+    document.title = to.meta?.title ?? 'Sahabat CGI 2024'
 })
 
 export default router
