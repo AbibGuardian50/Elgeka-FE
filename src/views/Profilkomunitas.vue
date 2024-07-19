@@ -55,7 +55,7 @@ export default {
                             TENTANG</p>
                         <p
                             class="font-bold font-poppins max-md:text-[54px] max-sm:text-[44px] text-[64px] text-white text-center">
-                            KOMUNITAS ELGEKA</p>
+                            SAHABAT CGI</p>
                     </div>
                 </div>
             </div>
