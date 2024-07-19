@@ -20,27 +20,41 @@ export default {
     async created() {
         const toast = useToast();
         try {
-            const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas'
+            const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas';
             const response_kegiatankomunitas = await axios.get(url);
-            console.log(response_kegiatankomunitas)
-
+            console.log(response_kegiatankomunitas);
             if (response_kegiatankomunitas.data.message === "Get Kegiatan Komunitas Successfully") {
-                toast.success('Kegiatan Komunitas berhasil dimuat')
+                toast.success('Kegiatan Komunitas berhasil dimuat');
             }
-
             // Filter data dengan show === true
             this.received_kegiatankomunitas = response_kegiatankomunitas.data.result.data.filter(item => item.show === true);
-
             // Hitung total halaman dan perbarui data terpagination
             this.totalPages = Math.ceil(this.received_kegiatankomunitas.length / this.perPage);
             this.updatePaginatedData();
-
+            this.processAllHyperlinks();
         } catch (error) {
             console.error(error);
-            toast.error('Kegiatan Komunitas gagal dimuat, mohon coba lagi')
+            toast.error('Kegiatan Komunitas gagal dimuat, mohon coba lagi');
         }
     },
     methods: {
+        processAllHyperlinks() {
+            this.received_kegiatankomunitas.forEach((kegiatan, index) => {
+                if (kegiatan.content) {
+                    const div = document.createElement('div');
+                    div.innerHTML = kegiatan.content;
+                    const anchors = div.getElementsByTagName('a');
+                    for (let i = 0; i < anchors.length; i++) {
+                        let href = anchors[i].getAttribute('href');
+                        if (href && !href.startsWith('http')) {
+                            anchors[i].setAttribute('href', 'https://' + href);
+                        }
+                    }
+                    this.received_kegiatankomunitas[index].content = div.innerHTML;
+                }
+            });
+            this.updatePaginatedData(); // Update paginated data again to reflect the changes
+        },
         updatePaginatedData() {
             const startIndex = (this.currentPage - 1) * this.perPage;
             const endIndex = startIndex + this.perPage;
@@ -63,7 +77,7 @@ export default {
             }
         }
     }
-}
+};
 </script>
 
 <template>

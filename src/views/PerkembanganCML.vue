@@ -38,12 +38,29 @@ export default {
             const response_beritaCML = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganCML');
             const response_beritaKomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas');
 
-            this.received_beritaumum = response_beritaumum.data.result.data.filter(item => item.show === true);
-            this.received_beritaCML = response_beritaCML.data.result.data.filter(item => item.show === true);
-            this.received_beritaKomunitas = response_beritaKomunitas.data.result.data.filter(item => item.show === true);
+            this.received_beritaumum = this.processHyperlinks(response_beritaumum.data.result.data.filter(item => item.show === true));
+            this.received_beritaCML = this.processHyperlinks(response_beritaCML.data.result.data.filter(item => item.show === true));
+            this.received_beritaKomunitas = this.processHyperlinks(response_beritaKomunitas.data.result.data.filter(item => item.show === true));
 
             this.updateTotalPages();
             this.updatePaginatedData();
+        },
+        processHyperlinks(data) {
+            return data.map(item => {
+                if (item.content) {
+                    const div = document.createElement('div');
+                    div.innerHTML = item.content;
+                    const anchors = div.getElementsByTagName('a');
+                    for (let i = 0; i < anchors.length; i++) {
+                        let href = anchors[i].getAttribute('href');
+                        if (href && !href.startsWith('http')) {
+                            anchors[i].setAttribute('href', 'https://' + href);
+                        }
+                    }
+                    item.content = div.innerHTML;
+                }
+                return item;
+            });
         },
         updateTotalPages() {
             if (this.pilih_kategori === null) {
