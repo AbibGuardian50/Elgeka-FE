@@ -123,6 +123,7 @@ export default {
     <Navbar />
 
     <div>
+        <!-- Category Selection -->
         <div class="flex flex-col gap-2 items-end pt-20 ml-auto mr-10">
             <select autocomplete="off" name="Pilih Kategori" class="form-select focus:bg-white focus:text-teal text-white bg-teal p-2 mb-4 mt-20 font-bold font-inter hover:cursor-pointer rounded-lg
                 sm:text-sm sm:p-1 md:text-base md:p-2 lg:text-lg lg:p-3" v-model="pilih_kategori">
@@ -132,67 +133,76 @@ export default {
             </select>
         </div>
 
-
-        <div>
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
-                v-show="pilih_kategori === null">
+        <!-- News Items -->
+        <div v-show="pilih_kategori === null">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="berita in paginatedreceived_beritaumum" :key="berita.id"
-                    class="flex items-center flex-col rounded-md p-4">
+                    class="flex flex-col bg-silver rounded-md p-4 h-full">
                     <img class="w-full sm:h-auto md:w-[642px] md:h-[340px]" :src="url + berita.image_url" alt="" srcset="">
-                    <p
-                        class=" max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
-                        {{ berita.title }}</p>
-                    <div v-html="berita.content"
-                        class="max-w-full md:max-w-[619px]  line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                    <div class="flex flex-col flex-grow">
+                        <p class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            {{ berita.title }}</p>
+                        <div v-html="berita.content"
+                            class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                        </div>
+                        <a :href="'detailberita/' + berita.id" class="mt-auto flex flex-col items-center">
+                            <button type="button"
+                                class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Selengkapnya</button>
+                        </a>
                     </div>
-                    <a :href="'detailberita/' + berita.id"><button type="button"
-                            class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Selengkapnya</button></a>
                 </div>
             </div>
+        </div>
 
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
-                v-show="pilih_kategori === 'perkembanganKomunitas'">
+        <div v-show="pilih_kategori === 'perkembanganKomunitas'">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="berita in paginatedreceived_beritaKomunitas" :key="berita.id"
-                    class="flex items-center flex-col rounded-md p-4">
+                    class="flex flex-col bg-silver rounded-md p-4 h-full">
                     <img class="w-full sm:h-auto md:w-[619px] md:h-[320px]" :src="url + berita.image_url" alt="" srcset="">
-                    <p
-                        class="max-w-full md:max-w-[619px]  font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
-                        {{ berita.title }}</p>
-                    <div v-html="berita.content"
-                        class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                    <div class="flex flex-col flex-grow">
+                        <p class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            {{ berita.title }}</p>
+                        <div v-html="berita.content"
+                            class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                        </div>
+                        <a :href="'detailberita/' + berita.id" class="mt-auto flex flex-col items-center">
+                            <button type="button"
+                                class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Selengkapnya</button>
+                        </a>
                     </div>
-                    <a :href="'detailberita/' + berita.id"><button type="button"
-                            class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Selengkapnya</button></a>
                 </div>
-
             </div>
+        </div>
 
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]"
-                v-show="pilih_kategori === 'perkembanganCML'">
+        <div v-show="pilih_kategori === 'perkembanganCML'">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="berita in paginatedreceived_beritaCML" :key="berita.id"
-                    class="flex items-center flex-col rounded-md p-4">
+                    class="flex flex-col bg-silver rounded-md p-4 h-full">
                     <img class="w-full sm:h-auto md:w-[619px] md:h-[320px]" :src="url + berita.image_url" alt="" srcset="">
-                    <p
-                        class="max-w-full md:max-w-[619px]  font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
-                        {{ berita.title }}</p>
-                    <div v-html="berita.content"
-                        class="max-w-full md:max-w-[619px]  line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                    <div class="flex flex-col flex-grow">
+                        <p class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            {{ berita.title }}</p>
+                        <div v-html="berita.content"
+                            class="max-w-full md:max-w-[619px] line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                        </div>
+                        <a :href="'detailberita/' + berita.id" class="mt-auto flex flex-col items-center">
+                            <button type="button"
+                                class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Selengkapnya</button>
+                        </a>
                     </div>
-                    <a :href="'detailberita/' + berita.id"><button type="button"
-                            class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Selengkapnya</button></a>
                 </div>
             </div>
+        </div>
 
-            <!-- Pagination navigation -->
-            <div class="ml-8 my-8 flex justify-center">
-                <button @click="prevPage" :disabled="currentPage === 1"
-                    class="px-4 py-2 mr-2 bg-teal text-white rounded-md">Previous</button>
-                <button v-for="pageNumber in totalPages" :key="pageNumber" @click="goToPage(pageNumber)"
-                    :class="{ 'bg-teal text-white rounded-md': pageNumber === currentPage, 'bg-white text-blue-500 border border-blue-500 rounded-md': pageNumber !== currentPage }"
-                    class="px-4 py-2 mr-2">{{ pageNumber }}</button>
-                <button @click="nextPage" :disabled="currentPage === totalPages"
-                    class="px-4 py-2 bg-teal text-white rounded-md">Next</button>
-            </div>
+        <!-- Pagination navigation -->
+        <div class="ml-8 my-8 flex justify-center">
+            <button @click="prevPage" :disabled="currentPage === 1"
+                class="px-4 py-2 mr-2 bg-teal text-white rounded-md">Previous</button>
+            <button v-for="pageNumber in totalPages" :key="pageNumber" @click="goToPage(pageNumber)"
+                :class="{ 'bg-teal text-white rounded-md': pageNumber === currentPage, 'bg-white text-blue-500 border border-blue-500 rounded-md': pageNumber !== currentPage }"
+                class="px-4 py-2 mr-2">{{ pageNumber }}</button>
+            <button @click="nextPage" :disabled="currentPage === totalPages"
+                class="px-4 py-2 bg-teal text-white rounded-md">Next</button>
         </div>
     </div>
 </template>
