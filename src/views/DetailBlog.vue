@@ -126,10 +126,6 @@ export default {
 </template>
 
 <style>
-.content-richtext b {
-    font-weight: bold;
-}
-
 a {
     color: #eb0707;
 }
@@ -144,6 +140,10 @@ a:visited {
 .content-richtext a:link:active,
 a:visited:active {
     color: #eb0707;
+}
+
+.content-richtext b {
+    font-weight: bold;
 }
 
 .content-richtext i {

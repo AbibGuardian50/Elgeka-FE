@@ -47,7 +47,7 @@ export default {
                 <div class="w-9/12 max-[900px]:w-8/12 max-sm:w-full">
                     <p class="font-poppins font-bold max-[900px]:text-[30px] max-sm:text-[25px] text-[40px] text-fullblack">{{ profilkomunitas.data.title }}
                     </p>
-                    <div class="font-poppins font-normal max-[900px]:text-[1rem] text-3xl" v-html="profilkomunitas.data.content"></div>
+                    <div class="font-poppins font-normal max-[900px]:text-[1rem] text-3xl content-richtext" v-html="profilkomunitas.data.content"></div>
                     <div class="mt-4 flex gap-4 ">
                         <a :href="profilkomunitas.data.twitter_link" target="_blank"><img class="w-[44px] h-[44px]"
                                 src="../assets/Logo-X.png" alt="Twitter"></a>
@@ -125,7 +125,65 @@ export default {
 
 }
 
-ol {
+.content-richtext b {
+    font-weight: bold;
+}
+
+.content-richtext i {
+    font-style: italic;
+}
+
+.content-richtext u {
+    text-decoration: underline;
+}
+
+.content-richtext h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.content-richtext ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+.content-richtext ol {
+    display: block;
     list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
 }
 </style>
