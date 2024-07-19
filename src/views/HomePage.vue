@@ -124,9 +124,8 @@ export default {
   <div v-if="profilkomunitas.currentPage === 1"
     :style="{ backgroundImage: `url(${url + profilkomunitas.data.image_url})` }"
     class="h-screen bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center" id="profile">
-    <p class="font-poppins font-semibold text-3xl min-[965px]:text-5xl text-white">PROFILE</p>
-    <p class="text-center font-poppins font-semibold text-3xl  min-[965px]:text-5xl text-white">Komunitas ELGEKA Jawa
-      Barat</p>
+    <p class="font-poppins font-semibold text-3xl min-[965px]:text-5xl text-white">PROFIL</p>
+    <p class="text-center font-poppins font-semibold text-3xl  min-[965px]:text-5xl text-white">Sahabat CGI</p>
     <div v-html="profilkomunitas.data.content"
       class="list-decimal max-w-[70%]  text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 min-[965px]:w-[630px] text-center line-clamp-4">
     </div>
