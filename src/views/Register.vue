@@ -147,16 +147,19 @@ export default {
                 return false;
             }
 
+            return true;
         },
 
         validateAddress() {
+            const toast = useToast();
             if (this.form.Address.length < 10) {
-                const toast = useToast();
                 this.addressError = 'Alamat harus memiliki minimal 10 karakter.';
                 toast.error(this.addressError);
                 return false;
+            } else {
+                this.addressError = '';
+                return true;
             }
-            return true;
         },
         validatePassword() {
             if (this.form.Password !== this.form.confirmpassword) {
@@ -210,6 +213,7 @@ export default {
         },
     },
     watch: {
+        'form.PhoneNumber': 'validatePhoneNumber',
         'form.Password': 'validatePassword',
         'form.confirmpassword': 'validatePassword'
     },
