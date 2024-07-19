@@ -125,6 +125,11 @@ export default {
 
 }
 
+.content-richtext a {
+    color: blue;
+    text-decoration: underline;
+}
+
 .content-richtext b {
     font-weight: bold;
 }
