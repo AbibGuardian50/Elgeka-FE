@@ -86,15 +86,15 @@ export default {
         <div>
             <div class="grid pt-40 sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="kegiatan in paginatedreceived_kegiatankomunitas" :key="kegiatan.id"
-                    class="flex items-start flex-col bg-silver rounded-md p-4">
+                    class="flex flex-col bg-silver rounded-md p-4">
                     <img class="w-full sm:h-auto md:w-[642px] md:h-[340px]" :src="url + kegiatan.image_url" alt=""
                         srcset="">
-                    <div>
+                    <div class="flex flex-col h-full">
                         <p class="font-poppins font-semibold text-2xl md:text-4xl text-teal">{{ kegiatan.title }}</p>
                         <div v-html="kegiatan.content"
                             class="line-clamp-1 font-poppins font-normal leading-6 text-base text-[#000000B2] pt-4 max-w-full md:max-w-[620px]">
                         </div>
-                        <a :href="'detailkegiatan/' + kegiatan.id"><button type="button"
+                        <a :href="'detailkegiatan/' + kegiatan.id" class="mt-auto"><button type="button"
                                 class="bg-teal text-white my-2 py-2 px-16 rounded-md">Selengkapnya</button></a>
                     </div>
                 </div>
@@ -103,16 +103,18 @@ export default {
             <!-- Pagination navigation -->
             <div class="ml-8 mt-4 flex justify-center">
                 <button @click="prevPage" :disabled="currentPage === 1"
-                    class="px-4 py-2 mr-2 bg-teal  text-white rounded-md">Previous</button>
+                    class="px-4 py-2 mr-2 bg-teal text-white rounded-md">Previous</button>
                 <button v-for="pageNumber in totalPages" :key="pageNumber" @click="goToPage(pageNumber)"
-                    :class="{ 'bg-teal  text-white rounded-md': pageNumber === currentPage, 'bg-white text-blue-500 border border-blue-500 rounded-md': pageNumber !== currentPage }"
+                    :class="{ 'bg-teal text-white rounded-md': pageNumber === currentPage, 'bg-white text-blue-500 border border-blue-500 rounded-md': pageNumber !== currentPage }"
                     class="px-4 py-2 mr-2">{{ pageNumber }}</button>
                 <button @click="nextPage" :disabled="currentPage === totalPages"
-                    class="px-4 py-2 bg-teal  text-white rounded-md">Next</button>
+                    class="px-4 py-2 bg-teal text-white rounded-md">Next</button>
             </div>
         </div>
     </div>
 </template>
+
+
 
 <style scoped>
 /* Menambahkan beberapa styling untuk mengatasi tumpang tindih konten */
