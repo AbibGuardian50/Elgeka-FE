@@ -16,7 +16,7 @@
                 <div class="my-8 flex flex-col">
                     <div class="otp-input">
                         <input v-for="(digit, index) in OtpCodeDigits" :key="index" type="text" v-model="OtpCode[index]"
-                            maxlength="1" class="otp-digit w-[90px] h-[90px] border border-[#B2B2B2]"
+                            maxlength="1" class="otp-digit w-[90px] h-[90px] max-sm:w-[70px] border border-[#B2B2B2]"
                             @input="focusNextInput(index)" ref="OtpCodeInput" />
                     </div>
                 </div>
