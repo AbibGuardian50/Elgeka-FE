@@ -16,7 +16,7 @@
                     <div class="p-4 flex flex-col justify-between flex-grow">
                         <div>
                             <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ data.nama_rs }}</h2>
-                            <p class="text-gray-700 leading-tight">
+                            <p class="text-gray-700 leading-tight line-clamp-2">
                                 {{ data.lokasi_rs }}
                             </p>
                             <p class="text-gray-700 leading-tight mb-4">
