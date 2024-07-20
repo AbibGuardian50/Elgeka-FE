@@ -162,13 +162,39 @@ export default {
             }
         },
         validatePassword() {
-            if (this.form.Password !== this.form.confirmpassword) {
+            const password = this.form.Password;
+            const confirmPassword = this.form.confirmpassword;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
                 this.passwordError = 'Password dan konfirmasi password harus sama';
                 return false;
-            } else {
-                this.passwordError = '';
-                return true;
             }
+
+            // Check for at least one uppercase letter
+            const hasUppercase = /[A-Z]/.test(password);
+            if (!hasUppercase) {
+                this.passwordError = 'Password harus mengandung minimal 1 huruf kapital';
+                return false;
+            }
+
+            // Check for at least one number
+            const hasNumber = /[0-9]/.test(password);
+            if (!hasNumber) {
+                this.passwordError = 'Password harus mengandung minimal 1 angka';
+                return false;
+            }
+
+            // Check for at least one special character
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            if (!hasSpecialChar) {
+                this.passwordError = 'Password harus mengandung minimal 1 simbol';
+                return false;
+            }
+
+            // If all checks pass
+            this.passwordError = '';
+            return true;
         },
         createuser() {
             const toast = useToast();
