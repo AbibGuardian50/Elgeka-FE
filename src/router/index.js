@@ -26,11 +26,11 @@ const router = createRouter({
     },
 
     {
-      path: '/aturancerita',
-      name: 'aturancerita',
-      component: () => import('../views/Aturancerita.vue'),
+      path: '/AturanBlog',
+      name: 'AturanBlog',
+      component: () => import('../views/AturanBlog.vue'),
       meta: {
-        title: 'Aturan Cerita Sahabat CGI'
+        title: 'Aturan Blog Sahabat CGI'
       }
     },
 
@@ -44,11 +44,11 @@ const router = createRouter({
     },
 
     {
-      path: '/cerita',
-      name: 'cerita',
-      component: () => import('../views/Cerita.vue'),
+      path: '/Blog',
+      name: 'Blog',
+      component: () => import('../views/Blog.vue'),
       meta: {
-        title: 'Cerita'
+        title: 'Blog'
       }
     },
 
@@ -62,11 +62,11 @@ const router = createRouter({
     },
 
     {
-      path: '/createcerita',
-      name: 'createcerita',
-      component: () => import('../views/Createcerita.vue'),
+      path: '/CreateBlog',
+      name: 'CreateBlog',
+      component: () => import('../views/CreateBlog.vue'),
       meta: {
-        title: 'Buat Cerita Blog'
+        title: 'Buat Blog'
       },
       beforeEnter: (to, from, next) => {
         const tokenlogin = VueCookies.get('token');

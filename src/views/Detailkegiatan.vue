@@ -47,7 +47,8 @@ export default {
 </script>
 
 <template>
-    <Navbar />
+    <div class="max-sm:overflow-x-hidden">
+        <Navbar />
 
     <div v-if="kegiatankomunitas"
         class="flex gap-8 p-8 min-[1440px]:max-w-screen-2xl m-auto pt-52  min-[240px]:max-lg:flex-wrap min-[240px]:max-lg:justify-center">
@@ -58,10 +59,12 @@ export default {
                 <p class="font-poppins font-medium text-xl pb-8">{{ kegiatankomunitas.tempat }}, {{ formatDate(kegiatankomunitas.date)}}</p>
             </div>
 
-            <div v-html="kegiatankomunitas.content" class="font-poppins font-normal text-[12px] flex flex-col content-richtext">
+            <div v-html="kegiatankomunitas.content" class="font-poppins font-normal text-[14px] flex flex-col content-richtext">
             </div>
         </div>
     </div>
+    </div>
+    
 </template>
 
 <style>

@@ -90,7 +90,7 @@ export default {
                 this.userstory = response_userstory.data.result.data;
                 this.totalPagesUserStory = Math.ceil(this.userstory.length / this.perPage);
                 if (response_userstory.data.message === 'Get Blog by User ID Successfully') {
-                    toast.success('Cerita user berhasil dimuat')
+                    toast.success('Blog user berhasil dimuat')
                 }
             }
             const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/blog';
@@ -101,7 +101,7 @@ export default {
             });
             console.log(response_allstory)
             if (response_allstory.data.message === 'Get Blog Successfully') {
-                toast.success ('Cerita berhasil dimuat')
+                toast.success ('Blog berhasil dimuat')
             }
             this.allstory = response_allstory.data.result.data.filter(story => story.isVerified === true);
             this.totalPagesAllStory = Math.ceil(this.allstory.length / this.perPage);
@@ -115,13 +115,13 @@ export default {
 <template>
     <Navbar />
     <div>
-        <div v-if="username" class="pt-24 flex max-[380px]:flex-col-reverse max-[380px]:items-center justify-between max-w-[1400px] m-auto">
+        <div v-if="tokenlogin" class="pt-24 flex max-[380px]:flex-col-reverse max-[380px]:items-center justify-between max-w-[1400px] m-auto">
             <ul class="max-w-2xl divide-y rounded-xl">
                 <li>
                     <details class="group">
                         <summary
                             class="font-inter max-[380px]:ml-0 ml-4  text-white text-xl flex bg-teal items-center gap-2 max-[380px]:mt-4 mt-16  font-bold hover:cursor-pointer rounded-md flex items-center gap-3 px-4 py-3 font-medium marker:content-none hover:cursor-pointer ">
-                            <span>Cerita Anda</span>
+                            <span>Blog Anda</span>
                             <svg class="w-5 h-5 text-gray-500 transition group-open:rotate-90"
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 viewBox="0 0 16 16">
@@ -146,36 +146,25 @@ export default {
                 </li>
             </ul>
             <button v-on:click="toggleModal()"
-                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 py-3 mt-16 max-[380px]:mb-2 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah
-                Cerita</button>
+                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 py-3 mt-16 max-[380px]:mb-2 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah Blog</button>
         </div>
         <div v-else class="pt-24 flex flex-row-reverse justify-between max-w-[1400px] m-auto">
             <button v-on:click="toggleModal()"
-                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah
-                Cerita</button>
+                class="font-inter text-white text-xl flex bg-teal items-center gap-2 p-2 mt-16 mb-4 font-bold hover:cursor-pointer rounded-md mr-4">Unggah Blog</button>
         </div>
         <div class="grid grid-cols-2 max-md:grid-cols-1 gap-8 pb-4 px-16 max-w-[1400px] m-auto items-end">
-            <div class="flex flex-col" v-for="cerita in updatePaginatedAllStory()" :key="cerita.id">
-                <p class="font-poppins font-bold text-center text-black text-[40px]">{{ cerita.title }}</p>
-                <div v-html="cerita.content" class="line-clamp-3 font-poppins font-normal text-base text-center pt-4"></div>
-                <a :href="'detailblog/' + cerita.id"><button
+            <div class="flex flex-col" v-for="Blog in updatePaginatedAllStory()" :key="Blog.id">
+                <p class="font-poppins font-bold text-center text-black text-[40px]">{{ Blog.title }}</p>
+                <div v-html="Blog.content" class="line-clamp-3 font-poppins font-normal text-base text-center pt-4"></div>
+                <a :href="'detailblog/' + Blog.id"><button
                         class="rounded-md bg-teal py-4 text-white text-xl font-bold w-full mt-4">Lihat Semua</button></a>
                 <div class="flex gap-1 items-center justify-center mt-4">
-                    <p class="font-poppins font-normal text-[12px] text-darktransparent">{{ cerita.author_name }} -</p>
-                    <p class="font-poppins font-normal text-[12px] text-darktransparent">{{ formatDate(cerita.createdAt) }}
+                    <p class="font-poppins font-normal text-[12px] text-darktransparent">{{ Blog.author_name }} -</p>
+                    <p class="font-poppins font-normal text-[12px] text-darktransparent">{{ formatDate(Blog.createdAt) }}
                     </p>
                 </div>
             </div>
         </div>
-
-        <!-- Pagination controls for user stories -->
-        <!-- <div class="mt-4 flex justify-center">
-            <button @click="prevPageUserStory" :disabled="currentPageUserStory === 1" class="px-4 py-2 mr-2 bg-teal text-white rounded-md">Previous</button>
-            <button v-for="pageNumber in totalPagesUserStory" :key="pageNumber" @click="goToPageUserStory(pageNumber)"
-                :class="{ 'bg-teal text-white rounded-md': pageNumber === currentPageUserStory, 'bg-white text-blue-500 border border-blue-500 rounded-md': pageNumber !== currentPageUserStory }"
-                class="px-4 py-2 mr-2">{{ pageNumber }}</button>
-            <button @click="nextPageUserStory" :disabled="currentPageUserStory === totalPagesUserStory" class="px-4 py-2 bg-teal text-white rounded-md">Next</button>
-        </div> -->
 
         <!-- Pagination controls for all stories -->
         <div class="mt-4 flex justify-center">
@@ -209,7 +198,7 @@ export default {
                         class="font-poppins text-xl font-medium leading-8 text-darkblue whitespace-break-spaces"></div>
                 </div>
                 <div class="flex items-center justify-center p-6 border-t-2 border-black rounded-b">
-                    <router-link to="/createcerita">
+                    <router-link to="/createBlog">
                         <button
                             class="text-white bg-teal border hover:text-white active:bg-teal-600 font-bold uppercase text-sm px-12 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
                             type="button">Setuju</button>

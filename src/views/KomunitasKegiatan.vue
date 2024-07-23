@@ -87,8 +87,7 @@ export default {
             <div class="grid pt-40 sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="kegiatan in paginatedreceived_kegiatankomunitas" :key="kegiatan.id"
                     class="flex flex-col bg-silver rounded-md p-4">
-                    <img class="w-full sm:h-auto md:w-[642px] md:h-[340px]" :src="url + kegiatan.image_url" alt=""
-                        srcset="">
+                    <img class="w-full h-full object-cover" :src="url + kegiatan.image_url" alt="Foto Kegiatan">
                     <div class="flex flex-col h-full">
                         <p class="font-poppins font-semibold text-2xl md:text-4xl text-teal">{{ kegiatan.title }}</p>
                         <div v-html="kegiatan.content"

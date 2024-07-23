@@ -120,12 +120,12 @@ export default {
                     <router-link to="/infors">
                         <p
                             class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">
-                            Info RS</p>
+                            Info Rumah Sakit</p>
                     </router-link>
-                    <router-link to="/cerita">
+                    <router-link to="/blog">
                         <p
                             class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xl font-inter font-medium">
-                            Cerita</p>
+                            Blog</p>
                     </router-link>
                     <router-link to="/donasi">
                         <p
@@ -180,12 +180,11 @@ export default {
                 </li>
                 <li class="w-full border-b border-white"> <!-- Tambahkan w-full, border-b, border-white -->
                     <a href="/infors"
-                        class="md:p-4 py-2 flex justify-center text-white hover:bg-gray-700 hover:text-white rounded-md md:px-3 md:py-2 md:text-xl font-inter font-medium">Info
-                        RS</a>
+                        class="md:p-4 py-2 flex justify-center text-white hover:bg-gray-700 hover:text-white rounded-md md:px-3 md:py-2 md:text-xl font-inter font-medium">Info Rumah Sakit</a>
                 </li>
                 <li class="w-full border-b border-white"> <!-- Tambahkan w-full, border-b, border-white -->
-                    <a href="/cerita"
-                        class="md:p-4 py-2 flex justify-center text-white hover:bg-gray-700 hover:text-white rounded-md md:px-3 md:py-2 md:text-xl font-inter font-medium">Cerita</a>
+                    <a href="/blog"
+                        class="md:p-4 py-2 flex justify-center text-white hover:bg-gray-700 hover:text-white rounded-md md:px-3 md:py-2 md:text-xl font-inter font-medium">Blog</a>
                 </li>
                 <li class="w-full border-b border-white"> <!-- Tambahkan w-full, border-b, border-white -->
                     <a href="/donasi"

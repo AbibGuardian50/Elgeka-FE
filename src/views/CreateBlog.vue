@@ -24,7 +24,7 @@ export default {
         };
     },
     methods: {
-        createcerita() {
+        createblog() {
             const toast = useToast();
             const Token = VueCookies.get('token')
             axios.defaults.withCredentials = true;
@@ -40,14 +40,17 @@ export default {
                     if (response.data.code === 201 || response.data.message === "Create Blog Successfully") {
                         toast.success('Blog berhasil dibuat, mohon untuk menunggu verifikasi')
                         setTimeout(() => {
-                            this.$router.push('/cerita');
+                            this.$router.push('/Blog');
                         }, 2000);
                     } else if (response.data.code === 400) {
                         toast.error('Blog gagal dibuat, mohon coba lagi')
                     }
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log(error.message)
+                    if (error.message === 'Request failed with status code 413') {
+                        toast.error('Konten yang akan diupload terlalu besar, mohon untuk mengganti file foto dengan ukuran lebih kecil atau meringkas konten')
+                    }
                 })
         },
     },
@@ -63,13 +66,13 @@ export default {
     <Navbar />
     <div>
         <div class="flex flex-col justify-end pt-12">
-            <form @submit.prevent="createcerita()">
+            <form @submit.prevent="createblog()">
                 <div id="editor" class=" border-2 border-teal mt-24 mx-8 mb-8 rounded-lg p-4 bg-white">
-                    <p class="text-darktransparent font-bold">Judul Cerita</p>
-                    <input class="w-full bg-grey min-h-[2rem]" type="text" name="judul cerita" id="" v-model="form.title">
+                    <p class="text-darktransparent font-bold">Judul Blog</p>
+                    <input class="w-full bg-grey min-h-[2rem]" type="text" name="judul Blog" id="" v-model="form.title">
                 </div>
                 <div class="border-2 border-teal m-8 rounded-lg p-4 bg-white">
-                    <p class="text-darktransparent font-bold">Tuliskan Cerita anda</p>
+                    <p class="text-darktransparent font-bold">Tuliskan Blog anda</p>
                     <quill-editor :toolbar="['bold', 'italic', 'underline', 'image', 'link', {'list': 'ordered'}, {'list': 'bullet'}]" theme="snow" class="bg-grey min-h-[4rem]"
                         contentType="html" v-model:content="form.content"></quill-editor>
                 </div>

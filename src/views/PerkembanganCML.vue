@@ -138,9 +138,12 @@ export default {
             <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="berita in paginatedreceived_beritaumum" :key="berita.id"
                     class="flex flex-col bg-silver rounded-md p-4 h-full">
-                    <img class="w-full sm:h-auto md:w-[642px] md:h-[340px]" :src="url + berita.image_url" alt="" srcset="">
+                    <div class="image-container">
+                        <img class="w-full h-full object-cover" :src="url + berita.image_url" alt="" />
+                    </div>
                     <div class="flex flex-col flex-grow">
-                        <p class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                        <p
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
@@ -158,9 +161,12 @@ export default {
             <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="berita in paginatedreceived_beritaKomunitas" :key="berita.id"
                     class="flex flex-col bg-silver rounded-md p-4 h-full">
-                    <img class="w-full sm:h-auto md:w-[619px] md:h-[320px]" :src="url + berita.image_url" alt="" srcset="">
+                    <div class="image-container">
+                        <img class="w-full h-full object-cover" :src="url + berita.image_url" alt="" />
+                    </div>
                     <div class="flex flex-col flex-grow">
-                        <p class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                        <p
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
@@ -178,9 +184,12 @@ export default {
             <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="berita in paginatedreceived_beritaCML" :key="berita.id"
                     class="flex flex-col bg-silver rounded-md p-4 h-full">
-                    <img class="w-full sm:h-auto md:w-[619px] md:h-[320px]" :src="url + berita.image_url" alt="" srcset="">
+                    <div class="image-container">
+                        <img class="w-full h-full object-cover" :src="url + berita.image_url" alt="" />
+                    </div>
                     <div class="flex flex-col flex-grow">
-                        <p class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                        <p
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
@@ -226,5 +235,18 @@ export default {
         overflow: hidden;
     }
 }
-</style>
+
+/* Style untuk menjaga konsistensi tinggi gambar */
+.image-container {
+    width: 100%;
+    height: 250px;
+    /* Kamu bisa atur tinggi sesuai kebutuhan */
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}</style>
 

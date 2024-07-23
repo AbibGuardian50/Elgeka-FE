@@ -39,11 +39,10 @@ export default {
                 if (response.data.Message === 'Login Success') {
                     console.log(response);
                     toast.success('Berhasil Login');
-                    VueCookies.set('Name', response.data.Data[0].Name);
-                    VueCookies.set('Message', response.data.Message);
+                    const name = response.data.Data[0].Name;
+                    const message = response.data.Message;
                     const token = response.data.Token;
-                    this.setTokenCookie(token);
-
+                    this.setCookies(name, message, token);
                     // Simpan username dan password jika rememberMe diaktifkan
                     if (this.rememberMe) {
                         localStorage.setItem('rememberedUsername', this.EmailOrPhoneNumber);
@@ -67,9 +66,11 @@ export default {
                 }
             }
         },
-        setTokenCookie(token) {
+        setCookies(name, message, token) {
             const expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 30);
+            Cookies.set('Name', name, { expires: expirationDate });
+            Cookies.set('Message', message, { expires: expirationDate });
             Cookies.set('token', token, { expires: expirationDate });
         },
         togglePasswordVisibility() {
@@ -154,25 +155,26 @@ export default {
                 </div>
                 <div class="mb-4 flex flex-col">
                     <div>
-                    <input type="checkbox" id="remember" name="remember" v-model="rememberMe" class="outline-[#D4A02C]">
-                    <label for="remember"
-                        class="font-[verdana] md:text-[#344054] text-white font-normal text[14px] ml-2">Ingat Akun
-                        ini</label>
+                        <input type="checkbox" id="remember" name="remember" v-model="rememberMe" class="outline-[#D4A02C]">
+                        <label for="remember"
+                            class="font-[verdana] md:text-[#344054] text-white font-normal text[14px] ml-2">Ingat Akun
+                            ini</label>
+                    </div>
+                    <p class="pl-5 font-[verdana] font-normal text[14px] text-white md:text-[#667085]">Simpan detail login
+                        saya untuk lain kali.</p>
                 </div>
-                <p class="pl-5 font-[verdana] font-normal text[14px] text-white md:text-[#667085]">Simpan detail login
-                    saya untuk lain kali.</p>
-            </div>
-            <div class="flex items-center flex-col">
-                <button type="submit"
-                    class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Masuk</button>
-                <div class="mt-6 text-blue-500">
-                    <router-link to="/lupapassword">
-                        <a target="_blank"
-                            class="hover:underline font-[verdana] font-normal text-[14px] text-white md:text-[#4D4D4F]">Lupa
-                            kata sandi? klik disini</a>
-                    </router-link>
+                <div class="flex items-center flex-col">
+                    <button type="submit"
+                        class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Masuk</button>
+                    <div class="mt-6 text-blue-500">
+                        <router-link to="/lupapassword">
+                            <a target="_blank"
+                                class="hover:underline font-[verdana] font-normal text-[14px] text-white md:text-[#4D4D4F]">Lupa
+                                kata sandi? klik disini</a>
+                        </router-link>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div></template>
+</template>

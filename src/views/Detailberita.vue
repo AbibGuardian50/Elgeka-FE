@@ -55,7 +55,7 @@ export default {
 
     <div v-if="detailberita"
         class="flex flex-col m-auto sm:p-8 max-sm:w-full min-[1600px]:max-w-[1440px] max-sm:overflow-x-hidden">
-        <img class="sm:mt-32 mt-28 rounded-t-md max-h-[404px]" :src="url + detailberita.image_url" alt="gambar">
+        <img class="sm:mt-32 mt-28 rounded-t-md w-full h-full object-cover " :src="url + detailberita.image_url" alt="gambar">
         <div class="rounded-b-md bg-teal">
             <div class="pt-8 max-sm:pl-4 sm:pl-8 md:pl-20 pr-4 pb-12">
                 <p class="text-5xl text-white font-poppins font-semibold leading-[3.875rem]">{{ detailberita.title }}
