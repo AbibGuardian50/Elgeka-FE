@@ -14,9 +14,11 @@ export default {
             received_beritaCML: [],
             received_beritaKomunitas: [],
             received_beritaumum: [],
+            received_gist: [],
             paginatedreceived_beritaumum: [],
             paginatedreceived_beritaCML: [],
             paginatedreceived_beritaKomunitas: [],
+            paginatedreceived_gist: [],
             perPage: 6, // Number of items per page
             currentPage: 1, // Current page
             totalPages: 1 // Total number of pages
@@ -37,10 +39,12 @@ export default {
             const response_beritaumum = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita');
             const response_beritaCML = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganCML');
             const response_beritaKomunitas = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/perkembanganKomunitas');
+            const response_gist = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/berita/kategori/GIST');
 
             this.received_beritaumum = this.processHyperlinks(response_beritaumum.data.result.data.filter(item => item.show === true));
             this.received_beritaCML = this.processHyperlinks(response_beritaCML.data.result.data.filter(item => item.show === true));
             this.received_beritaKomunitas = this.processHyperlinks(response_beritaKomunitas.data.result.data.filter(item => item.show === true));
+            this.received_gist = this.processHyperlinks(response_gist.data.result.data.filter(item => item.show === true));
 
             this.updateTotalPages();
             this.updatePaginatedData();
@@ -69,6 +73,8 @@ export default {
                 this.totalPages = Math.ceil(this.received_beritaCML.length / this.perPage);
             } else if (this.pilih_kategori === 'perkembanganKomunitas') {
                 this.totalPages = Math.ceil(this.received_beritaKomunitas.length / this.perPage);
+            } else if (this.pilih_kategori === 'GIST') {
+                this.totalPages = Math.ceil(this.received_gist.length / this.perPage);
             }
         },
         updatePaginatedData() {
@@ -79,6 +85,8 @@ export default {
                 data = this.received_beritaCML;
             } else if (this.pilih_kategori === 'perkembanganKomunitas') {
                 data = this.received_beritaKomunitas;
+            } else if (this.pilih_kategori === 'GIST') {
+                data = this.received_gist;
             }
 
             const startIndex = (this.currentPage - 1) * this.perPage;
@@ -89,6 +97,8 @@ export default {
                 this.paginatedreceived_beritaCML = data.slice(startIndex, endIndex);
             } else if (this.pilih_kategori === 'perkembanganKomunitas') {
                 this.paginatedreceived_beritaKomunitas = data.slice(startIndex, endIndex);
+            } else if (this.pilih_kategori === 'GIST') {
+                this.paginatedreceived_gist = data.slice(startIndex, endIndex);
             }
         },
         goToPage(pageNumber) {
@@ -130,6 +140,7 @@ export default {
                 <option class="bg-white" :value="null" selected>Pilih Kategori</option>
                 <option class="bg-white" value="perkembanganKomunitas">Komunitas</option>
                 <option class="bg-white" value="perkembanganCML">CML</option>
+                <option class="bg-white" value="GIST">GIST</option>
             </select>
         </div>
 
@@ -193,6 +204,29 @@ export default {
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
+                        </div>
+                        <a :href="'detailberita/' + berita.id" class="mt-auto flex flex-col items-center">
+                            <button type="button"
+                                class="bg-teal font-semibold font-inter text-base text-white mt-2 py-2 px-8 rounded-md">Selengkapnya</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-show="pilih_kategori === 'GIST'">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
+                <div v-for="berita in paginatedreceived_gist" :key="berita.id"
+                    class="flex flex-col bg-silver rounded-md p-4 h-full">
+                    <div class="image-container">
+                        <img class="w-full h-full object-cover" :src="url + berita.image_url" alt="" />
+                    </div>
+                    <div class="flex flex-col flex-grow">
+                        <p
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            {{ berita.title }}</p>
+                        <div v-html="berita.content"
+                            class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
                         </div>
                         <a :href="'detailberita/' + berita.id" class="mt-auto flex flex-col items-center">
                             <button type="button"
