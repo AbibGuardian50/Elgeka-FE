@@ -71,7 +71,7 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         const tokenlogin = VueCookies.get('token');
         if (!tokenlogin) {
-          next('/login')
+          window.location.href = '/login';
         } else {
           next()
         }
