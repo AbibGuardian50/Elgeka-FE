@@ -67,12 +67,7 @@ export default {
 </script>
 
 <template>
-    <!-- Carousel/Slideshow -->
-    <!-- :autoplay="{
-            delay: 5000,
-            disableOnInteraction: false,
-        }" -->
-    <div class="pb-4 max-[600px]:bg-teal">
+    <div class="pb-4 max-[600px]:bg-teal" id="quotes">
         <swiper :slidesPerView="1" :autoplay="{
             delay: 5000,
             disableOnInteraction: false,
@@ -82,8 +77,6 @@ export default {
                     <div class="bg-teal flex p-5 max-[600px]:p-2 items-center justify-center min-[1200px]:h-[520px] max-[1200px]:h-[450px]">
                         <img :src="url + recite.image_url" alt="" srcset="">
                         <div class="flex flex-col ml-8">
-                            <!-- <p class="text-5xl text-center text-black font-poppins font-semibold leading-[3.875rem] pb-4">
-                                </p> -->
                             <p class="text-base max-[500px]:text-left min-[1200px]:text-[40px] max-[1200px]:text-[25px] max-[800px]:text-[20px] max-[800px]:text-[15px] text-white font-poppins font-semibold min-[1200px]:leading-[62px] max-[1200px]:leading-[42px] max-[800px]:leading-[32px] max-[500px]:leading-[22px]"> "{{
                                 recite.quote }}" - {{ recite.author_name }} </p>
                         </div>

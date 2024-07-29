@@ -130,7 +130,7 @@ export default {
       class="list-decimal max-w-[70%]  text-[16px] text-[#FFFFFFB2] font-normal font-poppins leading-6 mb-4 min-[965px]:w-[630px] text-center line-clamp-4">
     </div>
     <router-link to="/profilkomunitas">
-      <button type="button" class="bg-teal font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md">
+      <button type="button" class="bg-teal font-poppins font-bold text-[20px] text-white py-2 px-16 rounded-md" id="button-profil-komunitas">
         Selengkapnya
       </button>
     </router-link>
@@ -185,7 +185,7 @@ export default {
       </div>
 
       <router-link to="/komunitaskegiatan">
-        <button type="button" class="bg-teal text-white py-2 px-10 rounded-md font-poppins font-bold text-2xl mt-4">
+        <button type="button" class="bg-teal text-white py-2 px-10 rounded-md font-poppins font-bold text-2xl mt-4" id="button-lihatsemua-kegiatan">
           Lihat Semua
         </button>
       </router-link>
@@ -256,7 +256,7 @@ export default {
       <div class="my-8 sm:my-20">
         <router-link target="_blank" to="/perkembangancml">
           <button type="button"
-            class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl">
+            class="bg-teal text-white py-2 px-6 sm:px-10 rounded-md font-poppins font-bold text-xl sm:text-2xl" id="button-lihatsemua-berita">
             Lihat Semua
           </button>
         </router-link>
