@@ -277,7 +277,7 @@ export default {
                         </div>
 
                         <div class="w-full flex flex-col">
-                            <p class="font-poppins font-bold text-[16px] text-teal text-center">Nama</p>
+                            <p class="font-poppins font-bold text-[16px] text-teal text-center">Nomor Telepon</p>
                             <input type="text" name="" id="" v-model="profiluser.PhoneNumber" disabled
                                 class="border border-black py-1 px-2 cursor-not-allowed opacity-50">
                         </div>
