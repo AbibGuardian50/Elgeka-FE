@@ -78,8 +78,8 @@ export default {
                     </div>
                 </div>
 
-                <img class="w-3/12 max-sm:w-full max-sm:max-w-[550px] max-sm:h-full max-[900px]:w-4/12 max-md:h-[300px] max-md:h-[200px] max-w-[438px] max-h-[463px] max-xl:h-full"
-                    src="../assets/together.png" alt="foto" srcset="">
+                <!-- <img class="w-3/12 max-sm:w-full max-sm:max-w-[550px] max-sm:h-full max-[900px]:w-4/12 max-md:h-[300px] max-md:h-[200px] max-w-[438px] max-h-[463px] max-xl:h-full"
+                    src="../assets/together.png" alt="foto" srcset=""> -->
             </div>
 
             <div class="flex flex-col gap-12">

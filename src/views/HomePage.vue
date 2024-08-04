@@ -205,7 +205,7 @@ export default {
         <div v-for="berita in beritaKomunitas" :key="berita.id"
           class="relative group flex items-center flex-col pt-8  pb-8 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg object-cover"
               :src="url + berita.image_url" alt="foto berita">
           </a>
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
@@ -222,7 +222,7 @@ export default {
         <div v-for="berita in beritaumum" :key="berita.id"
           class="relative group flex items-center flex-col pt-8  pb-8 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg object-cover"
               :src="url + berita.image_url" alt="foto berita">
           </a>
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
@@ -239,7 +239,7 @@ export default {
         <div v-for="berita in beritaCML" :key="berita.id"
           class="relative group flex items-center flex-col pt-8  pb-8 px-4 bg-white rounded-[5px]">
           <a target="_blank" :href="'detailberita/' + berita.id" class="relative">
-            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg"
+            <img class="w-full h-48 sm:min-h-[180px] sm:max-h-[185px] sm:min-w-[320px] sm:max-w-[325px] rounded-lg object-cover"
               :src="url + berita.image_url" alt="foto berita">
           </a>
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">

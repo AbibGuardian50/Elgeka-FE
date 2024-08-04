@@ -150,7 +150,7 @@ export default {
                 <div v-for="berita in paginatedreceived_beritaumum" :key="berita.id"
                     class="flex flex-col bg-silver rounded-md p-4 h-full">
                     <div class="image-container">
-                        <img class="w-full h-full object-cover" :src="url + berita.image_url" alt="" />
+                        <img class="max-sm:w-full w-[38.688rem] h-[21.25rem] object-cover rounded-lg" :src="url + berita.image_url" alt="" />
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p
@@ -173,7 +173,7 @@ export default {
                 <div v-for="berita in paginatedreceived_beritaKomunitas" :key="berita.id"
                     class="flex flex-col bg-silver rounded-md p-4 h-full">
                     <div class="image-container">
-                        <img class="w-full h-full object-cover" :src="url + berita.image_url" alt="" />
+                        <img class="max-sm:w-full w-[38.688rem] h-[21.25rem] object-cover rounded-lg" :src="url + berita.image_url" alt="" />
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p
@@ -196,7 +196,7 @@ export default {
                 <div v-for="berita in paginatedreceived_beritaCML" :key="berita.id"
                     class="flex flex-col bg-silver rounded-md p-4 h-full">
                     <div class="image-container">
-                        <img class="w-full h-full object-cover" :src="url + berita.image_url" alt="" />
+                        <img class="max-sm:w-full w-[38.688rem] h-[21.25rem] object-cover rounded-lg" :src="url + berita.image_url" alt="" />
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p

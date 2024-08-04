@@ -87,7 +87,7 @@ export default {
             <div class="grid pt-40 sm:grid-cols-1 md:grid-cols-2 gap-8 pb-4 m-auto max-w-[1316px]">
                 <div v-for="kegiatan in paginatedreceived_kegiatankomunitas" :key="kegiatan.id"
                     class="flex flex-col bg-silver rounded-md p-4">
-                    <img class="w-full h-full object-cover" :src="url + kegiatan.image_url" alt="Foto Kegiatan">
+                    <img class="max-sm:w-full w-[38.688rem] h-[21.25rem] object-cover rounded-lg" :src="url + kegiatan.image_url" alt="Foto Kegiatan">
                     <div class="flex flex-col h-full">
                         <p class="font-poppins font-semibold text-2xl md:text-4xl text-teal">{{ kegiatan.title }}</p>
                         <div v-html="kegiatan.content"
@@ -100,7 +100,7 @@ export default {
             </div>
 
             <!-- Pagination navigation -->
-            <div class="ml-8 mt-4 flex justify-center">
+            <div class="ml-8 my-8 flex justify-center">
                 <button @click="prevPage" :disabled="currentPage === 1"
                     class="px-4 py-2 mr-2 bg-teal text-white rounded-md">Previous</button>
                 <button v-for="pageNumber in totalPages" :key="pageNumber" @click="goToPage(pageNumber)"
