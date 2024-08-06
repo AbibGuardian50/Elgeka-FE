@@ -2,15 +2,16 @@
     <Navbar />
 
     <div>
-        <div class="h-screen bg-hospital bg-no-repeat bg-center bg-cover max-h-[550px] flex flex-col justify-center items-center">
+        <div
+            class="h-screen bg-hospital bg-no-repeat bg-center bg-cover max-h-[550px] flex flex-col justify-center items-center">
             <p class="text-white text-center font-bold text-[40px] leading-[62px]">RUMAH SAKIT REKOMENDASI</p>
             <p class="text-white text-center font-bold text-[40px] leading-[62px]">Sahabat CGI</p>
 
             <div class="relative mt-3 mb-4">
                 <img src="../assets/magnifyingglass.svg" alt="magnifying-glass"
                     class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-teal">
-                <input class="px-3 py-2 bg-white border rounded-lg text-fullblack font-semibold" type="text" v-model="searchQuery"
-                    @input="updatePaginatedData" placeholder="Cari Rumah Sakit">
+                <input class="px-3 py-2 bg-white border rounded-lg text-fullblack font-semibold" type="text"
+                    v-model="searchQuery" @input="updatePaginatedData" placeholder="Cari Rumah Sakit">
             </div>
         </div>
 
@@ -60,7 +61,7 @@
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal Detail Info -->
         <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div
                 class="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-[700px] md:w-1/2 max-h-[90vh] overflow-y-auto relative">
@@ -74,19 +75,19 @@
                     </button>
                 </div>
                 <img :src="selectedData.image_url ? url + selectedData.image_url : 'https://cdn.pixabay.com/photo/2021/11/20/03/16/doctor-6810750_1280.png'"
-                    alt="foto rumah sakit" class="w-full max-h-[200px] object-cover mb-2 rounded-lg">
+                    alt="foto rumah sakit" class="w-full max-h-[250px] object-cover mb-2 rounded-lg">
                 <h2 class="font-poppins font-bold text-[15px] leading-[62px] text-fullblack">{{ selectedData.nama_rs }}</h2>
-                <p class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack">Alamat: {{
+                <p class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack">Alamat : {{
                     selectedData.lokasi_rs }}</p>
-                <p class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack">Nomor Telepon: {{
+                <p class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack">Nomor Telepon : {{
                     selectedData.info_kontak }}</p>
-                <p v-if="selectedData.data_dokter"
-                    class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack">Data Dokter: <span
-                        class="font-bold">{{ selectedData.data_dokter }}</span>
+                <p class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack mt-4">Dokter :</p>
+                <ul v-if="processedDokter.length > 0"
+                    class="font-poppins font-bold text-[15px] leading-[20px] text-fullblack">
+                    <li v-for="(dokter, index) in processedDokter" :key="index">• {{ dokter }}</li>
+                </ul>
+                <p v-else class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack">Belum ada Data Dokter
                 </p>
-                <p v-else-if="selectedData.data_dokter === null"
-                    class="font-poppins font-normal text-[15px] leading-[20px] text-fullblack">Data Dokter: Belum ada Data
-                    Dokter</p>
                 <a target="_blank" :href="selectedData.link_maps" class="flex justify-center ">
                     <button
                         class="bg-teal text-white font-medium text-[10px] font-medium font-poppins leading-4 mt-2 px-8 py-4 rounded-md">Google
@@ -132,20 +133,32 @@ export default {
                 );
             }
             return this.InfoRS;
+        },
+        paginatedInfoRS() {
+            const startIndex = (this.currentPage - 1) * this.perPage;
+            const endIndex = startIndex + this.perPage;
+            return this.filteredInfoRS.slice(startIndex, endIndex);
+        },
+        processedDokter() {
+            if (this.selectedData && this.selectedData.data_dokter) {
+                return this.selectedData.data_dokter
+                    .split(';')
+                    .map(dokter => dokter.split(',')[0].trim()); // Hanya nama dokter yang diambil
+            }
+            return [];
         }
     },
-
     data() {
         return {
             url: 'https://elgeka-web-api-production.up.railway.app/',
             InfoRS: [],
             paginatedInfoRS: [],
-            perPage: 8, // Number of items per page
-            currentPage: 1, // Current page
-            totalPages: 1, // Total number of pages
+            perPage: 8,
+            currentPage: 1,
+            totalPages: 1,
             showModal: false,
             selectedData: {},
-            searchQuery: '' // Input pencarian
+            searchQuery: ''
         };
     },
     methods: {
@@ -176,7 +189,7 @@ export default {
         },
         closeModal() {
             this.showModal = false;
-        },
+        }
     }
 };
 </script>
