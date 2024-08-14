@@ -132,8 +132,8 @@ export default {
                         </summary>
                         <article class="absolute max-h-[300px] overflow-y-scroll max-w-[534px] bg-white mx-4 max-sm:left-[0rem] pb-4">
                             <div v-for="story in updatePaginatedUserStory()" :key="story.id"
-                                class="flex justify-center items-center gap-4 max-sm:gap-2 px-4 py-4 shadow-md text-opacity-40">
-                                <p class="font-inter text-fullblack font-medium text-[14px]">{{ story.title }}</p>
+                                class="flex justify-between items-center gap-4 max-sm:gap-2 px-4 py-4 shadow-md text-opacity-40">
+                                <p class="font-inter text-fullblack max-w-[150px] font-medium text-[14px]">{{ story.title }}</p>
                                 <p class="font-inter text-fullblack font-medium text-[14px]"
                                     v-if="story.isVerified === true">Sudah di Verifikasi</p>
                                 <p class="font-inter text-fullblack font-medium text-[14px]"
