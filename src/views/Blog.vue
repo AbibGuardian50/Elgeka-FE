@@ -154,7 +154,7 @@ export default {
         </div>
         <div class="grid grid-cols-2 max-md:grid-cols-1 gap-8 pb-4 px-16 max-w-[1400px] m-auto items-end">
             <div class="flex flex-col" v-for="Blog in updatePaginatedAllStory()" :key="Blog.id">
-                <p class="font-poppins font-bold text-center text-black text-[40px]">{{ Blog.title }}</p>
+                <p class="line-clamp-2 font-poppins font-bold text-center text-black text-[40px]">{{ Blog.title }}</p>
                 <div v-html="Blog.content" class="line-clamp-3 font-poppins font-normal text-base text-center pt-4"></div>
                 <a :href="'detailblog/' + Blog.id"><button
                         class="rounded-md bg-teal py-4 text-white text-xl font-bold w-full mt-4">Lihat Semua</button></a>

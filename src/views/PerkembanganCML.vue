@@ -154,7 +154,7 @@ export default {
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p
-                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal line-clamp-2">
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
@@ -177,7 +177,7 @@ export default {
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p
-                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal line-clamp-2">
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
@@ -200,7 +200,7 @@ export default {
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p
-                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal line-clamp-2">
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">
@@ -223,7 +223,7 @@ export default {
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p
-                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal">
+                            class="max-w-full md:max-w-[619px] font-poppins font-semibold text-2xl md:text-4xl text-center text-teal line-clamp-2">
                             {{ berita.title }}</p>
                         <div v-html="berita.content"
                             class="max-w-full md:max-w-[619px] break-words line-clamp-1 font-poppins font-normal leading-6 text-base text-center pt-4">

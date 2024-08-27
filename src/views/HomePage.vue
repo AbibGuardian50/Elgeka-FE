@@ -211,7 +211,7 @@ export default {
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
             <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
               Komunitas highlight</p> -->
-            <p class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+            <p class="text-xl font-semibold max-w-[350px] line-clamp-2">
               {{ berita.title }}</p>
             <div v-html="berita.content"
               class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
@@ -228,7 +228,7 @@ export default {
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
             <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
               Komunitas highlight</p> -->
-            <p class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+            <p class="text-xl font-semibold max-w-[350px] line-clamp-2">
               {{ berita.title }}</p>
             <div v-html="berita.content"
               class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">
@@ -245,7 +245,7 @@ export default {
           <div class="relative text-center pt-4 w-full transition-opacity duration-300">
             <!-- <p class="text-xl sm:text-3xl font-poppins font-semibold leading-6 sm:leading-9 group-hover:hidden">Berita
               Komunitas highlight</p> -->
-            <p class="text-xl font-semibold break-word block max-w-[350px] group-hover:break-words">
+            <p class="text-xl font-semibold max-w-[350px] line-clamp-2">
               {{ berita.title }}</p>
             <div v-html="berita.content"
               class="line-clamp-3 truncate block max-w-[350px] group-hover:break-words text-sm berita-content">

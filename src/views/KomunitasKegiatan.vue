@@ -89,7 +89,7 @@ export default {
                     class="flex flex-col bg-silver rounded-md p-4">
                     <img class="max-sm:w-full w-[38.688rem] h-[21.25rem] object-cover rounded-lg" :src="url + kegiatan.image_url" alt="Foto Kegiatan">
                     <div class="flex flex-col h-full">
-                        <p class="font-poppins font-semibold text-2xl md:text-4xl text-teal">{{ kegiatan.title }}</p>
+                        <p class="line-clamp-2 font-poppins font-semibold text-2xl md:text-4xl text-teal">{{ kegiatan.title }}</p>
                         <div v-html="kegiatan.content"
                             class="line-clamp-1 font-poppins font-normal leading-6 text-base text-[#000000B2] pt-4 max-w-full md:max-w-[620px]">
                         </div>
