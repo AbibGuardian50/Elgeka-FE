@@ -1,10 +1,12 @@
 <script>
 import Navbar from '../components/Navbar.vue'
 import axios from 'axios'
+import Footer from '../components/Footer.vue';
 
 export default {
     components: {
-        Navbar
+        Navbar,
+        Footer
     },
     data() {
         return {
@@ -44,7 +46,7 @@ export default {
 <template>
     <Navbar />
 
-    <div v-if="profilkomunitas.currentPage === 1" >
+    <div v-if="profilkomunitas.currentPage === 1">
         <div id="container" class="flex max-[900px]:bg-center"
             :style="{ 'background-image': `url(${url + profilkomunitas.data.image_url})` }">
             <div class="flex flex-col justify-center items-center m-auto">
@@ -82,24 +84,34 @@ export default {
                     src="../assets/together.png" alt="foto" srcset=""> -->
             </div>
 
-            <div class="flex flex-col gap-12">
+            <div class="flex flex-col gap-12 mb-16">
+                <!-- Kontainer untuk VISI -->
                 <div
-                    class="max-sm:mx-8 border-2 border-grey flex flex-col items-center px-4 pt-1 max-[900px]:w-auto w-[972px] m-auto relative">
-                    <p
-                        class="absolute bg-teal max-sm:bottom-[82%] bottom-[75%] right-[46%] max-[900px]:right-[43%] max-sm:right-[39%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">
-                        VISI</p>
-                    <p class="p-4 font-poppins font-normal text-[20px] text-darkgrey">{{ profilkomunitas.data.visi }}</p>
+                    class="max-sm:mx-8 border-2 border-grey flex flex-col items-center justify-center px-4 py-6 max-[900px]:w-auto w-[972px] m-auto">
+                    <div class="bg-teal px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">
+                        VISI
+                    </div>
+                    <p class="mt-4 font-poppins font-normal text-[20px] text-darkgrey text-center">
+                        {{ profilkomunitas.data.visi }}
+                    </p>
                 </div>
 
+                <!-- Kontainer untuk MISI -->
                 <div
-                    class="border-2 border-grey flex flex-col items-center px-4 pt-1 max-[900px]:w-auto w-[972px] m-auto relative max-sm:mb-4">
-                    <p
-                        class="absolute bg-teal bottom-[75%] right-[46%] max-[900px]:right-[38%] px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">
-                        MISI</p>
-                    <p class="p-4 font-poppins font-normal text-[20px] text-darkgrey">{{ profilkomunitas.data.misi }}</p>
+                    class="border-2 border-grey flex flex-col items-center justify-center px-4 py-6 max-[900px]:w-auto w-[972px] m-auto max-sm:mb-4">
+                    <div class="bg-teal px-4 py-1 rounded-lg font-inter font-bold text-[20px] text-white">
+                        MISI
+                    </div>
+                    <p class="mt-4 font-poppins font-normal text-[20px] text-darkgrey text-center">
+                        {{ profilkomunitas.data.misi }}
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div>
+        <Footer />
     </div>
 </template>
 
@@ -153,4 +165,5 @@ export default {
     margin-left: 0;
     margin-right: 0;
     font-weight: bold;
-}</style>
+}
+</style>

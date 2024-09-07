@@ -2,6 +2,7 @@
 import Penyemangat from '../components/Penyemangat.vue';
 import Navbar from '../components/Navbar.vue';
 import Quotes from '../components/Quotes.vue';
+import Footer from '../components/Footer.vue';
 import VueCookies from 'vue-cookies';
 import axios from 'axios';
 // Import Swiper Vue.js components
@@ -78,7 +79,8 @@ export default {
     SwiperSlide,
     Penyemangat,
     Navbar,
-    Quotes
+    Quotes,
+    Footer
   },
   data() {
     return {
@@ -271,6 +273,10 @@ export default {
 
   <div>
     <Penyemangat />
+  </div>
+
+  <div>
+    <Footer />
   </div>
 </template>
 
