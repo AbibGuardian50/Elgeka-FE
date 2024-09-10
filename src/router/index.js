@@ -62,6 +62,15 @@ const router = createRouter({
     },
 
     {
+      path: '/KetentuanLayanan',
+      name: 'KetentuanLayanan',
+      component: () => import('../views/KetentuanLayanan.vue'),
+      meta: {
+        title: 'Ketentuan Layanan'
+      }
+    },
+
+    {
       path: '/CreateBlog',
       name: 'CreateBlog',
       component: () => import('../views/CreateBlog.vue'),
