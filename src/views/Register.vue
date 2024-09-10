@@ -445,6 +445,13 @@ export default {
                     <a href="/login" class="mt-4 font-[verdana] font-normal text-[14px]">Sudah punya akun? bisa masuk <span
                             class="font-bold text-[#4D4D4F]">disini</span></a>
                 </div>
+
+                <div class="flex items-center flex-col">
+                    <a href="/ketentuanlayanan" class="mt-4 font-[verdana] font-normal text-[14px]">Baca <span
+                            class="font-bold text-[#4D4D4F]">Ketentuan Layanan</span></a>
+                </div>
+
+                
             </form>
         </div>
     </div>
