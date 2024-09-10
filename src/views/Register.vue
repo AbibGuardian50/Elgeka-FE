@@ -36,6 +36,7 @@ export default {
             villages: [],
             showPassword: false,
             showConfirmationPassword: false,
+            isChecked: false, // Default tidak dicentang
         }
     },
 
@@ -440,14 +441,15 @@ export default {
                 </div>
 
                 <div class="flex items-center flex-col">
-                    <button type="submit"
-                        class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
+                    <button type="submit" :disabled="!isChecked"
+                        class="bg-teal text-white font-semibold rounded-md py-2 px-4 w-full disabled:bg-grey disabled:cursor-no-drop">Register</button>
                     <a href="/login" class="mt-4 font-[verdana] font-normal text-[14px]">Sudah punya akun? bisa masuk <span
                             class="font-bold text-[#4D4D4F]">disini</span></a>
                 </div>
 
-                <div class="flex items-center flex-col">
-                    <a href="/ketentuanlayanan" class="mt-4 font-[verdana] font-normal text-[14px]">Baca <span
+                <div class="flex items-center justify-center gap-2 mt-4">
+                    <input type="checkbox" class="h-5 w-5 text-blue-600" v-model="isChecked">
+                    <a href="/ketentuanlayanan" class="font-[verdana] font-normal text-[14px]">Baca <span
                             class="font-bold text-[#4D4D4F]">Ketentuan Layanan</span></a>
                 </div>
 
