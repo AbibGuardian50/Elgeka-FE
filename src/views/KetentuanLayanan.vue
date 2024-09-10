@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="bg-gray-100 p-6">
-        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <div v-if="kontakkomunitas" class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-2xl font-bold text-gray-800 mb-6">Syarat dan Ketentuan</h1>
 
             <!-- Pendahuluan -->
@@ -68,7 +68,7 @@
             <section class="mb-6">
                 <h2 class="text-xl font-semibold text-gray-700">6. Kontak</h2>
                 <p class="text-gray-600">Jika Anda memiliki pertanyaan tentang kebijakan ini atau ingin menanyakan tentang
-                    perlindungan data pribadi, Anda dapat menghubungi kami di [alamat email atau nomor telepon].</p>
+                    perlindungan data pribadi, Anda dapat menghubungi kami di {{ kontakkomunitas.email_komunitas }} atau {{ kontakkomunitas.kontak_komunitas }}.</p>
             </section>
 
             <!-- Hukum yang Berlaku -->
@@ -103,9 +103,30 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { useToast } from 'vue-toastification';
+
 export default {
+    async created() {
+        try {
+            const toast = useToast();
+            const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/profilKomunitas');
+            this.kontakkomunitas = response.data.result.data;
+            console.log(this.kontakkomunitas)
+            if (response.data.message === "Get Profil Komunitas Successfully") {
+                toast.success('Kontak profil komunitas berhasil dimuat')
+            }
+            console.log(response.data)
+        } catch (error) {
+            console.error(error);
+            const toast = useToast();
+            toast.error('Kontak profil komunitas gagal dimuat, mohon coba lagi')
+        }
+    },
+
     data() {
         return {
+            kontakkomunitas: [],
             isChecked: false, // Default tidak dicentang
         };
     },
