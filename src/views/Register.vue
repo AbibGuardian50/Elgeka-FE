@@ -222,7 +222,6 @@ export default {
 
             axios.post(url, formData)
                 .then(response => {
-                    console.log(response.data.ErrorMessage);
                     VueCookies.set('user_id', response.data.Data[0].ID);
                     if (response.data.Message === 'Register Success') {
                         this.$router.push('/optionotp');
@@ -230,7 +229,6 @@ export default {
                     }
                 })
                 .catch(error => {
-                    console.log(error.response.data.ErrorMessage);
                     if (error.response.data.ErrorMessage === "Email Already Use") {
                         toast.error('Registrasi gagal karena email sudah digunakan, mohon gunakan email yang lain');
                     } else if (error.response.data.ErrorMessage === "Phone Number Already Use") {

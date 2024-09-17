@@ -16,7 +16,6 @@ export default {
         try {
             const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/aturanBlog');
             this.aturanblog = response.data.result
-            console.log(this.aturanblog);
         } catch (error) {
             console.error(error);
             

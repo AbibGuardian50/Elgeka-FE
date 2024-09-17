@@ -111,7 +111,6 @@ export default {
             this.InfoRS = response.data.result.data;
             this.totalPages = Math.ceil(this.InfoRS.length / this.perPage);
             this.updatePaginatedData();
-            console.log(response);
 
             if (response.data.message === "Get Info RS Successfully") {
                 toast.success('Data Info RS berhasil dimuat')

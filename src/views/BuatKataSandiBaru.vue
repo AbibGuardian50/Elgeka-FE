@@ -34,7 +34,6 @@ export default {
                     localStorage.removeItem("User_ID-forgot_password");
                     this.$router.push('/login')
                 }
-                console.log(response)
             } catch (error) {
                 if (error.response.data.ErrorMessage === "Password Confirmation Must Same as Password") {
                     toast.error('Kata sandi harus sama dengan konfirmasi kata sandi')

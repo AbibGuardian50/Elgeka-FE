@@ -28,7 +28,6 @@ export default {
                     this.$router.push('/CheckingOTPForgotPassword')
                     localStorage.setItem('User_ID-forgot_password', response.data.Data[0].ID)
                 }
-                console.log(response)
             } catch (error) {
                 const toast = useToast(); 
                 console.log(error)

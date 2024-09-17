@@ -35,9 +35,7 @@ export default {
                     EmailOrPhoneNumber: formattedEmailOrPhoneNumber,
                     password: this.password,
                 });
-                console.log(response);
                 if (response.data.Message === 'Login Success') {
-                    console.log(response);
                     toast.success('Berhasil Login');
                     const name = response.data.Data[0].Name;
                     const message = response.data.Message;

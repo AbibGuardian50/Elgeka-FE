@@ -40,7 +40,6 @@ export default {
             const url_member = 'https://elgeka-web-api-production.up.railway.app/api/v1/memberKomunitas'
             const response_memberkomunitas = await axios.get(url_member);
             this.memberkomunitas = response_memberkomunitas.data.result.data
-            console.log(this.memberkomunitas);
         } catch (error) {
             console.error(error);
         }

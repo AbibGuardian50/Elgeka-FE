@@ -57,7 +57,6 @@ export default {
             const url = `https://elgeka-mobile-production.up.railway.app/api/user/activate/${User_Id}`;
             axios.post(url, formData)
                 .then(response => {
-                    console.log(response);
                     VueCookies.remove('user_id');
                     if (response.data.Message === "User Activated Successfully") {
                         toast.success('OTP Benar')
@@ -85,7 +84,6 @@ export default {
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/whatsapp_otp/${user_id}`;
                 axios.post(url)
                     .then(response => {
-                        console.log(response)
                         if (response.data.Message === "Send Whatsapp OTP Successfully") {
                             toast.success('OTP Berhasil dikirim kembali, mohon cek email anda')
                         }

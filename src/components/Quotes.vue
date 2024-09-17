@@ -37,32 +37,17 @@ export default {
         return {
             url: 'https://elgeka-web-api-production.up.railway.app/',
             modules: [Autoplay, Pagination, Navigation],
-            // Quotes: [
-            //     {content: '”Janganlah pernah menyerah ketika kamu masih mampu berusaha lagi. Tidak ada kata berakhir sampai kamu berhenti mencoba” - Brian Dyson'},
-            //     {content: '”Segala sesuatu memiliki kesudahan, yang sudah berakhir biarlah berlalu dan yakinlah semua akan baik-baik saja” - Anonym'},
-            //     {content: '“Hidup itu bukan soal menemukan diri Anda sendiri, hidup itu membuat diri Anda sendiri.” - George Bernard Shaw'},
-            //     {content: '“Hidup yang baik adalah hidup yang diinspirasi oleh cinta dan dipandu oleh ilmu pengetahuan.” - Bertrand Russell'},
-            // ],
-
         };
     },
     async created() {
         try {
             const response_quotes = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/quotes');
             this.received_quotes = response_quotes.data.result.data
-            console.log(this.received_quotes);
         } catch (error) {
             console.error(error);
         }
     }
 };
-
-// const photos = [
-//   "Rectangle180.png",
-//   "Rectangle180.png",
-//   "Rectangle180.png",
-//   "Rectangle180.png",
-// ]
 
 </script>
 

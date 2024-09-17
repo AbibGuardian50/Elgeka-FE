@@ -68,8 +68,6 @@ export default {
       this.$nextTick(() => {
         this.truncateContent();
       });
-
-      console.log(this.profilkomunitas, this.kegiatankomunitas, this.beritaumum, this.beritaCML, this.beritaKomunitas);
     } catch (error) {
       console.error(error);
     }

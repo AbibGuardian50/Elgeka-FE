@@ -15,7 +15,6 @@ export default {
             });
             this.profiluser = response.data.Data[0];
             this.isLoading = false;
-            console.log(this.profiluser);
         } catch (error) {
             console.error(error);
             this.isLoading = false;
@@ -43,7 +42,6 @@ export default {
                         'Content-Type': 'application/json'
                     },
                 });
-                console.log(response);
                 VueCookies.remove('token');
                 VueCookies.remove('Message');
                 VueCookies.remove('Name');

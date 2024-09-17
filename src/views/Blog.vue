@@ -85,7 +85,6 @@ export default {
                     Authorization: `Bearer ${token}`
                 },
             });
-            console.log(response_userstory)
             if (token) {
                 this.userstory = response_userstory.data.result.data;
                 this.totalPagesUserStory = Math.ceil(this.userstory.length / this.perPage);
@@ -99,7 +98,6 @@ export default {
                     Authorization: `Bearer ${token}`
                 },
             });
-            console.log(response_allstory)
             if (response_allstory.data.message === 'Get Blog Successfully') {
                 toast.success ('Blog berhasil dimuat')
             }

@@ -22,7 +22,6 @@ export default {
         try {
             const url = 'https://elgeka-web-api-production.up.railway.app/api/v1/kegiatanKomunitas';
             const response_kegiatankomunitas = await axios.get(url);
-            console.log(response_kegiatankomunitas);
             if (response_kegiatankomunitas.data.message === "Get Kegiatan Komunitas Successfully") {
                 toast.success('Kegiatan Komunitas berhasil dimuat');
             }

@@ -41,7 +41,6 @@ export default {
             const id = this.$route.params.id
             const response_beritaumum = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/berita/${id}`);
             this.detailberita = response_beritaumum.data.result.data
-            console.log(response_beritaumum.data.result.data.content)
             // const params_id = this.$route.params.id
         } catch (error) {
             console.error(error);

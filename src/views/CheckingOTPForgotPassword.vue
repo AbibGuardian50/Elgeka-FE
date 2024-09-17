@@ -57,7 +57,6 @@ export default {
             const url = `https://elgeka-mobile-production.up.railway.app/api/user/check_otp/${user_id}`;
             axios.post(url, formData)
                 .then(response => {
-                    console.log(response);
                     if (response.data.Message === "Check Otp Successfully") {
                         toast.success('OTP Benar')
                         localStorage.setItem('OTPCode-forgot_password', response.data.OtpData[0].OtpCode)
@@ -84,7 +83,6 @@ export default {
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/refresh_code/forgot_password/${user_id}`;
                 axios.post(url)
                     .then(response => {
-                        console.log(response)
                         if (response.data.Message === "Success to Send Otp Code") {
                             toast.success('OTP berhasil dikirim kembali, mohon cek email anda')
                         }

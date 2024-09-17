@@ -7,7 +7,6 @@ export default {
             const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/profilKomunitas');
             this.profilkomunitas = response.data.result;
             this.processHyperlinks();
-            console.log(this.profilkomunitas);
         } catch (error) {
             console.error(error);
         }

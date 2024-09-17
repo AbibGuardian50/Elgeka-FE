@@ -20,7 +20,6 @@ export default {
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/email_otp/${user_id}`
                 axios.post(url)
                     .then(response => {
-                        console.log(response)
                         if (response.data.Message === "Send Email OTP Successfully") {
                             toast.success('OTP berhasil dikirim ke Email')
                             this.$router.push('/sendotpemail')
@@ -38,7 +37,6 @@ export default {
                 const url = `https://elgeka-mobile-production.up.railway.app/api/user/whatsapp_otp/${user_id}`
                 axios.post(url)
                     .then(response => {
-                        console.log(response)
                         if (response.data.Message === "Send Whatsapp OTP Successfully") {
                             toast.success('OTP berhasil dikirim ke Whatsapp')
                             this.$router.push('/sendotpwhatsapp')

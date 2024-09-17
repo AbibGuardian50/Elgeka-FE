@@ -23,7 +23,6 @@ export default {
             this.profiluser = response.data.Data[0];
             await this.fetchRegionData();
             this.fetchProvinces();
-            console.log(response);
         } catch (error) {
             toast.error('Data profil user gagal dimuat, mohon coba lagi')
             console.log(error);
@@ -49,7 +48,6 @@ export default {
         async fetchRegionData() {
             try {
                 const provinceResponse = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/location/provinces');
-                console.log('Province Response:', provinceResponse); // Tambahkan log ini
                 const provinces = Object.entries(provinceResponse.data).map(([id, name]) => ({ id, name }));
                 this.provinces = provinces;
 
@@ -57,7 +55,6 @@ export default {
                 this.provinceName = province ? province.name : 'Unknown';
 
                 const districtResponse = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/regencies/${this.profiluser.Province}`);
-                console.log('District Response:', districtResponse); // Tambahkan log ini
                 const districts = Object.entries(districtResponse.data).map(([id, name]) => ({ id, name }));
                 this.districts = districts;
 
@@ -65,7 +62,6 @@ export default {
                 this.districtName = district ? district.name : 'Unknown';
 
                 const subDistrictResponse = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/districts/${this.profiluser.District}`);
-                console.log('SubDistrict Response:', subDistrictResponse); // Tambahkan log ini
                 const subDistricts = Object.entries(subDistrictResponse.data).map(([id, name]) => ({ id, name }));
                 this.subDistricts = subDistricts;
 
@@ -73,7 +69,6 @@ export default {
                 this.subDistrictName = subDistrict ? subDistrict.name : 'Unknown';
 
                 const villageResponse = await axios.get(`https://elgeka-web-api-production.up.railway.app/api/v1/location/villages/${this.profiluser.SubDistrict}`);
-                console.log('Village Response:', villageResponse); // Tambahkan log ini
                 const villages = Object.entries(villageResponse.data).map(([id, name]) => ({ id, name }));
                 this.villages = villages;
 
@@ -113,7 +108,6 @@ export default {
                 setTimeout(() => {
                     window.location.reload();
                 }, 2000);
-                console.log(response);
             } catch (error) {
                 console.log(error);
             }
@@ -142,7 +136,6 @@ export default {
                 .then(response => {
                     const districts = Object.entries(response.data).map(([id, name]) => ({ id, name }));
                     this.districts = districts;
-                    console.log('Fetch Regencies:', response.data);
                 })
                 .catch(error => {
                     console.error('Error fetching districts:', error);
@@ -155,7 +148,6 @@ export default {
                 .then(response => {
                     const subDistricts = Object.entries(response.data).map(([id, name]) => ({ id, name }));
                     this.subDistricts = subDistricts;
-                    console.log('Fetch Sub Districts:', response);
                 })
                 .catch(error => {
                     console.error('Error fetching subDistricts:', error);
@@ -168,7 +160,6 @@ export default {
                 .then(response => {
                     const villages = Object.entries(response.data).map(([id, name]) => ({ id, name }));
                     this.villages = villages;
-                    console.log('Fetch Villages:', response.data);
                 })
                 .catch(error => {
                     console.error('Error fetching villages:', error);

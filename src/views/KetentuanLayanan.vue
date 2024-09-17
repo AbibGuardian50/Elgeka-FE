@@ -112,11 +112,9 @@ export default {
             const toast = useToast();
             const response = await axios.get('https://elgeka-web-api-production.up.railway.app/api/v1/profilKomunitas');
             this.kontakkomunitas = response.data.result.data;
-            console.log(this.kontakkomunitas)
             if (response.data.message === "Get Profil Komunitas Successfully") {
                 toast.success('Kontak profil komunitas berhasil dimuat')
             }
-            console.log(response.data)
         } catch (error) {
             console.error(error);
             const toast = useToast();
